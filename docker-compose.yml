@@ -1,0 +1,73 @@
+# ElevestOS Development Environment
+# Docker Compose for local development
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: elevestos-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: elevestos
+      POSTGRES_PASSWORD: elevestos_dev_password
+      POSTGRES_DB: elevestos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./prisma/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elevestos"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: elevestos-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Development app (optional - can run locally)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: elevestos-app
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://elevestos:elevestos_dev_password@postgres:5432/elevestos
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: elevestos-network

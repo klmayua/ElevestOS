@@ -1,0 +1,512 @@
+// ElevestOS Database Schema
+// Based on build specification - 5 core tables + extensions
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// CORE TABLES
+// ============================================
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  passwordHash      String
+  firstName         String
+  lastName          String
+  phone             String?
+  role              UserRole  @default(USER)
+  emailVerified     DateTime?
+  avatarUrl         String?
+  
+  // Relations
+  organisationId    String?
+  organisation      Organisation? @relation(fields: [organisationId], references: [id])
+  grantsApplied     GrantApplication[]
+  projects          Project[]
+  auditLogs         AuditLog[]
+  notifications     Notification[]
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([email])
+  @@index([organisationId])
+}
+
+enum UserRole {
+  ADMIN           // Platform admin
+  ORG_ADMIN       // Organisation administrator
+  PROGRAM_MANAGER // Program/project manager
+  FINANCE_OFFICER // Finance manager
+  HR_OFFICER      // HR manager
+ USER            // Regular user
+  FUNDER          // Funder/government user
+}
+
+model Organisation {
+  id                String    @id @default(cuid())
+  name              String
+  slug              String    @unique
+  description       String?
+  registrationNumber String?
+  taxId             String?
+  
+  // Contact info
+  website           String?
+  email             String?
+  phone             String?
+  address           String?
+  city              String?
+  state             String?
+  country           String?
+  
+  // NGO specifics
+  sector            String?   // e.g., "Education", "Health", "Environment"
+  subSector         String?
+  yearFounded       Int?
+  budgetRange       String?   // e.g., "0-100K", "100K-500K", "500K-1M", "1M+"
+  staffCount        Int?
+  
+  // Verification
+  verified          Boolean   @default(false)
+  verifiedAt        DateTime?
+  
+  // Relations
+  users             User[]
+  grants            Grant[]
+  projects          Project[]
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([slug])
+  @@index([sector])
+  @@index([verified])
+}
+
+model Grant {
+  id                String    @id @default(cuid())
+  title             String
+  slug              String    @unique
+  description       String
+  summary           String    @db.Text
+  
+  // Funder info
+  funderName        String
+  funderType        FunderType
+  funderLogoUrl     String?
+  
+  // Grant details
+  amountMin         Int?      // In cents
+  amountMax         Int?
+  currency          String    @default("USD")
+  durationMin       Int?      // In months
+  durationMax       Int?
+  
+  // Timeline
+  openDate          DateTime
+  deadline          DateTime
+  decisionDate      DateTime?
+  
+  // Eligibility
+  eligibleSectors   String[]
+  eligibleCountries String[]
+  eligibleOrgTypes  String[]
+  requirements      String[]  @db.Text
+  
+  // Status
+  status            GrantStatus @default(DRAFT)
+  isFeatured        Boolean   @default(false)
+  
+  // Relations
+  organisationId    String?
+  organisation      Organisation? @relation(fields: [organisationId], references: [id])
+  applications      GrantApplication[]
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([status])
+  @@index([deadline])
+  @@index([funderType])
+  @@index([isFeatured])
+  @@index([organisationId])
+}
+
+enum FunderType {
+  FOUNDATION
+  GOVERNMENT
+  CORPORATE
+  INTERNATIONAL_NGO
+  MULTILATERAL
+  INDIVIDUAL
+}
+
+enum GrantStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+  CANCELLED
+}
+
+model GrantApplication {
+  id                String    @id @default(cuid())
+  applicationNumber String    @unique // e.g., "APP-2026-00001"
+  
+  // Relations
+  grantId           String
+  grant             Grant     @relation(fields: [grantId], references: [id])
+  applicantId       String
+  applicant         User      @relation(fields: [applicantId], references: [id])
+  
+  // Application data
+  status            ApplicationStatus @default(DRAFT)
+  submittedAt       DateTime?
+  reviewedAt        DateTime?
+  decisionAt        DateTime?
+  
+  // Review
+  reviewScore       Int?      // 1-100
+  reviewNotes       String?   @db.Text
+  reviewerId        String?
+  
+  // Documents
+  proposalUrl       String?
+  budgetUrl         String?
+  supportingDocs    String[]  // Array of URLs
+  
+  // Decision
+  decision          ApplicationDecision?
+  decisionNotes     String?   @db.Text
+  awardedAmount     Int?      // In cents
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@unique([grantId, applicantId])
+  @@index([status])
+  @@index([submittedAt])
+  @@index([applicantId])
+}
+
+enum ApplicationStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  INTERVIEW
+  FINAL_REVIEW
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+enum ApplicationDecision {
+  AWARDED
+  REJECTED
+  WAITLISTED
+}
+
+model Project {
+  id                String    @id @default(cuid())
+  title             String
+  slug              String    @unique
+  description       String    @db.Text
+  summary           String
+  
+  // Relations
+  organisationId    String
+  organisation      Organisation @relation(fields: [organisationId], references: [id])
+  leadId            String?
+  lead              User?     @relation(fields: [leadId], references: [id])
+  grantApplicationId String?  @unique
+  grantApplication  GrantApplication? @relation(fields: [grantApplicationId], references: [id])
+  
+  // Project details
+  startDate         DateTime
+  endDate           DateTime
+  status            ProjectStatus @default(PLANNING)
+  
+  // Budget
+  budgetTotal       Int       // In cents
+  budgetSpent       Int       @default(0)
+  currency          String    @default("USD")
+  
+  // Impact metrics
+  beneficiaries     Int?
+  beneficiariesUnit String?   // e.g., "people", "households", "schools"
+  outcomes          String[]  @db.Text
+  
+  // Location
+  countries         String[]
+  regions           String[]
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([status])
+  @@index([organisationId])
+  @@index([startDate, endDate])
+}
+
+enum ProjectStatus {
+  PLANNING
+  ACTIVE
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model AuditLog {
+  id                String    @id @default(cuid())
+  
+  // Actor
+  userId            String?
+  user              User?     @relation(fields: [userId], references: [id])
+  
+  // Action
+  action            String    // e.g., "USER_LOGIN", "GRANT_CREATED"
+  entityType        String    // e.g., "User", "Grant", "Project"
+  entityId          String?
+  
+  // Details
+  metadata          Json?
+  ipAddress         String?
+  userAgent         String?
+  
+  createdAt         DateTime  @default(now())
+  
+  @@index([userId])
+  @@index([entityType, entityId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model Transaction {
+  id                String    @id @default(cuid())
+  
+  projectId         String
+  project           Project  @relation(fields: [projectId], references: [id])
+  
+  category          String    // e.g., "Personnel", "Equipment", "Travel"
+  amount            Int       // In cents
+  description       String    @db.Text
+  type              TransactionType
+  
+  paymentMethod     String?   // e.g., "Bank Transfer", "Cash", "Mobile Money"
+  referenceNumber  String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([projectId])
+  @@index([type])
+  @@index([category])
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Document {
+  id                String    @id @default(cuid())
+  
+  name              String
+  description       String?
+  fileUrl           String
+  fileType          String    // e.g., "PDF", "DOC", "IMG"
+  fileSize          Int?
+  
+  organisationId   String?
+  projectId         String?
+  grantApplicationId String?
+  
+  category          DocumentCategory @default(OTHER)
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([organisationId])
+  @@index([projectId])
+  @@index([grantApplicationId])
+  @@index([category])
+}
+
+enum DocumentCategory {
+  PROPOSAL
+  BUDGET
+  REPORT
+  FINANCIAL
+  LEGAL
+  BOARD_RESOLUTION
+  CERTIFICATE
+  OTHER
+}
+
+model Approval {
+  id                String    @id @default(cuid())
+  
+  entityType        String    // e.g., "Transaction", "Report"
+  entityId          String
+  
+  requestedBy      String
+  requestedByUser User      @relation(fields: [requestedBy], references: [id])
+  
+  status            ApprovalStatus @default(PENDING)
+  
+  comments         String?   @db.Text
+  approvedBy       String?
+  approvedAt       DateTime?
+  
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  
+  @@index([entityType, entityId])
+  @@index([status])
+}
+
+// ============================================
+// EXTENSION TABLES
+// ============================================
+
+model Notification {
+  id                String    @id @default(cuid())
+  
+  userId            String
+  user              User      @relation(fields: [userId], references: [id])
+  
+  type              NotificationType
+  title             String
+  message           String    @db.Text
+  link              String?
+  
+  read              Boolean   @default(false)
+  readAt            DateTime?
+  
+  createdAt         DateTime  @default(now())
+  
+  @@index([userId, read])
+  @@index([createdAt])
+}
+
+enum NotificationType {
+  GRANT_MATCH
+  APPLICATION_UPDATE
+  PROJECT_REMINDER
+  DEADLINE_REMINDER
+  SYSTEM
+}
+
+model ComplianceReport {
+  id                String    @id @default(cuid())
+  
+  projectId         String
+  project           Project   @relation(fields: [projectId], references: [id])
+  
+  reportType        String    // e.g., "Quarterly", "Annual", "Final"
+  periodStart       DateTime
+  periodEnd         DateTime
+  
+  status            ReportStatus @default(DRAFT)
+  submittedAt       DateTime?
+  
+  // Report data
+  activities        String[]  @db.Text
+  achievements      String[]  @db.Text
+  challenges        String[]  @db.Text
+  budgetUtilization Float     // Percentage
+  beneficiariesReached Int?
+  
+  // Documents
+  reportUrl         String?
+  financialUrl      String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([projectId])
+  @@index([status])
+}
+
+enum ReportStatus {
+  DRAFT
+  SUBMITTED
+  REVIEWED
+  APPROVED
+  REVISIONS_REQUIRED
+}
+
+model Training {
+  id                String    @id @default(cuid())
+  title             String
+  slug              String    @unique
+  description       String    @db.Text
+  
+  type              TrainingType
+  category          String
+  difficulty        Difficulty @default(BEGINNER)
+  duration          Int       // In minutes
+  
+  content           Json      // Course content structure
+  
+  published         Boolean   @default(false)
+  publishedAt       DateTime?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@index([category])
+  @@index([published])
+}
+
+enum TrainingType {
+  VIDEO
+  ARTICLE
+  QUIZ
+  WEBINAR
+  COURSE
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model TrainingProgress {
+  id                String    @id @default(cuid())
+  
+  userId            String
+  trainingId        String
+  training          Training  @relation(fields: [trainingId], references: [id])
+  
+  progress          Float     @default(0) // Percentage
+  completed         Boolean   @default(false)
+  completedAt       DateTime?
+  
+  score             Int?      // For quizzes
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  @@unique([userId, trainingId])
+  @@index([userId])
+}
