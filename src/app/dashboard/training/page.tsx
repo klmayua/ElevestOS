@@ -78,7 +78,7 @@ export default async function TrainingPage() {
         </div>
         <div className="card-body">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Link href="#" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
+            <Link href="/dashboard/training?category=Grant Writing" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
               <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
                 <span className="text-2xl">📝</span>
               </div>
@@ -94,7 +94,7 @@ export default async function TrainingPage() {
               </div>
             </Link>
 
-            <Link href="#" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
+            <Link href="/dashboard/training?category=Financial Management" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
               <div className="w-12 h-12 rounded-md bg-tertiary/10 flex items-center justify-center mb-4 group-hover:bg-tertiary/20 transition-colors">
                 <span className="text-2xl">💰</span>
               </div>
@@ -110,7 +110,7 @@ export default async function TrainingPage() {
               </div>
             </Link>
 
-            <Link href="#" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
+            <Link href="/dashboard/training?category=Monitoring & Evaluation" className="group p-6 rounded-md border border-border hover:border-secondary hover:shadow-card-hover transition-all">
               <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <span className="text-2xl">📊</span>
               </div>
@@ -135,7 +135,7 @@ export default async function TrainingPage() {
           <h2 className="text-h4 font-heading font-semibold text-primary">
             Available Courses
           </h2>
-          <Link href="#" className="text-body-sm text-secondary hover:underline">
+          <Link href="/dashboard/training" className="text-body-sm text-secondary hover:underline">
             View all
           </Link>
         </div>

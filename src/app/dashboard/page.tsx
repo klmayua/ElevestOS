@@ -136,7 +136,7 @@ export default async function DashboardPage() {
             </div>
           </div>
           <div className="mt-4">
-            <Link href="/dashboard/compliance" className="text-body-sm text-secondary hover:underline">
+            <Link href="/dashboard/reports" className="text-body-sm text-secondary hover:underline">
               View compliance →
             </Link>
           </div>
