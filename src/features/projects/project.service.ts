@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { Prisma } from "@prisma/client";
 
 export async function getProjects(organisationId: string) {
   return prisma.project.findMany({
@@ -70,9 +71,24 @@ export async function createProject(data: {
   countries?: string[];
   outcomes?: string[];
 }) {
+  const slug = data.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + "-" + Date.now().toString(36);
+
   return prisma.project.create({
     data: {
-      ...data,
+      title: data.title,
+      description: data.description,
+      summary: data.summary,
+      slug,
+      organisationId: data.organisationId,
+      leadId: data.leadId,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      budgetTotal: data.budgetTotal,
+      currency: data.currency,
+      beneficiaries: data.beneficiaries,
+      beneficiariesUnit: data.beneficiariesUnit,
+      countries: data.countries || [],
+      outcomes: data.outcomes || [],
       status: "PLANNING",
       budgetSpent: 0,
     },
@@ -82,7 +98,7 @@ export async function createProject(data: {
 export async function updateProjectStatus(projectId: string, status: string) {
   return prisma.project.update({
     where: { id: projectId },
-    data: { status },
+    data: { status: status as Prisma.EnumProjectStatusFieldUpdateOperationsInput },
   });
 }
 
@@ -106,9 +122,9 @@ export async function getProjectStats(organisationId: string) {
       COMPLETED: projects.filter((p) => p.status === "COMPLETED").length,
       CANCELLED: projects.filter((p) => p.status === "CANCELLED").length,
     },
-    totalBudget: projects.reduce((sum, p) => sum + p.budgetTotal, 0),
-    totalSpent: projects.reduce((sum, p) => sum + p.budgetSpent, 0),
-    totalBeneficiaries: projects.reduce((sum, p) => sum + (p.beneficiaries || 0), 0),
+    totalBudget: projects.reduce((sum: number, p) => sum + p.budgetTotal, 0),
+    totalSpent: projects.reduce((sum: number, p) => sum + p.budgetSpent, 0),
+    totalBeneficiaries: projects.reduce((sum: number, p) => sum + (p.beneficiaries || 0), 0),
   };
 
   return stats;

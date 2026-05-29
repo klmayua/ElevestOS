@@ -21,24 +21,26 @@ export async function getComplianceStats(organisationId: string) {
     include: {
       complianceReports: {
         select: {
+          id: true,
           status: true,
           periodEnd: true,
+          reportType: true,
         },
       },
     },
   });
 
-  const totalReports = projects.reduce((sum, p) => sum + p.complianceReports.length, 0);
+  const totalReports = projects.reduce((sum: number, p) => sum + p.complianceReports.length, 0);
   const pendingReports = projects.reduce(
-    (sum, p) => sum + p.complianceReports.filter((r) => r.status === "DRAFT").length,
+    (sum: number, p) => sum + p.complianceReports.filter((r) => r.status === "DRAFT").length,
     0
   );
   const submittedReports = projects.reduce(
-    (sum, p) => sum + p.complianceReports.filter((r) => r.status === "SUBMITTED").length,
+    (sum: number, p) => sum + p.complianceReports.filter((r) => r.status === "SUBMITTED").length,
     0
   );
   const approvedReports = projects.reduce(
-    (sum, p) => sum + p.complianceReports.filter((r) => r.status === "APPROVED").length,
+    (sum: number, p) => sum + p.complianceReports.filter((r) => r.status === "APPROVED").length,
     0
   );
 

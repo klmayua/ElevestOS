@@ -32,9 +32,9 @@ export async function registerAction(formData: FormData) {
       path: "/",
     });
 
-    return { success: true, user };
+    redirect("/dashboard");
   } catch (error: any) {
-    return { success: false, error: error.message };
+    throw new Error(error.message);
   }
 }
 
@@ -59,9 +59,9 @@ export async function loginAction(formData: FormData) {
       path: "/",
     });
 
-    return { success: true, user };
+    redirect("/dashboard");
   } catch (error: any) {
-    return { success: false, error: error.message };
+    throw new Error(error.message);
   }
 }
 
@@ -112,11 +112,9 @@ export async function updateProfileAction(formData: FormData) {
       phone: formData.get("phone"),
     });
 
-    const updatedUser = await updateUserProfile(user.id, data);
-
-    return { success: true, user: updatedUser };
+    await updateUserProfile(user.id, data);
   } catch (error: any) {
-    return { success: false, error: error.message };
+    throw new Error(error.message);
   }
 }
 
@@ -136,10 +134,8 @@ export async function changePasswordAction(formData: FormData) {
     });
 
     await changePassword(user.id, data.currentPassword, data.newPassword);
-
-    return { success: true };
   } catch (error: any) {
-    return { success: false, error: error.message };
+    throw new Error(error.message);
   }
 }
 

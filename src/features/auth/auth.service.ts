@@ -24,7 +24,8 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
  * Generate a JWT token
  */
 export function generateToken(payload: { userId: string; email: string; role: string }): string {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+  const secret = JWT_SECRET as jwt.Secret;
+  return jwt.sign(payload, secret, { expiresIn: JWT_EXPIRES_IN } as jwt.SignOptions);
 }
 
 /**

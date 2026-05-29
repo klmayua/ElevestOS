@@ -5,7 +5,7 @@ export interface TransactionInput {
   category: string;
   amount: number;
   description: string;
-  type: "income" | "expense";
+  type: "INCOME" | "EXPENSE";
   paymentMethod?: string;
   referenceNumber?: string;
 }
@@ -23,12 +23,12 @@ export async function getProjectFinancialSummary(projectId: string) {
   });
 
   const totalIncome = transactions
-    .filter(t => t.type === "income")
-    .reduce((sum, t) => sum + t.amount, 0);
+    .filter(t => t.type === "INCOME")
+    .reduce((sum: number, t) => sum + t.amount, 0);
 
   const totalExpense = transactions
-    .filter(t => t.type === "expense")
-    .reduce((sum, t) => sum + t.amount, 0);
+    .filter(t => t.type === "EXPENSE")
+    .reduce((sum: number, t) => sum + t.amount, 0);
 
   return {
     totalIncome,
