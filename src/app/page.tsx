@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FloatingPillNav } from "@/components/layout/floating-pill-nav";
 import { ArrowRight, Shield, Building2, Lock, GitBranch, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -9,67 +10,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-surface text-on-surface antialiased">
-      {/* ================================================================
-          NAVBAR — contained, restrained, professional
-          ================================================================ */}
-      <header className="fixed top-0 inset-x-0 z-50 h-16 border-b border-outline-variant/20 bg-surface/90 backdrop-blur-md">
-        <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
-          <div className="flex items-center gap-6">
-            <Link href="/" className="text-lg font-bold tracking-tight text-primary">
-              ElevestOS
-            </Link>
-            <div className="hidden items-center gap-1 lg:flex">
-              <Link
-                href="/features"
-                className="px-3 py-2 text-[13px] font-medium text-on-surface-variant transition-colors hover:text-primary"
-              >
-                Features
-              </Link>
-              <Link
-                href="/for-ngos"
-                className="px-3 py-2 text-[13px] font-medium text-on-surface-variant transition-colors hover:text-primary"
-              >
-                For NGOs
-              </Link>
-              <Link
-                href="/for-funders"
-                className="px-3 py-2 text-[13px] font-medium text-on-surface-variant transition-colors hover:text-primary"
-              >
-                For Funders
-              </Link>
-              <Link
-                href="/pricing"
-                className="px-3 py-2 text-[13px] font-medium text-on-surface-variant transition-colors hover:text-primary"
-              >
-                Pricing
-              </Link>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/auth/login"
-              className="hidden text-[13px] font-medium text-on-surface-variant transition-colors hover:text-primary sm:block"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded bg-primary px-5 py-2 text-[13px] font-semibold text-on-primary transition-colors hover:bg-primary-container"
-            >
-              Get started
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-      </header>
+      <FloatingPillNav />
 
       {/* ================================================================
           HERO — clean gradient, singular focus, generous space
           ================================================================ */}
       <section className="relative flex min-h-screen items-center bg-primary-container">
         <div className="absolute inset-0 bg-gradient-to-b from-primary-container via-primary-container to-transparent" />
-        <div className="relative mx-auto w-full max-w-7xl px-6 pt-16 lg:px-8">
-          <div className="flex flex-col items-start py-24 lg:py-40">
+        <div className="relative mx-auto w-full max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col items-start py-32 lg:py-44">
             <div className="inline-flex items-center gap-2 rounded border border-secondary/20 bg-secondary/5 px-3 py-1">
               <span className="h-1.5 w-1.5 rounded-full bg-secondary-fixed" />
               <span className="text-[11px] font-medium uppercase tracking-widest text-secondary-fixed">
