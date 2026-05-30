@@ -15,21 +15,15 @@ export const metadata: Metadata = {
   title: "ElevestOS — The Operating System for Serious NGOs",
 };
 
-const heroPatternStyle = {
+const heroSectionStyle: React.CSSProperties = {
   backgroundColor: "#0b1c30",
-  backgroundImage: "radial-gradient(#39475f 0.5px, transparent 0.5px)",
-  backgroundSize: "24px 24px",
+  backgroundImage:
+    "linear-gradient(135deg, #0b1c30 0%, #0d1c32 50%, #0b1c30 100%)",
 };
 
 const glassCardStyle: React.CSSProperties = {
-  background: "rgba(255, 255, 255, 0.03)",
-  backdropFilter: "blur(8px)",
-  WebkitBackdropFilter: "blur(8px)",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-};
-
-const textGlowStyle: React.CSSProperties = {
-  textShadow: "0 0 20px rgba(111, 251, 190, 0.3)",
+  background: "rgba(255, 255, 255, 0.05)",
+  border: "1px solid rgba(255, 255, 255, 0.12)",
 };
 
 export default function Home() {
@@ -101,7 +95,7 @@ export default function Home() {
             ================================================================ */}
         <section
           className="relative min-h-[870px] flex items-center overflow-hidden"
-          style={heroPatternStyle}
+          style={heroSectionStyle}
         >
           <div className="absolute inset-0 bg-gradient-to-br from-tertiary-container/80 via-transparent to-primary-container/40" />
 
@@ -118,7 +112,7 @@ export default function Home() {
 
               <h1 className="font-display-lg text-display-lg text-white mb-lg leading-tight">
                 The Operating System for <br />
-                <span className="text-secondary-fixed" style={textGlowStyle}>
+                <span className="text-secondary-fixed">
                   Serious NGOs
                 </span>
               </h1>
@@ -133,14 +127,14 @@ export default function Home() {
               <div className="flex flex-wrap gap-md">
                 <Link
                   href="/contact"
-                  className="group flex items-center gap-md px-xl py-lg bg-secondary text-on-secondary font-title-md text-title-md hover:opacity-90 transition-all"
+                  className="group flex items-center gap-md px-xl py-lg bg-secondary text-on-secondary font-title-md text-title-md hover:bg-secondary/90 transition-colors"
                 >
                   Request Deployment
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/auth/login"
-                  className="flex items-center gap-md px-xl py-lg border border-outline-variant/40 text-white font-title-md text-title-md hover:bg-white/5 transition-all"
+                  className="flex items-center gap-md px-xl py-lg border border-outline-variant/40 text-white font-title-md text-title-md hover:bg-white/5 transition-colors"
                 >
                   <Building2 className="h-5 w-5" />
                   Institutional Login
@@ -226,7 +220,7 @@ export default function Home() {
 
             <div className="grid grid-cols-12 gap-lg">
               {/* Secure */}
-              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-outline-variant flex flex-col items-start hover:bg-surface-container transition-colors">
+              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-[#E2E8F0] flex flex-col items-start hover:bg-surface-container transition-colors">
                 <div className="w-12 h-12 bg-primary-container flex items-center justify-center text-secondary-fixed mb-xl">
                   <Lock className="h-6 w-6" />
                 </div>
@@ -241,7 +235,7 @@ export default function Home() {
               </div>
 
               {/* Structured */}
-              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-outline-variant flex flex-col items-start hover:bg-surface-container transition-colors">
+              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-[#E2E8F0] flex flex-col items-start hover:bg-surface-container transition-colors">
                 <div className="w-12 h-12 bg-primary-container flex items-center justify-center text-secondary-fixed mb-xl">
                   <GitBranch className="h-6 w-6" />
                 </div>
@@ -256,7 +250,7 @@ export default function Home() {
               </div>
 
               {/* Auditable */}
-              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-outline-variant flex flex-col items-start hover:bg-surface-container transition-colors">
+              <div className="col-span-12 md:col-span-4 p-2xl bg-surface-container-lowest border border-[#E2E8F0] flex flex-col items-start hover:bg-surface-container transition-colors">
                 <div className="w-12 h-12 bg-primary-container flex items-center justify-center text-secondary-fixed mb-xl">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
@@ -322,16 +316,15 @@ export default function Home() {
 
                   {/* Overlay floating status card */}
                   <div
-                    className="absolute bottom-xl right-xl p-lg border-secondary-fixed/30 hidden lg:block"
-                    style={glassCardStyle}
+                    className="absolute bottom-xl right-xl p-lg bg-surface-container-lowest border border-[#E2E8F0] hidden lg:block"
                   >
                     <div className="flex items-center gap-md mb-sm">
                       <div className="w-3 h-3 rounded-full bg-secondary-fixed" />
-                      <span className="font-label-md text-label-md text-white">
+                      <span className="font-label-md text-label-md text-primary">
                         SYSTEMS NOMINAL
                       </span>
                     </div>
-                    <span className="font-body-md text-body-md text-white/60">
+                    <span className="font-body-md text-body-md text-on-surface-variant">
                       Global Network Active
                     </span>
                   </div>
@@ -358,7 +351,7 @@ export default function Home() {
               <div className="flex justify-center gap-md">
                 <Link
                   href="/contact"
-                  className="px-3xl py-lg bg-primary text-on-primary font-title-md text-title-md hover:opacity-90 transition-all"
+                  className="px-3xl py-lg bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-colors"
                 >
                   Schedule a Consultation
                 </Link>

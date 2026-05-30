@@ -120,30 +120,30 @@ function TierCard({
   return (
     <div
       className={`relative bg-white border rounded-lg p-8 flex flex-col ${
-        recommended ? "border-brand-trust shadow-elevated" : "border-gray-200"
+        recommended ? "border-brand-trust shadow-elevated" : "border-[#E2E8F0]"
       }`}
     >
       {recommended && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-trust text-white whitespace-nowrap">
+          <span className="inline-flex items-center px-3 py-1 rounded text-xs font-semibold bg-primary text-white whitespace-nowrap">
             RECOMMENDED
           </span>
         </div>
       )}
       <div className="mb-6">
-        <h3 className="text-heading-lg font-semibold text-gray-900 mb-1">{name}</h3>
-        <p className="text-body-sm text-gray-500">{subtitle}</p>
+        <h3 className="text-heading-lg font-semibold text-on-surface mb-1">{name}</h3>
+        <p className="text-body-md text-on-surface-variant">{subtitle}</p>
       </div>
       <div className="mb-6">
-        <span className="text-display-sm font-bold text-gray-900">{price}</span>
-        {period && <span className="text-body-sm text-gray-500 ml-1">{period}</span>}
+        <span className="text-headline-lg font-bold text-on-surface">{price}</span>
+        {period && <span className="text-body-md text-on-surface-variant ml-1">{period}</span>}
       </div>
       <a
         href={ctaHref}
-        className={`inline-flex items-center justify-center w-full px-6 py-3 rounded-md font-medium text-body-sm transition-colors mb-8 ${
+        className={`inline-flex items-center justify-center w-full px-6 py-3 rounded-md font-medium text-body-md transition-colors mb-8 ${
           ctaVariant === "primary"
-            ? "bg-brand-trust text-white hover:bg-brand-trust/90"
-            : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+            ? "bg-primary text-white hover:bg-primary/90"
+            : "border border-outline-variant text-on-surface hover:bg-surface-container"
         }`}
       >
         {cta}
@@ -152,12 +152,12 @@ function TierCard({
         {features.map((feature, i) => (
           <li key={i} className="flex items-start gap-3">
             {feature.included ? (
-              <Check className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+              <Check className="h-4 w-4 text-secondary shrink-0 mt-0.5" />
             ) : (
-              <Minus className="h-4 w-4 text-gray-300 shrink-0 mt-0.5" />
+              <Minus className="h-4 w-4 text-on-surface-variant/50 shrink-0 mt-0.5" />
             )}
             <span
-              className={`text-body-sm ${feature.included ? "text-gray-700" : "text-gray-400"}`}
+              className={`text-body-md ${feature.included ? "text-on-surface" : "text-on-surface-variant/70"}`}
             >
               {feature.text}
             </span>
@@ -175,10 +175,10 @@ export default function PricingPage() {
       <main className="min-h-screen">
         <section className="pt-28 pb-12 px-6">
           <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-display-lg font-bold text-gray-900 tracking-tight mb-6">
+            <h1 className="text-display-lg font-bold text-on-surface tracking-tight mb-6">
               Pricing
             </h1>
-            <blockquote className="text-body-lg text-gray-600 max-w-3xl mx-auto italic">
+            <blockquote className="text-body-lg text-on-surface-variant max-w-3xl mx-auto italic">
               &ldquo;NGOs pay from operating budgets, not profit. Our pricing must be far
               lower than the cost of rejection &mdash; because every dollar spent on
               infrastructure is a dollar that was not spent on mission.&rdquo;
@@ -195,17 +195,17 @@ export default function PricingPage() {
         </section>
 
         <section className="px-6 pb-20">
-          <div className="max-w-7xl mx-auto bg-gray-50 border border-gray-200 rounded-xl p-10 lg:p-14">
-            <h2 className="text-heading-xl font-bold text-gray-900 mb-4 text-center">
+          <div className="max-w-7xl mx-auto bg-surface-container-low border border-[#E2E8F0] rounded-lg p-10 lg:p-14">
+            <h2 className="text-headline-lg font-bold text-on-surface mb-4 text-center">
               For Funders &amp; Institutions
             </h2>
-            <p className="text-body-md text-gray-600 max-w-3xl mx-auto text-center mb-6">
+            <p className="text-body-md text-on-surface-variant max-w-3xl mx-auto text-center mb-6">
               Foundations, bilateral donors, and multilateral institutions manage portfolios,
               not individual NGOs. Portfolio licenses give you oversight across all funded
               organisations without per-entity pricing. Your costs stay predictable as your
               grant portfolio grows.
             </p>
-            <p className="text-body-sm text-gray-600 max-w-3xl mx-auto text-center">
+            <p className="text-body-md text-on-surface-variant max-w-3xl mx-auto text-center">
               Enterprise deployments are available for government and multilateral programmes
               requiring on-premise hosting, custom data residency, or dedicated infrastructure.
               We work with your procurement and IT security teams to meet institutional
@@ -214,7 +214,7 @@ export default function PricingPage() {
             <div className="text-center mt-8">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-gray-900 text-gray-900 font-medium rounded-md hover:bg-gray-900 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-gray-900 text-on-surface font-medium rounded-md hover:bg-primary-container hover:text-white transition-colors"
               >
                 Inquire About Portfolio Licensing
               </a>
@@ -224,21 +224,21 @@ export default function PricingPage() {
 
         <section className="px-6 pb-28">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-heading-xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-headline-lg font-bold text-on-surface mb-8 text-center">
               Frequently Asked Questions
             </h2>
             <div className="space-y-4">
               {faqs.map((faq, i) => (
                 <details
                   key={i}
-                  className="group border border-gray-200 rounded-lg overflow-hidden"
+                  className="group border border-[#E2E8F0] rounded-lg overflow-hidden"
                 >
-                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
-                    <span className="text-body-md font-medium text-gray-900 pr-8">
+                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-surface-container transition-colors">
+                    <span className="text-body-md font-medium text-on-surface pr-8">
                       {faq.question}
                     </span>
                     <svg
-                      className="h-4 w-4 text-gray-400 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                      className="h-4 w-4 text-on-surface-variant/70 shrink-0 transition-transform duration-200 group-open:rotate-180"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -252,7 +252,7 @@ export default function PricingPage() {
                     </svg>
                   </summary>
                   <div className="px-6 pb-5">
-                    <p className="text-body-sm text-gray-600 leading-relaxed">{faq.answer}</p>
+                    <p className="text-body-md text-on-surface-variant leading-relaxed">{faq.answer}</p>
                   </div>
                 </details>
               ))}

@@ -7,25 +7,25 @@ import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-sm text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-gray-900 text-white hover:bg-gray-800 focus-visible:ring-gray-900 shadow-subtle",
+          "bg-primary text-on-primary hover:bg-primary-container focus-visible:ring-primary",
         secondary:
-          "border border-border bg-transparent text-foreground hover:bg-gray-50 focus-visible:ring-gray-900",
+          "border bg-transparent text-primary hover:bg-surface-container-low focus-visible:ring-primary",
         success:
-          "bg-success text-white hover:bg-success/90 focus-visible:ring-success",
+          "bg-secondary text-on-secondary hover:bg-secondary/90 focus-visible:ring-secondary",
         ghost:
-          "text-foreground-secondary hover:bg-gray-50 hover:text-foreground focus-visible:ring-gray-900",
+          "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface focus-visible:ring-primary",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive",
+          "bg-error text-on-error hover:bg-error/90 focus-visible:ring-error",
       },
       size: {
-        sm: "h-8 px-3 text-body-xs gap-1.5",
+        sm: "h-8 px-3 text-caption gap-1.5",
         default: "h-10 px-4 gap-2",
-        lg: "h-12 px-6 text-body-md gap-2.5",
+        lg: "h-12 px-6 gap-2.5",
       },
     },
     defaultVariants: {

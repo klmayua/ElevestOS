@@ -5,13 +5,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-const cardVariants = cva("overflow-hidden", {
+const cardVariants = cva("overflow-hidden bg-surface-container-lowest border", {
   variants: {
     variant: {
-      default: "bg-card border border-border rounded-md",
-      elevated: "bg-card rounded-md shadow-elevated",
+      default: "border-[#E2E8F0] rounded-lg",
+      elevated: "border-transparent rounded-lg shadow-[0px_4px_12px_rgba(10,25,47,0.08)]",
       glass:
-        "bg-white/70 backdrop-blur-xl border border-white/20 rounded-md shadow-subtle",
+        "bg-white/70 backdrop-blur-xl border-white/20 rounded-lg",
     },
   },
   defaultVariants: {
@@ -50,7 +50,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "font-heading text-heading-md font-semibold text-foreground tracking-tight",
+      "font-headline-md text-headline-md text-on-surface",
       className
     )}
     {...props}
@@ -64,7 +64,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-body-sm text-foreground-secondary", className)}
+    className={cn("font-body-md text-body-md text-on-surface-variant", className)}
     {...props}
   />
 ));
@@ -85,7 +85,7 @@ const CardFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex items-center gap-3 px-6 py-4 border-t border-border bg-gray-50/50",
+      "flex items-center gap-3 px-6 py-4 border-t border-[#E2E8F0] bg-surface-container-low",
       className
     )}
     {...props}

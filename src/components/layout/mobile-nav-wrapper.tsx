@@ -214,7 +214,7 @@ export function MobileNavWrapper({ children }: MobileNavWrapperProps) {
                   Sign In
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/contact"
                   onClick={closeDrawer}
                   className="flex items-center justify-center gap-1.5 w-full py-2.5 text-sm font-semibold bg-primary text-white rounded-md hover:bg-primary-hover transition-colors"
                 >

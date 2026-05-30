@@ -6,17 +6,17 @@ export default function PlatformPage() {
     <>
       <PublicNavbar />
 
-      <main className="bg-white text-gray-900">
+      <main className="bg-white text-on-surface">
         {/* Hero */}
-        <section className="border-b border-gray-100 px-6 py-28 lg:px-24 lg:py-40">
+        <section className="border-b border-[#E2E8F0] px-6 py-28 lg:px-24 lg:py-40">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-6 inline-block rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-body-md font-medium text-blue-600">
+            <div className="mb-6 inline-block rounded border border-primary-container/30 bg-primary-container/10 px-4 py-1.5 text-body-md font-medium text-primary-container">
               ElevestOS Platform
             </div>
-            <h1 className="text-display-lg leading-tight tracking-tight text-gray-900">
+            <h1 className="text-display-lg leading-tight tracking-tight text-on-surface">
               The Infrastructure Layer for NGO Operations
             </h1>
-            <p className="mt-8 max-w-2xl text-body-lg leading-relaxed text-gray-600">
+            <p className="mt-8 max-w-2xl text-body-lg leading-relaxed text-on-surface-variant">
               ElevestOS sits beneath the tools you already use and above the
               daily work your teams perform. It doesn&apos;t replace your CRM,
               your accounting software, or your project management platform. It
@@ -27,15 +27,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Operating System Overview */}
-        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               What ElevestOS Is
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Not a Tool. An Operating System.
             </h2>
-            <div className="mt-10 space-y-6 text-body-md leading-relaxed text-gray-600">
+            <div className="mt-10 space-y-6 text-body-md leading-relaxed text-on-surface-variant">
               <p>
                 Most software in the social sector addresses a single function:
                 grant management, monitoring and evaluation, financial
@@ -71,12 +71,12 @@ export default function PlatformPage() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-xl border border-gray-200 bg-gray-50 p-6"
+                  className="rounded-lg border border-[#E2E8F0] bg-surface-container-low p-6"
                 >
-                  <p className="text-heading-xl font-semibold text-gray-900">
+                  <p className="text-headline-lg font-semibold text-on-surface">
                     {item.label}
                   </p>
-                  <p className="mt-2 text-body-md leading-relaxed text-gray-500">
+                  <p className="mt-2 text-body-md leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
@@ -86,15 +86,15 @@ export default function PlatformPage() {
         </section>
 
         {/* NGO Layer */}
-        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               The NGO Layer
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Built for How NGOs Actually Work
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
               Every capability in ElevestOS is designed around the real
               operational rhythms of a non-governmental organisation. From the
               moment you search for funding to the moment a multi-year programme
@@ -129,11 +129,11 @@ export default function PlatformPage() {
                   desc: "Past decisions, approved processes, historical reports, and lessons learned persist beyond individual staff tenures. The organisation remembers what it has done and why.",
                 },
               ].map((item) => (
-                <div key={item.title} className="rounded-xl border border-gray-200 bg-white p-7">
-                  <h3 className="text-heading-lg font-semibold text-gray-900">
+                <div key={item.title} className="rounded-lg border border-[#E2E8F0] bg-white p-7">
+                  <h3 className="text-heading-lg font-semibold text-on-surface">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                  <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
@@ -143,15 +143,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Funder Layer */}
-        <section className="border-b border-gray-100 bg-gray-50 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] bg-surface-container-low px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               The Funder Layer
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Deploy Capital with Clarity
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
               Funders operate with asymmetric information. NGOs submit polished
               proposals and curated reports, but the reality on the ground
               remains opaque. ElevestOS replaces that opacity with a live,
@@ -178,11 +178,11 @@ export default function PlatformPage() {
                   desc: "Access a complete, chronological record of every decision, expenditure, and deliverable. Audit readiness is built into the system, not bolted on at year-end.",
                 },
               ].map((item) => (
-                <div key={item.title} className="rounded-xl border border-gray-200 bg-white p-8">
-                  <h3 className="text-heading-lg font-semibold text-gray-900">
+                <div key={item.title} className="rounded-lg border border-[#E2E8F0] bg-white p-8">
+                  <h3 className="text-heading-lg font-semibold text-on-surface">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                  <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
@@ -192,15 +192,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Shared Infrastructure */}
-        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               Shared Infrastructure
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               The Marketplace Layer
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
               Beyond the direct NGO-funder relationship lies a broader
               ecosystem. ElevestOS provides shared infrastructure that connects
               organisations, funders, talent, and service providers across the
@@ -230,11 +230,11 @@ export default function PlatformPage() {
                   desc: "Build and demonstrate organisational capability over time. Every successfully delivered project strengthens your verified profile.",
                 },
               ].map((item) => (
-                <div key={item.title} className="rounded-xl border border-gray-200 bg-white p-7">
-                  <h3 className="text-heading-lg font-semibold text-gray-900">
+                <div key={item.title} className="rounded-lg border border-[#E2E8F0] bg-white p-7">
+                  <h3 className="text-heading-lg font-semibold text-on-surface">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                  <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
@@ -244,15 +244,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Institutional Memory */}
-        <section className="border-b border-gray-100 bg-gray-50 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] bg-surface-container-low px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               Institutional Memory
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Knowledge That Outlasts Individuals
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
               The single greatest operational risk in the social sector is the
               loss of institutional knowledge. When a programme manager leaves,
               when a finance director retires, when a country office closes,
@@ -260,7 +260,7 @@ export default function PlatformPage() {
               solves this at the infrastructure level.
             </p>
 
-            <div className="mt-12 space-y-6 text-body-md leading-relaxed text-gray-600">
+            <div className="mt-12 space-y-6 text-body-md leading-relaxed text-on-surface-variant">
               <p>
                 Every grant application, every approved budget revision, every
                 compliance decision, and every programme report is permanently
@@ -287,11 +287,11 @@ export default function PlatformPage() {
                 { title: "Approved Processes", desc: "Workflows, templates, and standards that have been validated through actual use." },
                 { title: "Historical Reports", desc: "Narrative, financial, and impact reports archived with full context and metadata." },
               ].map((item) => (
-                <div key={item.title} className="rounded-xl border border-gray-200 bg-white p-6">
-                  <p className="text-heading-lg font-semibold text-gray-900">
+                <div key={item.title} className="rounded-lg border border-[#E2E8F0] bg-white p-6">
+                  <p className="text-heading-lg font-semibold text-on-surface">
                     {item.title}
                   </p>
-                  <p className="mt-2 text-body-md leading-relaxed text-gray-500">
+                  <p className="mt-2 text-body-md leading-relaxed text-on-surface-variant">
                     {item.desc}
                   </p>
                 </div>
@@ -301,15 +301,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Compliance & Reporting Layer */}
-        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               Compliance &amp; Reporting
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Compliance as a Byproduct, Not a Burden
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
               In most organisations, compliance and reporting are separate
               activities that happen after the real work is done. Staff compile
               data from scattered spreadsheets, reconstruct timelines from
@@ -317,7 +317,7 @@ export default function PlatformPage() {
               pressure. It is costly, error-prone, and demoralising.
             </p>
 
-            <div className="mt-12 space-y-6 text-body-md leading-relaxed text-gray-600">
+            <div className="mt-12 space-y-6 text-body-md leading-relaxed text-on-surface-variant">
               <p>
                 In ElevestOS, compliance is recorded as a natural consequence
                 of daily operations. When a procurement decision is made, the
@@ -344,21 +344,21 @@ export default function PlatformPage() {
         </section>
 
         {/* Ecosystem Effects */}
-        <section className="border-b border-gray-100 bg-gray-50 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] bg-surface-container-low px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               Ecosystem Effects
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               The Compounding Advantage of Shared Infrastructure
             </h2>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              <div className="rounded-xl border border-gray-200 bg-white p-7">
-                <p className="text-heading-xl font-semibold text-gray-900">
+              <div className="rounded-lg border border-[#E2E8F0] bg-white p-7">
+                <p className="text-headline-lg font-semibold text-on-surface">
                   Habit-Based Lock-In
                 </p>
-                <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                   As teams integrate ElevestOS into their daily workflows, the
                   system becomes the default environment for every operational
                   action. Leaving means rebuilding not just a tool but an entire
@@ -366,11 +366,11 @@ export default function PlatformPage() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-gray-200 bg-white p-7">
-                <p className="text-heading-xl font-semibold text-gray-900">
+              <div className="rounded-lg border border-[#E2E8F0] bg-white p-7">
+                <p className="text-headline-lg font-semibold text-on-surface">
                   Workflow Compounding
                 </p>
-                <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                   Each completed project enriches the institutional knowledge
                   base. Each verified partnership strengthens discovery
                   algorithms. Each recorded decision improves future
@@ -378,11 +378,11 @@ export default function PlatformPage() {
                 </p>
               </div>
 
-              <div className="rounded-xl border border-gray-200 bg-white p-7">
-                <p className="text-heading-xl font-semibold text-gray-900">
+              <div className="rounded-lg border border-[#E2E8F0] bg-white p-7">
+                <p className="text-headline-lg font-semibold text-on-surface">
                   Institutional Normalisation
                 </p>
-                <p className="mt-3 text-body-md leading-relaxed text-gray-500">
+                <p className="mt-3 text-body-md leading-relaxed text-on-surface-variant">
                   When funders begin expecting the clarity that ElevestOS
                   provides, organisations outside the system face an increasing
                   burden of proof. Adoption becomes not just beneficial but
@@ -394,15 +394,15 @@ export default function PlatformPage() {
         </section>
 
         {/* Defensibility */}
-        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
+        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
+            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
               Defensibility
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
               Why ElevestOS Is Hard to Replace
             </h2>
-            <p className="mt-6 max-w-3xl text-body-md leading-relaxed text-gray-600">
+            <p className="mt-6 max-w-3xl text-body-md leading-relaxed text-on-surface-variant">
               ElevestOS is not defended by a single feature or a patentable
               algorithm. It is defended by the depth of its integration into
               organisational life and the compounding nature of the data,
@@ -411,10 +411,10 @@ export default function PlatformPage() {
 
             <div className="mt-12 space-y-10">
               <div className="grid gap-4 sm:grid-cols-[180px_1fr]">
-                <p className="text-body-md font-semibold uppercase tracking-wider text-blue-600">
+                <p className="text-body-md font-semibold uppercase tracking-wider text-primary-container">
                   Behavioural Lock-In
                 </p>
-                <div className="text-body-md leading-relaxed text-gray-600">
+                <div className="text-body-md leading-relaxed text-on-surface-variant">
                   <p>
                     When an organisation&apos;s grant applications are built from
                     verified profiles, when its reports are assembled from
@@ -429,10 +429,10 @@ export default function PlatformPage() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-[180px_1fr]">
-                <p className="text-body-md font-semibold uppercase tracking-wider text-blue-600">
+                <p className="text-body-md font-semibold uppercase tracking-wider text-primary-container">
                   Compounding Value
                 </p>
-                <div className="text-body-md leading-relaxed text-gray-600">
+                <div className="text-body-md leading-relaxed text-on-surface-variant">
                   <p>
                     Unlike a database or a document store — which holds static
                     value — ElevestOS grows more useful the longer it is used.
@@ -446,10 +446,10 @@ export default function PlatformPage() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-[180px_1fr]">
-                <p className="text-body-md font-semibold uppercase tracking-wider text-blue-600">
+                <p className="text-body-md font-semibold uppercase tracking-wider text-primary-container">
                   Ecosystem Dependency
                 </p>
-                <div className="text-body-md leading-relaxed text-gray-600">
+                <div className="text-body-md leading-relaxed text-on-surface-variant">
                   <p>
                     As more NGOs use ElevestOS, funders gain a standardised way
                     to discover, assess, and monitor organisations. As more
@@ -464,11 +464,11 @@ export default function PlatformPage() {
               </div>
             </div>
 
-            <div className="mt-16 border-l-4 border-blue-600 bg-blue-50 px-8 py-6">
-              <p className="text-body-lg font-semibold text-gray-900">
+            <div className="mt-16 border-l-4 border-primary-container bg-primary-container/10 px-8 py-6">
+              <p className="text-body-lg font-semibold text-on-surface">
                 ElevestOS is infrastructure.
               </p>
-              <p className="mt-2 text-body-md leading-relaxed text-gray-600">
+              <p className="mt-2 text-body-md leading-relaxed text-on-surface-variant">
                 It is not evaluated against competitors. It is evaluated against
                 the alternative of fragmentation — of disconnected tools,
                 lost knowledge, reconstructed reports, and the persistent

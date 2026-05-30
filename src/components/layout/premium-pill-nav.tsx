@@ -125,7 +125,7 @@ export function PremiumPillNav() {
               Sign In
             </Link>
             <Link
-              href="/demo"
+              href="/contact"
               className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold bg-primary text-white rounded-full hover:bg-primary-hover transition-colors shadow-sm shadow-primary/10"
             >
               Book Demo
