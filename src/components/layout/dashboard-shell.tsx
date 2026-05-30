@@ -1,203 +1,153 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  FileText,
-  ClipboardCheck,
-  Folders,
+  Landmark,
+  GitBranch,
   BarChart3,
-  GraduationCap,
-  Building2,
+  Archive,
+  FlaskConical,
+  PlusCircle,
+  HelpCircle,
   Settings,
   Search,
   Bell,
-  LogOut,
-  ChevronDown,
+  History,
+  Building2,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-interface DashboardShellUser {
-  firstName: string;
-  lastName: string;
-  email: string;
-  organisation?: string;
-}
 
 interface DashboardShellProps {
+  user?: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    organisation?: { name?: string } | null;
+  } | null;
   children: React.ReactNode;
-  user: DashboardShellUser;
 }
 
-const navigation = [
-  {
-    section: "Main",
-    items: [
-      { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
-      { name: "Grants", href: "/dashboard/grants", icon: FileText },
-      { name: "Applications", href: "/dashboard/applications", icon: ClipboardCheck },
-      { name: "Projects", href: "/dashboard/projects", icon: Folders },
-    ],
-  },
-  {
-    section: "Operations",
-    items: [
-      { name: "Reports", href: "/dashboard/reports", icon: BarChart3 },
-      { name: "Training", href: "/dashboard/training", icon: GraduationCap },
-      { name: "Organisation", href: "/dashboard/organisation", icon: Building2 },
-      { name: "Settings", href: "/dashboard/settings", icon: Settings },
-    ],
-  },
+const navItems = [
+  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/dashboard/grants", icon: Landmark, label: "Grants" },
+  { href: "/dashboard/projects", icon: GitBranch, label: "Projects" },
+  { href: "/dashboard/reports", icon: BarChart3, label: "Reports" },
+  { href: "/dashboard/compliance", icon: Archive, label: "Vault" },
+  { href: "/dashboard/training", icon: FlaskConical, label: "Labs" },
 ];
 
-function SidebarContent({ user }: { user: DashboardShellUser }) {
+export function DashboardShell({ user, children }: DashboardShellProps) {
   const pathname = usePathname();
-  const initials = `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}`.toUpperCase();
-
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + "/");
+  const initials = user
+    ? `${user.firstName?.[0] || ""}${user.lastName?.[0] || ""}`
+    : "AD";
 
   return (
-    <div className="h-full bg-white border-r border-border flex flex-col">
-      <div className="h-14 flex items-center px-5 border-b border-border shrink-0">
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-sm bg-brand-trust flex items-center justify-center">
-            <span className="text-[10px] font-bold text-white">E</span>
-          </div>
-          <div>
-            <p className="text-xs font-heading font-bold text-primary tracking-tight">
-              ElevestOS
-            </p>
-            <p className="text-[9px] text-text-muted tracking-wide">v0.1.0</p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="flex-1 overflow-y-auto py-4 px-3 space-y-6 scrollbar-thin">
-        {navigation.map((section) => (
-          <div key={section.section}>
-            <p className="text-[9px] uppercase tracking-widest text-text-muted font-medium mb-3 px-3">
-              {section.section}
-            </p>
-            <nav className="space-y-0.5">
-              {section.items.map((item) => {
-                const active = isActive(item.href);
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={cn(
-                      "flex items-center gap-3 px-3 py-2 rounded text-xs font-medium transition-all duration-150",
-                      active
-                        ? "border-r-[3px] border-brand-trust bg-brand-trust/5 text-primary"
-                        : "border-r-[3px] border-transparent text-text-secondary hover:text-text-primary hover:bg-hover"
-                    )}
-                  >
-                    <item.icon className={cn("h-4 w-4", active && "text-brand-trust")} />
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-        ))}
-      </div>
-
-      <div className="p-3 border-t border-border">
-        <div className="flex items-center gap-3 px-3 py-2 rounded bg-surface-container-low">
-          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center shrink-0">
-            <span className="text-[9px] font-bold text-primary-on tracking-tight">
-              {initials}
-            </span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-[11px] font-medium text-text-primary truncate leading-tight">
-              {user.firstName} {user.lastName}
-            </p>
-            <p className="text-[9px] text-text-muted truncate leading-tight">{user.email}</p>
-          </div>
-          <Link
-            href="/auth/login"
-            className="text-text-muted hover:text-text-primary transition-colors p-0.5"
-            aria-label="Sign out"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function TopNavContent({ user }: { user: DashboardShellUser }) {
-  return (
-    <div className="h-full bg-background/80 backdrop-blur-xl border-b border-border flex items-center justify-between px-8">
-      <div className="flex items-center gap-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-text-muted pointer-events-none" />
-          <input
-            type="text"
-            placeholder="Search grants, projects, reports..."
-            className="w-72 h-9 pl-9 pr-3 text-xs bg-white border border-border rounded-md text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-shadow"
-          />
-        </div>
-      </div>
-
-      <div className="flex items-center gap-1">
-        <button
-          className="relative p-2 text-text-muted hover:text-text-primary hover:bg-hover rounded-md transition-colors"
-          aria-label="Notifications"
-        >
-          <Bell className="h-4 w-4" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-brand-trust ring-2 ring-background" />
-        </button>
-
-        <div className="flex items-center gap-2 pl-3 ml-1 border-l border-border">
-          <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center shrink-0">
-            <span className="text-[9px] font-bold text-primary-on">
-              {user.firstName?.[0]}{user.lastName?.[0]}
-            </span>
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-[11px] font-medium text-text-primary leading-tight">
-              {user.firstName} {user.lastName}
-            </p>
-            <p className="text-[9px] text-text-muted leading-tight">
-              {user.organisation ?? "ElevestOS"}
-            </p>
-          </div>
-          <ChevronDown className="h-3 w-3 text-text-muted" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function DashboardShell({ children, user }: DashboardShellProps) {
-  return (
-    <div className="flex h-screen bg-background overflow-hidden">
-      <aside className="w-64 fixed left-0 top-0 bottom-0 z-30">
-        <SidebarContent user={user} />
-      </aside>
-
-      <div className="flex-1 ml-64 flex flex-col min-h-screen">
-        <header className="h-16 fixed top-0 right-0 left-64 z-20">
-          <TopNavContent user={user} />
-        </header>
-
-        <main className="flex-1 mt-16 overflow-y-auto">
-          <div className="relative min-h-full">
-            <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle_at_top_right,rgba(13,28,50,0.02),transparent_50%)]" />
-            <div className="relative p-[40px] max-w-[1440px] mx-auto">
-              {children}
+    <div className="flex h-screen overflow-hidden bg-background text-on-surface font-body-md">
+      {/* SIDE NAV BAR — Exact Stitch HTML structure */}
+      <aside className="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-md z-50">
+        <div className="px-md mb-xl">
+          <div className="flex items-center gap-sm">
+            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
+              <Building2 className="text-on-primary h-5 w-5" />
+            </div>
+            <div>
+              <h1 className="font-headline-md text-[18px] font-bold text-primary leading-tight">
+                ElevestOS
+              </h1>
+              <p className="text-[10px] uppercase tracking-widest text-on-primary-container font-bold">
+                Infrastructure Grade
+              </p>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+
+        <nav className="flex-1 space-y-1 px-sm">
+          {navItems.map((item) => {
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-md px-md py-sm transition-colors ${
+                  isActive
+                    ? "text-primary font-bold border-r-4 border-primary bg-surface-container"
+                    : "text-on-surface-variant hover:bg-surface-container-high"
+                }`}
+              >
+                <item.icon className="h-5 w-5" />
+                <span className="font-body-md">{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-auto px-md py-md border-t border-outline-variant">
+          <button className="w-full bg-primary text-on-primary py-sm rounded font-bold text-[14px] mb-lg hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-sm">
+            <PlusCircle className="h-4 w-4" />
+            New Initiative
+          </button>
+          <div className="space-y-1">
+            <Link
+              href="#"
+              className="flex items-center py-xs text-on-surface-variant hover:text-primary transition-colors"
+            >
+              <HelpCircle className="h-5 w-5 mr-md" />
+              <span className="font-body-md">Support</span>
+            </Link>
+            <Link
+              href="/dashboard/settings"
+              className="flex items-center py-xs text-on-surface-variant hover:text-primary transition-colors"
+            >
+              <Settings className="h-5 w-5 mr-md" />
+              <span className="font-body-md">Settings</span>
+            </Link>
+          </div>
+        </div>
+      </aside>
+
+      {/* TOP NAV BAR */}
+      <header className="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+        <div className="flex items-center gap-xl flex-1">
+          <div className="relative w-full max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant h-4 w-4" />
+            <input
+              className="w-full bg-surface-container-low border border-outline-variant rounded py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none"
+              placeholder="Search institutional grants..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div className="flex items-center gap-lg">
+          <button className="bg-primary-container text-on-primary-container px-md py-sm rounded font-label-md text-label-md hover:opacity-80 transition-opacity">
+            COMPLIANCE CHECK
+          </button>
+          <div className="flex items-center gap-md border-l border-outline-variant pl-lg">
+            <button className="text-on-surface-variant hover:text-primary relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-0 right-0 w-2 h-2 bg-error rounded-full" />
+            </button>
+            <button className="text-on-surface-variant hover:text-primary">
+              <History className="h-5 w-5" />
+            </button>
+            <div className="flex items-center gap-sm cursor-pointer group">
+              <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center border border-outline-variant overflow-hidden">
+                <span className="text-on-primary text-[12px] font-bold">
+                  {initials}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* MAIN CONTENT AREA */}
+      <main className="ml-64 mt-16 p-margin-desktop flex-1 overflow-y-auto">
+        {children}
+      </main>
     </div>
   );
 }
-
-export default DashboardShell;
