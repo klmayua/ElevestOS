@@ -54,28 +54,28 @@ export default function Home() {
 
         <div className="hidden md:flex items-center gap-xl">
           <Link
-            href="/solutions"
+            href="/for-ngos"
             className="font-label-md text-label-md text-primary font-bold"
           >
             Solutions
           </Link>
           <Link
-            href="/governance"
+            href="/platform"
             className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
           >
-            Governance
+            Platform
           </Link>
           <Link
-            href="/compliance"
+            href="/features"
             className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
           >
-            Compliance
+            Features
           </Link>
           <Link
-            href="/network"
+            href="/for-funders"
             className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
           >
-            Network
+            For Funders
           </Link>
         </div>
 
@@ -407,7 +407,7 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/compliance" className="hover:text-primary transition-colors">
+                  <Link href="/dashboard/reports" className="hover:text-primary transition-colors">
                     Compliance
                   </Link>
                 </li>
@@ -421,23 +421,23 @@ export default function Home() {
               </h4>
               <ul className="space-y-sm text-body-md text-on-surface-variant">
                 <li>
-                  <Link href="/compliance" className="hover:text-primary transition-colors">
-                    Standards
+                  <Link href="/features" className="hover:text-primary transition-colors">
+                    Features
                   </Link>
                 </li>
                 <li>
-                  <Link href="/compliance" className="hover:text-primary transition-colors">
-                    Transparency
+                  <Link href="/pricing" className="hover:text-primary transition-colors">
+                    Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href="/compliance" className="hover:text-primary transition-colors">
+                  <Link href="/preview/compliance-dashboard" className="hover:text-primary transition-colors">
                     Security
                   </Link>
                 </li>
                 <li>
-                  <Link href="/compliance" className="hover:text-primary transition-colors">
-                    Audit Trails
+                  <Link href="/resources" className="hover:text-primary transition-colors">
+                    Resources
                   </Link>
                 </li>
               </ul>
@@ -481,10 +481,10 @@ export default function Home() {
                 Privacy Protocol
               </Link>
               <Link
-                href="/compliance"
+                href="/features"
                 className="font-label-md text-label-md text-on-surface-variant hover:text-primary"
               >
-                Security Disclosure
+                Security
               </Link>
               <Link
                 href="/terms"
