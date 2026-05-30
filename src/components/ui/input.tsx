@@ -1,32 +1,39 @@
+"use client";
+
 import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  error?: string;
+  error?: boolean;
+  leftIcon?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, ...props }, ref) => {
+  ({ className, type, error, leftIcon, ...props }, ref) => {
     return (
-      <div className="w-full">
+      <div className="relative">
+        {leftIcon && (
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground-muted pointer-events-none">
+            {leftIcon}
+          </span>
+        )}
         <input
           type={type}
           className={cn(
-            "flex h-11 w-full rounded-md border border-input bg-surface-container-lowest px-4 py-2 text-base ring-offset-background transition-all duration-200",
-            "file:border-0 file:bg-transparent file:font-medium file:text-foreground",
-            "placeholder:text-gray-400",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2",
-            "disabled:cursor-not-allowed disabled:opacity-50",
-            error && "border-error focus-visible:ring-error",
+            "flex h-10 w-full rounded-sm border border-border bg-white px-3 text-body-md text-foreground placeholder:text-foreground-muted transition-colors",
+            "file:border-0 file:bg-transparent file:text-sm file:font-medium",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-0 focus-visible:border-gray-900",
+            "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-50",
+            leftIcon && "pl-10",
+            error &&
+              "border-destructive focus-visible:ring-destructive focus-visible:border-destructive",
             className
           )}
           ref={ref}
           {...props}
         />
-        {error && (
-          <p className="mt-1 text-sm text-error">{error}</p>
-        )}
       </div>
     );
   }

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Grant Application Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#76849f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary-fixed": "#002113",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#000000",
+                        "primary-container": "#0d1c32",
+                        "surface": "#f7f9fb",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-primary": "#b9c7e4",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "outline": "#75777e",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-bright": "#f7f9fb",
+                        "surface-tint": "#515f78",
+                        "outline-variant": "#c5c6cd",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#0d1c32",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-secondary-container": "#00714d",
+                        "on-tertiary-container": "#75859d",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "primary-fixed": "#d6e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary leading-none">ElevestOS</h1>
+<p class="font-label-md text-[10px] text-on-primary-container uppercase tracking-widest mt-1">Infrastructure Grade</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Active State: Grants -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container transition-all duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span>Grants</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">science</span>
+<span>Labs</span>
+</a>
+</nav>
+<div class="mt-auto px-sm pt-md border-t border-outline-variant space-y-1">
+<button class="w-full mb-md py-sm px-md bg-primary text-white font-body-md rounded-lg flex items-center justify-center gap-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                New Initiative
+            </button>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-md">
+<div class="relative group">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-outline">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="bg-surface-container border-none rounded-lg pl-10 pr-4 py-2 w-80 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search institutional records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<button class="px-md py-sm bg-surface-container-high text-primary font-label-md rounded border border-outline-variant flex items-center gap-sm hover:bg-surface-dim transition-colors scale-95">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Compliance Check
+            </button>
+<div class="flex items-center gap-lg text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">history</span></button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Administrator Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0XMrarNHfsCCeGby4zg9Igfp7nycunGUlcXoySMftevHv9rb5jm1OPFV9KfEkfsEwv-ZvmM7ux7b98mw0ZUboNxGye65X0EHSHq5jqL1NcxpvP8Yu5wFLNbq-IUEB0RJCnioYV4YCYliekhcF-Bk2xMOea2llABhwcbheHefAtkg1ni7W-c-E7qUUJSaJ8MjaAmzar_GfNOZ2PMqr97gNw8Ad1i1nj0ZTJeirq6Dl5m_v754qgw6jf0Db45CivyZYOHv1n4wsopgA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="ml-64 mt-16 p-margin-desktop h-[calc(100vh-64px)] grid grid-cols-12 gap-gutter overflow-hidden bg-surface">
+<!-- Left Pane: Progress Indicator -->
+<section class="col-span-3 flex flex-col gap-lg overflow-y-auto custom-scrollbar pr-2">
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<h3 class="font-label-md text-label-md text-on-primary-container mb-md uppercase tracking-widest">Application Flow</h3>
+<div class="space-y-xl relative">
+<!-- Progress Line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-[2px] bg-outline-variant"></div>
+<!-- Step 1: Complete -->
+<div class="relative flex items-start gap-md">
+<div class="relative z-10 w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div>
+<p class="font-title-md text-title-md leading-none text-secondary">Institutional Context</p>
+<p class="font-body-md text-[12px] text-on-surface-variant mt-1">Completed Jan 14, 2024</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="relative flex items-start gap-md">
+<div class="relative z-10 w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center border-4 border-surface-container-low">
+<span class="material-symbols-outlined text-[16px]">pending</span>
+</div>
+<div>
+<p class="font-title-md text-title-md leading-none text-primary">Financial Planning</p>
+<p class="font-body-md text-[12px] text-on-primary-container mt-1">Step 2 of 5 · Active</p>
+<div class="mt-md space-y-sm">
+<div class="flex items-center gap-sm text-primary">
+<div class="w-1 h-1 rounded-full bg-primary"></div>
+<span class="font-body-md text-body-md font-semibold">Budget Documentation</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="font-body-md text-body-md">Allocation Matrix</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="font-body-md text-body-md">Risk Assessment</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="relative flex items-start gap-md opacity-50">
+<div class="relative z-10 w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-outline">lock</span>
+</div>
+<div>
+<p class="font-title-md text-title-md leading-none">Impact Framework</p>
+<p class="font-body-md text-[12px] mt-1">Locked until Step 2 complete</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="relative flex items-start gap-md opacity-50">
+<div class="relative z-10 w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-outline">lock</span>
+</div>
+<div>
+<p class="font-title-md text-title-md leading-none">Global Partnership</p>
+<p class="font-body-md text-[12px] mt-1">Locked until Step 2 complete</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Pane: Main Form -->
+<section class="col-span-6 flex flex-col gap-lg overflow-y-auto custom-scrollbar px-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface-container-low">
+<h2 class="font-headline-md text-headline-md text-primary">Required Documents</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Mandatory financial and legal filings for high-capacity grants.</p>
+</div>
+<div class="p-xl space-y-2xl">
+<!-- Section: Comprehensive Budget -->
+<div class="space-y-md">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-title-md text-title-md text-primary">Comprehensive Budget</h4>
+<p class="font-body-md text-on-surface-variant">Multi-year projection including direct and indirect overheads.</p>
+</div>
+<span class="font-label-md text-label-md text-secondary">VERIFIED</span>
+</div>
+<div class="border border-outline-variant rounded-lg p-md flex items-center justify-between bg-surface">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-[32px]">description</span>
+<div>
+<p class="font-body-lg text-body-lg font-semibold">FY24_Global_Budget_v2.xlsx</p>
+<p class="font-body-md text-[12px] text-on-surface-variant">4.2 MB · Uploaded by J. Doe</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="p-sm hover:bg-surface-variant rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-sm hover:bg-surface-variant rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Section: Governance Structure -->
+<div class="space-y-md">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-title-md text-title-md text-primary">Governance Structure</h4>
+<p class="font-body-md text-on-surface-variant">Board of Directors roster and organizational chart.</p>
+</div>
+<span class="font-label-md text-label-md text-on-primary-container italic">PENDING</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-2xl flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px]">upload_file</span>
+<p class="font-body-lg text-body-lg font-medium mt-md">Drop PDF or Excel file here</p>
+<p class="font-body-md text-on-surface-variant mt-xs">Maximum file size: 50MB</p>
+<button class="mt-lg px-xl py-sm bg-primary text-white font-title-md rounded-lg">Browse Vault</button>
+</div>
+</div>
+<!-- Section: Legal Registration -->
+<div class="space-y-md">
+<div>
+<h4 class="font-title-md text-title-md text-primary">Legal Registration</h4>
+<p class="font-body-md text-on-surface-variant">Current 501(c)(3) or international equivalency certification.</p>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="border border-outline-variant rounded-lg p-md bg-surface-container-high relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-secondary">check_circle</span>
+<p class="font-label-md text-[10px] text-on-primary-container uppercase">Document Type</p>
+<p class="font-body-lg text-body-lg font-semibold mt-1">IRS Determination</p>
+</div>
+<div class="border border-outline-variant rounded-lg p-md bg-surface-container-high relative">
+<span class="material-symbols-outlined absolute top-2 right-2 text-secondary">check_circle</span>
+<p class="font-label-md text-[10px] text-on-primary-container uppercase">Expiry Date</p>
+<p class="font-body-lg text-body-lg font-semibold mt-1">Dec 2026</p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-xl py-lg bg-surface-container-low border-t border-outline-variant flex justify-end gap-md">
+<button class="px-xl py-md text-on-surface-variant font-title-md border border-outline-variant rounded-lg hover:bg-surface-variant transition-colors">Save Draft</button>
+<button class="px-xl py-md bg-primary text-white font-title-md rounded-lg hover:opacity-90 transition-all">Proceed to Step 3</button>
+</div>
+</div>
+</section>
+<!-- Right Pane: Internal Reviews & Readiness -->
+<section class="col-span-3 flex flex-col gap-lg overflow-y-auto custom-scrollbar pl-2">
+<!-- Submission Readiness -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+<h3 class="font-label-md text-label-md text-on-primary-container mb-md uppercase tracking-widest">Submission Readiness</h3>
+<div class="flex items-center justify-between mb-sm">
+<span class="font-display-lg text-display-lg text-primary">68%</span>
+<div class="w-16 h-16 relative">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-surface-container-highest" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-secondary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="68, 100" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-lg">Institutional review required before final submission activation.</p>
+<div class="space-y-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md">Primary Information</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+<span class="font-body-md text-body-md">Financial Core Documents</span>
+</div>
+<div class="flex items-center gap-sm opacity-40">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span class="font-body-md text-body-md">Governance Validation</span>
+</div>
+<div class="flex items-center gap-sm opacity-40">
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+<span class="font-body-md text-body-md">Impact Signature</span>
+</div>
+</div>
+</div>
+<!-- Internal Review Notes -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex-1 flex flex-col">
+<h3 class="font-label-md text-label-md text-on-primary-container mb-md uppercase tracking-widest">Internal Review Notes</h3>
+<div class="space-y-lg flex-1 overflow-y-auto custom-scrollbar">
+<!-- Note 1 -->
+<div class="p-md bg-surface-container-low rounded-lg border-l-4 border-error">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex items-center gap-sm">
+<img alt="Auditor 1" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjAfxPEypsYX4s_o1xchfLdej7-XfrYyZqQVN9lulkrf4GxrDRb4zoF3KmrDS9hm6sILWYmKbRgW4C3LKv75_6SeGe1T-EpI-roBy9-F2qmtoY5HiJyygAknSNxlQcgI54snnqJH_kBKYgTZLnMWJ8yztklg8q6gliAGq0uRGhQJt1as5TT2b2L-7FO5oBxVSquBwBenLnEszgnl191mOo8hitdRNV8d0nYuuzu21_nFiUWCRrxX9_674wQk9CHqQcWfcwAo5JUBJZ"/>
+<span class="font-label-md text-label-md text-primary">Senior Auditor</span>
+</div>
+<span class="font-label-md text-[10px] text-on-primary-container">2H AGO</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">The Budget XLS v2 is missing the inflation adjustment clause for the year 3 allocation. Please revise or provide a justification note.</p>
+</div>
+<!-- Note 2 -->
+<div class="p-md bg-surface-container-low rounded-lg border-l-4 border-outline">
+<div class="flex items-center justify-between mb-sm">
+<div class="flex items-center gap-sm">
+<img alt="Auditor 2" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARfyYmlk56EwE5wPuWkcYapfzudO_DRkZX8LLioJSsGQ10vZlGAzQsZSxgRaY3_swU0sMHiIetxc6TYmePdQVB9Pu4SkF_44M9NcoMGAHSNDVkcFMyoxZWqTnk5Zjrx7VO7AWTPbdu9tbhMih2C7zRFePF4nDERHolmR6JZkCQRX-h43e_fDuhv1SXr86_7NZNzBWZBL17nSGOGJqf2qK3OG2AaTtZPfJ21zjQ4kr0PnnRB7Ty9ZSEQFdpMFJKji9z1YnegXdhzSve"/>
+<span class="font-label-md text-label-md text-primary">Compliance Officer</span>
+</div>
+<span class="font-label-md text-[10px] text-on-primary-container">5H AGO</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">IRS documents are valid. Ensuring registration matches the legal name in section 1.1.</p>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant">
+<div class="flex gap-sm">
+<input class="flex-1 bg-surface-container border border-outline-variant rounded-lg px-md py-sm text-body-md focus:ring-1 focus:ring-primary" placeholder="Add internal note..." type="text"/>
+<button class="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Hidden on this transactional detail screen as per instructions, but placeholder logic if needed) -->
+<!-- <button class="fixed bottom-xl right-xl w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center z-50">
+        <span class="material-symbols-outlined">edit</span>
+    </button> -->
+<script>
+        // Micro-interaction for hover states on list items
+        document.querySelectorAll('.hover-shift').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.classList.add('translate-x-1');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('translate-x-1');
+            });
+        });
+
+        // Simple tab switching logic simulation
+        console.log("ElevestOS Infrastructure Workspace Initialized.");
+    </script>
+</body></html>

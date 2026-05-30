@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Compliance &amp; Audit Vault</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .immutable-bg-pattern {
+            background-color: #f7f9fb;
+            background-image: radial-gradient(#d1d5db 0.5px, transparent 0.5px);
+            background-size: 16px 16px;
+        }
+        .gauge-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+        .gauge-svg {
+            transform: rotate(-90deg);
+        }
+        .gauge-circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e0e3e5",
+                      "surface-dim": "#d8dadc",
+                      "surface-container": "#eceef0",
+                      "on-surface-variant": "#44474d",
+                      "on-primary-container": "#76849f",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#005236",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "tertiary-container": "#0b1c30",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#b9c7e4",
+                      "on-secondary-fixed": "#002113",
+                      "error": "#ba1a1a",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary": "#000000",
+                      "primary-container": "#0d1c32",
+                      "surface": "#f7f9fb",
+                      "tertiary-fixed": "#d3e4fe",
+                      "surface-container-highest": "#e0e3e5",
+                      "secondary": "#006c49",
+                      "inverse-primary": "#b9c7e4",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-background": "#191c1e",
+                      "background": "#f7f9fb",
+                      "outline": "#75777e",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-bright": "#f7f9fb",
+                      "surface-tint": "#515f78",
+                      "outline-variant": "#c5c6cd",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#6cf8bb",
+                      "secondary-fixed-dim": "#4edea3",
+                      "on-surface": "#191c1e",
+                      "inverse-surface": "#2d3133",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#39475f",
+                      "on-tertiary-fixed": "#0b1c30",
+                      "surface-container-low": "#f2f4f6",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#0d1c32",
+                      "primary": "#000000",
+                      "on-tertiary-fixed-variant": "#38485d",
+                      "on-secondary-container": "#00714d",
+                      "on-tertiary-container": "#75859d",
+                      "tertiary-fixed-dim": "#b7c8e1",
+                      "primary-fixed": "#d6e3ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "margin-desktop": "40px",
+                      "margin-mobile": "16px",
+                      "lg": "24px",
+                      "3xl": "64px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "2xl": "48px"
+              },
+              "fontFamily": {
+                      "title-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "caption": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">ElevestOS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Infrastructure Grade</p>
+</div>
+<nav class="flex-1 space-y-base px-sm">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Grants</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<!-- Active Tab: Vault -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-body-md">Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-body-md">Labs</span>
+</a>
+</nav>
+<div class="px-md py-md border-t border-outline-variant space-y-md">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-title-md flex items-center justify-center gap-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                New Initiative
+            </button>
+<div class="space-y-sm">
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-lg w-1/3">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-xl py-xs font-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search by SHA-256 hash or Entry ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="bg-primary-container text-on-primary-fixed-variant px-md py-xs rounded border border-outline-variant font-label-md flex items-center gap-xs uppercase active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Compliance Check
+            </button>
+<div class="flex items-center gap-md border-l border-outline-variant pl-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">history</span></button>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden xl:block">
+<p class="font-label-md text-primary font-bold">Admin-09</p>
+<p class="font-caption text-on-surface-variant">Infrastructure Lead</p>
+</div>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBhzQEOw5l11XPdVDaX5hmLtkNxCsX9zrX26jLZP4gyVafoIMcW7QMR0aV3Zg9FC3tDWl4IbKp54rRmDSgSPpwSrxbYxRBTH-W-WutJ0Y-xAI7Xb4GcXpqqFPaYYuulJCCeJVTddL7INujW032Rn9XKkS3y3-pQif6GjRVHPm6m6TH1YqitnzbXEbESvqxJPkVgbpNmv5RI30XqZq51Sk9Y-VOg_lvEOm0_B1oiKrgZTq4YHRKyHeQJKMRRKkruGXDrpkZZInqachh"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 mt-16 p-margin-desktop h-[calc(100vh-64px)] overflow-y-auto immutable-bg-pattern">
+<!-- Header Section & Health Gauge -->
+<section class="grid grid-cols-12 gap-gutter mb-xl">
+<div class="col-span-8">
+<div class="flex items-end gap-sm mb-xs">
+<span class="material-symbols-outlined text-secondary text-[32px]">security</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Compliance &amp; Audit Vault</h2>
+</div>
+<p class="font-body-lg text-on-surface-variant max-w-2xl">
+                    Institutional ledger of all verified administrative decisions. Every entry is cryptographically signed and stored in the immutable record.
+                </p>
+<!-- Action Bar -->
+<div class="flex items-center gap-md mt-lg">
+<button class="flex items-center gap-sm bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">upload_file</span>
+                        Upload Doc
+                    </button>
+<button class="flex items-center gap-sm border border-outline text-primary px-lg py-sm rounded-lg font-title-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">download</span>
+                        Export Log
+                    </button>
+<div class="h-8 w-px bg-outline-variant mx-sm"></div>
+<div class="flex gap-sm">
+<span class="px-md py-sm bg-surface-container-high rounded text-on-surface-variant font-label-md flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                            Live Node Sync
+                        </span>
+</div>
+</div>
+</div>
+<div class="col-span-4 flex justify-end">
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex flex-col items-center justify-center w-full max-w-[280px]">
+<p class="font-label-md text-on-surface-variant uppercase mb-md">Vault Health</p>
+<div class="gauge-container mb-sm">
+<svg class="gauge-svg" height="100%" viewbox="0 0 100 100" width="100%">
+<circle class="gauge-circle stroke-surface-container" cx="50" cy="50" r="40"></circle>
+<circle class="gauge-circle stroke-secondary" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="0"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-display-lg text-primary leading-none">100%</span>
+<span class="font-label-md text-secondary font-bold">STABLE</span>
+</div>
+</div>
+<p class="font-caption text-on-surface-variant text-center">Fully Compliant Across All Nodes</p>
+</div>
+</div>
+</section>
+<!-- Timeline of Verified Decisions -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl mb-xl">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-title-md text-primary">Verified Decisions Timeline</h3>
+<div class="flex gap-sm">
+<button class="p-sm text-on-surface-variant hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Timestamp (UTC)</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Entry Description</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Entity ID</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Verification</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface transition-colors cursor-pointer group">
+<td class="px-lg py-md font-label-md text-on-surface-variant">2023-10-24 14:32:01</td>
+<td class="px-lg py-md">
+<p class="font-body-md text-primary font-bold">Quarterly Board Procurement Approval</p>
+<p class="font-caption text-on-surface-variant">Authored by: Exec-Council-01</p>
+</td>
+<td class="px-lg py-md font-label-md text-on-secondary-container bg-secondary-container/20 rounded inline-block mt-md mx-lg">#PR-0944-X</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-secondary">IMMUTABLE</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-sm py-xs rounded text-xs font-bold uppercase tracking-widest">Recorded</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface transition-colors cursor-pointer group">
+<td class="px-lg py-md font-label-md text-on-surface-variant">2023-10-24 11:15:45</td>
+<td class="px-lg py-md">
+<p class="font-body-md text-primary font-bold">Global Data Privacy Policy Update (v2.4)</p>
+<p class="font-caption text-on-surface-variant">Authored by: Legal-Compliance-04</p>
+</td>
+<td class="px-lg py-md font-label-md text-on-secondary-container bg-secondary-container/20 rounded inline-block mt-md mx-lg">#POL-8821-B</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-secondary">IMMUTABLE</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-sm py-xs rounded text-xs font-bold uppercase tracking-widest">Recorded</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface transition-colors cursor-pointer group">
+<td class="px-lg py-md font-label-md text-on-surface-variant">2023-10-23 16:50:12</td>
+<td class="px-lg py-md">
+<p class="font-body-md text-primary font-bold">Internal Procurement Review - Southeast Asia Hub</p>
+<p class="font-caption text-on-surface-variant">Authored by: Audit-Lead-SEA</p>
+</td>
+<td class="px-lg py-md font-label-md text-on-secondary-container bg-secondary-container/20 rounded inline-block mt-md mx-lg">#AUD-1029-Z</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-md" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-secondary">IMMUTABLE</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="bg-secondary/10 text-secondary border border-secondary/20 px-sm py-xs rounded text-xs font-bold uppercase tracking-widest">Recorded</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md bg-surface-container-low flex justify-center">
+<button class="text-primary font-label-md hover:underline">View Full Audit History (24,809 Entries)</button>
+</div>
+</section>
+<!-- Regional Compliance Heat Map -->
+<section class="grid grid-cols-1 gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h3 class="font-title-md text-primary">Regional Compliance Grid</h3>
+<p class="font-caption text-on-surface-variant">Real-time status across 24 global operating zones</p>
+</div>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded bg-secondary"></span>
+<span class="font-label-md text-on-surface-variant">Active</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="w-3 h-3 rounded bg-surface-container-highest"></span>
+<span class="font-label-md text-on-surface-variant">Pending</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-8 gap-sm">
+<!-- Generating a grid of status squares -->
+<script>
+                        const zones = ['NAM', 'LATAM', 'EMEA', 'APAC', 'MENA', 'OCE', 'C-ASIA', 'S-ASIA'];
+                        const gridContainer = document.currentScript.parentElement;
+                        for (let i = 0; i < 24; i++) {
+                            const isCompliant = Math.random() > 0.05;
+                            const div = document.createElement('div');
+                            div.className = `h-20 flex flex-col items-center justify-center rounded-lg border border-outline-variant transition-all hover:ring-2 hover:ring-primary ${isCompliant ? 'bg-secondary/10 border-secondary/20' : 'bg-surface-container'}`;
+                            div.innerHTML = `
+                                <span class="font-label-md text-primary font-bold">${zones[i % 8]}-${100 + i}</span>
+                                <span class="material-symbols-outlined ${isCompliant ? 'text-secondary' : 'text-on-surface-variant'} text-md">${isCompliant ? 'verified' : 'pending'}</span>
+                            `;
+                            gridContainer.appendChild(div);
+                        }
+                    </script>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Feedback Area -->
+<div class="fixed bottom-lg right-lg z-50 pointer-events-none" id="toast-area"></div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', () => {
+                const toast = document.createElement('div');
+                toast.className = 'bg-primary text-on-primary px-lg py-md rounded-lg shadow-lg mb-sm pointer-events-auto transform translate-y-10 opacity-0 transition-all duration-300 flex items-center gap-md';
+                toast.innerHTML = `<span class="material-symbols-outlined">database</span> <span>Requesting encrypted vault access...</span>`;
+                document.getElementById('toast-area').appendChild(toast);
+                
+                requestAnimationFrame(() => {
+                    toast.classList.remove('translate-y-10', 'opacity-0');
+                });
+
+                setTimeout(() => {
+                    toast.classList.add('translate-y-10', 'opacity-0');
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
+            });
+        });
+    </script>
+</body></html>

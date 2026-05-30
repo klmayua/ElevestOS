@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Infrastructure Grade NGO Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "surface-container": "#eceef0",
+                    "on-surface-variant": "#44474d",
+                    "on-primary-container": "#76849f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b9c7e4",
+                    "on-secondary-fixed": "#002113",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary": "#000000",
+                    "primary-container": "#0d1c32",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#006c49",
+                    "inverse-primary": "#b9c7e4",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-background": "#191c1e",
+                    "background": "#f7f9fb",
+                    "outline": "#75777e",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-bright": "#f7f9fb",
+                    "surface-tint": "#515f78",
+                    "outline-variant": "#c5c6cd",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#39475f",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "surface-container-low": "#f2f4f6",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#0d1c32",
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-secondary-container": "#00714d",
+                    "on-tertiary-container": "#75859d",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "primary-fixed": "#d6e3ff",
+                    "trust-green": "#10B981",
+                    "deep-navy": "#0A192F"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "gutter": "24px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid #e0e3e5;
+            transition: all 0.2s ease-in-out;
+        }
+        .trust-gauge {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .circular-progress {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<!-- Left Side Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-tertiary-container text-on-primary-container border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">ElevestOS</h1>
+<p class="font-label-md text-label-md opacity-70 tracking-widest uppercase">Infrastructure Grade</p>
+</div>
+<nav class="flex-1 space-y-xs px-sm">
+<!-- Dashboard (Active) -->
+<a class="flex items-center gap-md px-md py-sm text-primary-fixed font-bold border-r-4 border-primary-fixed bg-on-primary-fixed-variant transition-colors group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-on-primary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Grants</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-on-primary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-on-primary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-on-primary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-on-primary-fixed-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-body-md text-body-md">Labs</span>
+</a>
+</nav>
+<div class="mt-auto px-sm pt-md border-t border-outline-variant/20">
+<button class="w-full bg-trust-green text-on-tertiary py-sm rounded-lg font-title-md text-title-md flex items-center justify-center gap-sm mb-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add_circle</span>
+                New Initiative
+            </button>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full pl-xl pr-md py-xs font-body-md focus:ring-2 focus:ring-deep-navy focus:border-deep-navy outline-none" placeholder="Global search for grants, compliance ID, or reports..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="font-label-md text-label-md text-deep-navy bg-surface-container-high px-md py-sm rounded hover:bg-surface-variant transition-colors border border-outline-variant">
+                COMPLIANCE CHECK
+            </button>
+<div class="flex items-center gap-md text-on-surface-variant">
+<button class="hover:text-primary transition-colors active:scale-95"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors active:scale-95"><span class="material-symbols-outlined">history</span></button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-dim">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a mature administrative official in a sharp, modern office environment. The lighting is soft and directional, typical of a corporate leadership profile. The background is slightly blurred with minimalist architectural lines in tones of slate and brushed steel, conveying authority and experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_kqizZZdbRaa7cUiddvuYITdykgwEAI3YuVdLXhcMH8LDgR_X-64nWPlecMBh2eE1jk8coH9YwvOzgsuEqGBnmNBmyrtLmgLKYei3hBmm6j7M0RkFOewWh31X6SgXiGwVZBKMd8mBUKgLaK8BAlsWeYLIlYO_TeARpXbC6Lxbge3eUX1cpaBf-ewBS9o-MCnNT5s3g0-FXm9RGmUgW90dUiTYWvsPda1C8KqoHC4197D9TNzGcidr0BXcXlQE3CQzrVw-5VHVd_gi"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 mt-16 p-margin-desktop">
+<!-- Welcome Header -->
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Institutional Dashboard</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">System oversight and fundability metrics for Q3 2024.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Trust Index Gauge (4 cols) -->
+<div class="col-span-12 lg:col-span-4 glass-card p-xl flex flex-col items-center justify-center text-center">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-lg">Trust Index Fundability</h3>
+<div class="trust-gauge mb-md">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-trust-green stroke-current circular-progress" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="37.68" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-display-lg text-deep-navy">850</span>
+<span class="font-label-md text-label-md text-trust-green font-bold uppercase">Excellent</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[200px]">Top 2% of NGOs globally for operational transparency.</p>
+</div>
+<!-- Growth Velocity Chart (8 cols) -->
+<div class="col-span-12 lg:col-span-8 glass-card p-xl relative overflow-hidden">
+<div class="flex justify-between items-start mb-xl">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Growth Velocity</h3>
+<div class="flex items-baseline gap-sm">
+<span class="font-headline-lg text-headline-lg">24.8k</span>
+<span class="text-trust-green font-bold text-body-md flex items-center">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> 12%
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Daily donor interactions (Last 30 days)</p>
+</div>
+<select class="bg-surface-container-low border-outline-variant rounded font-label-md text-label-md px-sm py-xs outline-none">
+<option>Real-time Feed</option>
+<option>Weekly Aggregated</option>
+</select>
+</div>
+<!-- Mock Chart using flex bars for institutional density -->
+<div class="h-48 flex items-end justify-between gap-base w-full">
+<div class="bg-deep-navy/10 w-full h-[60%] hover:bg-trust-green transition-colors" title="Mon"></div>
+<div class="bg-deep-navy/10 w-full h-[65%] hover:bg-trust-green transition-colors" title="Tue"></div>
+<div class="bg-deep-navy/10 w-full h-[55%] hover:bg-trust-green transition-colors" title="Wed"></div>
+<div class="bg-deep-navy/10 w-full h-[80%] hover:bg-trust-green transition-colors" title="Thu"></div>
+<div class="bg-deep-navy/10 w-full h-[75%] hover:bg-trust-green transition-colors" title="Fri"></div>
+<div class="bg-deep-navy/10 w-full h-[90%] hover:bg-trust-green transition-colors" title="Sat"></div>
+<div class="bg-deep-navy/10 w-full h-[85%] hover:bg-trust-green transition-colors" title="Sun"></div>
+<div class="bg-deep-navy/10 w-full h-[60%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/10 w-full h-[70%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/10 w-full h-[95%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/10 w-full h-[80%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/10 w-full h-[65%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/10 w-full h-[70%] hover:bg-trust-green transition-colors"></div>
+<div class="bg-deep-navy/20 w-full h-[100%] bg-trust-green"></div>
+</div>
+<div class="flex justify-between mt-md font-label-md text-label-md text-outline">
+<span>AUG 01</span>
+<span>AUG 15</span>
+<span>TODAY</span>
+</div>
+</div>
+<!-- Active Grants Summary (8 cols) -->
+<div class="col-span-12 lg:col-span-8 glass-card">
+<div class="p-xl border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-title-md text-title-md text-deep-navy">Active Grants Summary</h3>
+<button class="text-deep-navy hover:underline font-label-md text-label-md">EXPORT LEDGER</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="text-left py-md px-xl font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Initiative</th>
+<th class="text-left py-md px-xl font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">ID</th>
+<th class="text-left py-md px-xl font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Utilization</th>
+<th class="text-right py-md px-xl font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-md px-xl">
+<div class="font-body-md font-bold text-deep-navy">Clean Water Initiative</div>
+<div class="text-caption text-on-surface-variant">Central African Hub</div>
+</td>
+<td class="py-md px-xl font-label-md text-label-md text-on-surface-variant">#CWI-992</td>
+<td class="py-md px-xl w-48">
+<div class="flex items-center gap-md">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-trust-green w-[64%]"></div>
+</div>
+<span class="font-label-md text-label-md text-deep-navy">64%</span>
+</div>
+</td>
+<td class="py-md px-xl text-right">
+<span class="inline-block px-sm py-xs bg-secondary-container/30 text-secondary font-bold text-caption rounded border border-secondary/20 uppercase">Operational</span>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-md px-xl">
+<div class="font-body-md font-bold text-deep-navy">Digital Literacy</div>
+<div class="text-caption text-on-surface-variant">Rural SE Asia Project</div>
+</td>
+<td class="py-md px-xl font-label-md text-label-md text-on-surface-variant">#DL-4022</td>
+<td class="py-md px-xl">
+<div class="flex items-center gap-md">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-deep-navy w-[12%]"></div>
+</div>
+<span class="font-label-md text-label-md text-deep-navy">12%</span>
+</div>
+</td>
+<td class="py-md px-xl text-right">
+<span class="inline-block px-sm py-xs bg-surface-container text-on-surface-variant font-bold text-caption rounded border border-outline-variant uppercase tracking-tight">Deployment Phase</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-md px-xl">
+<div class="font-body-md font-bold text-deep-navy">Reforestation Grid</div>
+<div class="text-caption text-on-surface-variant">Amazon Basin II</div>
+</td>
+<td class="py-md px-xl font-label-md text-label-md text-on-surface-variant">#RFG-771</td>
+<td class="py-md px-xl">
+<div class="flex items-center gap-md">
+<div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-trust-green w-[88%]"></div>
+</div>
+<span class="font-label-md text-label-md text-deep-navy">88%</span>
+</div>
+</td>
+<td class="py-md px-xl text-right">
+<span class="inline-block px-sm py-xs bg-secondary-container/30 text-secondary font-bold text-caption rounded border border-secondary/20 uppercase">Operational</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Sidebar Info Cluster (4 cols) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- Critical Deadlines -->
+<div class="glass-card p-xl">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-error">alarm</span>
+<h3 class="font-title-md text-title-md text-deep-navy">Critical Deadlines</h3>
+</div>
+<ul class="space-y-md">
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="mt-xs h-3 w-3 rounded-full bg-error shrink-0"></div>
+<div>
+<p class="font-body-md font-bold text-deep-navy group-hover:underline">Q3 Impact Report</p>
+<p class="text-caption text-on-surface-variant">Due in 2 days • Finalizing metrics</p>
+</div>
+</li>
+<li class="flex items-start gap-md group cursor-pointer">
+<div class="mt-xs h-3 w-3 rounded-full bg-error shrink-0"></div>
+<div>
+<p class="font-body-md font-bold text-deep-navy group-hover:underline">USAID Compliance Audit</p>
+<p class="text-caption text-on-surface-variant">Scheduled: Oct 14, 2024</p>
+</div>
+</li>
+<li class="flex items-start gap-md group cursor-pointer opacity-60">
+<div class="mt-xs h-3 w-3 rounded-full bg-outline shrink-0"></div>
+<div>
+<p class="font-body-md font-bold text-deep-navy">Global Fund Renewal</p>
+<p class="text-caption text-on-surface-variant">Documentation window open</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Recent Compliance Events -->
+<div class="glass-card p-xl flex-1">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-deep-navy">verified_user</span>
+<h3 class="font-title-md text-title-md text-deep-navy">Compliance Log</h3>
+</div>
+<div class="space-y-md">
+<div class="p-md bg-surface-container rounded-lg border border-outline-variant/50">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-deep-navy">KYB VERIFIED</span>
+<span class="text-[10px] text-outline">14:22 UTC</span>
+</div>
+<p class="font-body-md text-on-surface-variant">New donor entity 'Global Relief Found.' cleared Tier 3 vetting.</p>
+</div>
+<div class="p-md border border-outline-variant/30 rounded-lg">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-deep-navy">SYSTEM UPDATE</span>
+<span class="text-[10px] text-outline">Yesterday</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Tax exemption protocols updated for 2025 EU frameworks.</p>
+</div>
+<div class="p-md border border-outline-variant/30 rounded-lg">
+<div class="flex justify-between items-start mb-xs">
+<span class="font-label-md text-label-md text-trust-green">PASS</span>
+<span class="text-[10px] text-outline">Oct 08</span>
+</div>
+<p class="font-body-md text-on-surface-variant">Weekly smart contract integrity sweep completed. No deviations.</p>
+</div>
+</div>
+<button class="w-full mt-xl py-sm border border-outline-variant font-label-md text-label-md text-deep-navy uppercase hover:bg-surface-container-low transition-all">
+                        View Full Audit Trail
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for gauge animation on load
+        window.addEventListener('load', () => {
+            const circle = document.querySelector('.circular-progress');
+            if(circle) {
+                circle.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
+                // Dash offset calculation: 251.2 * (1 - 850/1000) = 37.68
+                circle.style.strokeDashoffset = '37.68';
+            }
+        });
+    </script>
+</body></html>

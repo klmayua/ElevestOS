@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Sector Talent Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#002113",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-primary-container": "#76849f",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "tertiary": "#000000",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-container": "#00714d",
+                        "on-primary-fixed": "#0d1c32",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#0d1c32",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-primary": "#b9c7e4",
+                        "secondary-fixed": "#6ffbbe",
+                        "outline": "#75777e",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "surface-tint": "#515f78",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface-variant": "#44474d",
+                        "secondary": "#006c49",
+                        "primary": "#000000",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-background": "#191c1e",
+                        "on-tertiary-container": "#75859d",
+                        "outline-variant": "#c5c6cd",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-primary-fixed-variant": "#39475f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "margin-desktop": "40px",
+                        "base": "4px",
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c5c6cd; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">ElevestOS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Infrastructure Grade</p>
+</div>
+<nav class="flex-1 px-sm space-y-1">
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-primary font-bold border-r-4 border-primary bg-surface-container" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Grants</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-body-md text-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">science</span>
+<span class="font-body-md text-body-md">Labs</span>
+</a>
+</nav>
+<div class="mt-auto px-sm border-t border-outline-variant pt-md">
+<button class="w-full flex items-center justify-center gap-sm bg-primary text-on-primary py-md rounded font-title-md text-title-md hover:opacity-90 transition-all mb-md">
+<span class="material-symbols-outlined">add</span>
+<span>New Initiative</span>
+</button>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-xs bg-surface-container-low border border-outline-variant rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent font-body-md text-body-md" placeholder="Search verified talent, expertise, or NGO history..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-xl">
+<button class="bg-secondary text-on-secondary px-lg py-xs rounded font-label-md text-label-md hover:scale-95 transition-transform">
+                Compliance Check
+            </button>
+<div class="flex items-center gap-md text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">history</span>
+<div class="flex items-center gap-sm cursor-pointer hover:text-primary transition-colors">
+<img alt="Admin" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional close-up portrait of a high-level NGO administrator in a modern, brightly lit office environment. The individual is wearing a structured navy blue blazer over a crisp white shirt, projecting an air of institutional authority and competence. The lighting is soft and even, highlighting a serious yet approachable expression. The background is a blurred minimalist office with hints of glass and steel, maintaining a clean and corporate light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7DtUn0b7bhrMdSGjhtDY4hI29KMnTmh9XUI3aTIFZcCR2mFVkHGnN_J7DfXLSizcJI-hXPMVgfFVaDA-GT7iLZ3E5XqnfmdB5rrTeFc9ay_sX9-scwy-kIdyX5E3KJ15ixXXUrOKApFlMTFxPtDCdgxDy7_euzojkjQa1yKWLSvIt2whAFduLizD_IW4f0Oy8NhEhznhAZzkeTIUTQCftoxJsbdenSAQdBWOb1AcpfVBUJC_wYES1R5DISdmcbScrK6NeOQzRAnwh"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-16 ml-64 min-h-screen">
+<div class="p-margin-desktop">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-2xl">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md mb-xs">
+<span>Marketplace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Sector Talent</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-primary">Global Talent Pool</h2>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">Verified professionals specialized in large-scale humanitarian logistics, public health, and infrastructure development.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-sm border border-outline px-lg py-sm rounded font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+<span>Advanced Filters</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded font-label-md text-label-md hover:opacity-90 transition-all">
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Priority Pool (Featured Bento Section) -->
+<section class="mb-3xl">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<h3 class="font-title-md text-title-md text-primary">Priority Pool: Rapid Response Unit</h3>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Featured Talent 1 -->
+<div class="col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex gap-xl items-start relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-lg py-xs font-label-md text-label-md rounded-bl-lg">
+                            ACTIVE STATUS: DEPLOYABLE
+                        </div>
+<img class="w-32 h-32 rounded-lg object-cover border border-outline-variant" data-alt="A professional headshot of a female expert in global health, dressed in a formal charcoal grey suit with a subtle pattern. She has a confident, professional gaze. The background is a sterile, high-end medical research facility with soft blue and white tones. The overall lighting is bright and clean, emphasizing clarity and institutional trust in a high-contrast corporate style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1TuvxaiYa8XIlt4F5lhg9lW93EIcUk5ZHMOi3572whq43KWV8y-GHUSNUnt52S2195gxR3JH_TrDIm233zEzgjcIdVzrZlxajqIpLvn4g8wYMyPtLlfCMDZ9uIwavWNy6k1Dilf94Ji5z2mYQ2VT5ORAv9eG7XTxjvjVN_ERXjo88nIWjDDGm13qX5y8x_854lxjgwe0LJrazbcz8ZeGIYuNH1w-5wnBdnXTwY-bZBd7y90zohoU_bC9imx98iFrsWLpCXpb0vw3m"/>
+<div class="flex-1">
+<h4 class="font-headline-md text-headline-md text-primary mb-xs">Dr. Elena Laurent</h4>
+<p class="font-label-md text-label-md text-secondary mb-md">Senior Epidemiology Consultant</p>
+<p class="text-on-surface-variant font-body-md text-body-md mb-lg leading-relaxed">
+                                Former WHO lead for regional infectious disease surveillance. Extensive experience in sub-Saharan public health infrastructure and emergency medical supply chains during global crises.
+                            </p>
+<div class="flex flex-wrap gap-xs mb-xl">
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded text-label-md font-label-md">Epidemiology</span>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded text-label-md font-label-md">Field Operations</span>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded text-label-md font-label-md">Public Health</span>
+<span class="bg-surface-container-high text-on-surface-variant px-sm py-xs rounded text-label-md font-label-md">Policy</span>
+</div>
+<div class="flex gap-md">
+<button class="bg-primary text-on-primary px-xl py-sm rounded font-title-md text-title-md hover:opacity-90">View Profile</button>
+<button class="border border-outline px-xl py-sm rounded font-title-md text-title-md hover:bg-surface-container-low">Download CV</button>
+</div>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="col-span-4 grid grid-rows-2 gap-gutter">
+<div class="bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-between">
+<span class="material-symbols-outlined text-secondary-fixed">verified</span>
+<div>
+<div class="font-display-lg text-display-lg">1,240</div>
+<div class="font-label-md text-label-md text-on-primary-container">VERIFIED FIELD EXPERTS</div>
+</div>
+</div>
+<div class="bg-secondary-container text-on-secondary-container rounded-xl p-lg flex flex-col justify-between border border-outline-variant">
+<span class="material-symbols-outlined">speed</span>
+<div>
+<div class="font-display-lg text-display-lg">48h</div>
+<div class="font-label-md text-label-md text-on-secondary-fixed-variant">AVG. DEPLOYMENT TIME</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Candidate List -->
+<section>
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-title-md text-title-md text-primary">All Candidates (85)</h3>
+<div class="flex gap-md">
+<button class="text-on-surface-variant font-label-md text-label-md border-b-2 border-primary text-primary pb-1">All Experience</button>
+<button class="text-on-surface-variant font-label-md text-label-md pb-1 hover:text-primary">Supply Chain</button>
+<button class="text-on-surface-variant font-label-md text-label-md pb-1 hover:text-primary">Finance</button>
+<button class="text-on-surface-variant font-label-md text-label-md pb-1 hover:text-primary">Medical</button>
+</div>
+</div>
+<div class="space-y-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-12 px-lg py-sm bg-surface-container-high text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<div class="col-span-3">Candidate</div>
+<div class="col-span-2">Core Expertise</div>
+<div class="col-span-4">Key Experience Snippet</div>
+<div class="col-span-2 text-center">Verification</div>
+<div class="col-span-1 text-right">Action</div>
+</div>
+<!-- Candidate Rows -->
+<div class="candidate-row grid grid-cols-12 px-lg py-md bg-surface-container-lowest border border-outline-variant items-center hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="col-span-3 flex items-center gap-md">
+<img class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A crisp, professional circular avatar of a male professional in his 40s. He is wearing a formal dark suit and has a direct, friendly gaze. The lighting is high-key and professional, with a clean white studio background. The style is modern corporate, emphasizing reliability and professional experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3PLEoUF8FTqah6J2iFgMBmlSIZjnwBEsPaGZ1u1UXpDxffxREbflM-btNaEKDz-TS9cESe9bzp_FfyqEncyKwZVlw8vmN-3OXBXr5vylSyVpodvn_Q8vuk1HvuzbrrjvXsjDi0RmUKL8zSqwBSdokxi_rR2rA5_Gbl9Zge_hGba3QzL9VI8zL4HT5CficSbL_hp3aDPMAfzawyp-VQw6u6N_r__wmlqAN3zsCr1sP7qqVltMr6pjnBaKkaRCKKBMU8OQOIBC9cAxf"/>
+<div>
+<div class="font-title-md text-title-md text-primary">Marcus Wright</div>
+<div class="font-label-md text-label-md text-on-surface-variant">London, UK</div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-xs py-0.5 rounded text-[10px] font-bold">SUPPLY CHAIN</span>
+</div>
+</div>
+<div class="col-span-4 text-on-surface-variant font-body-md text-body-md line-clamp-2">
+                            Managed $45M logistics budget for UNICEF across 12 countries. Specialized in cold-chain integrity for vaccine distribution.
+                        </div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-xs px-sm py-1 bg-surface-container border border-outline-variant rounded text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Tier 1</span>
+</div>
+</div>
+<div class="col-span-1 text-right">
+<button class="text-primary font-label-md text-label-md font-bold group-hover:underline">View</button>
+</div>
+</div>
+<div class="candidate-row grid grid-cols-12 px-lg py-md bg-surface-container-lowest border border-outline-variant items-center hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="col-span-3 flex items-center gap-md">
+<img class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A professional circular avatar of a woman with glasses, wearing a smart grey blazer. She has a knowledgeable and professional expression. Background is a softly blurred modern office interior. High-contrast, clean lighting, following the institutional light-mode aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2pEeqGpjDc6YV7e3pYLjeBu_fBKIPjCp6v_pjjLcBLqFvZ5L4ZrnaGmARhJemoO_zJDl4RAATn_hW0uXBaM6cMrnWP5K6xOjQfzizqsVig9g_HoVa9jccoDhPjon7TnZMM8BReTkSHv1ownJEkdmi2g_oHsMM20FAUbuQvjIGo7d0Eqk9qgrSnNW8hduIgnBzIcnQ66xgovB6i1iWoqnwg5itXMdBwfCv1dx6E3Qr2DOpIXdKmm-AA9Pevo24wfkwqPt-NzGTtSBJ"/>
+<div>
+<div class="font-title-md text-title-md text-primary">Sarah Chen</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Singapore</div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-xs py-0.5 rounded text-[10px] font-bold">EPIDEMIOLOGY</span>
+</div>
+</div>
+<div class="col-span-4 text-on-surface-variant font-body-md text-body-md line-clamp-2">
+                            Lead data scientist for Red Cross health initiatives. PhD in Public Health from Johns Hopkins. Expert in predictive modeling.
+                        </div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-xs px-sm py-1 bg-surface-container border border-outline-variant rounded text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Tier 1</span>
+</div>
+</div>
+<div class="col-span-1 text-right">
+<button class="text-primary font-label-md text-label-md font-bold group-hover:underline">View</button>
+</div>
+</div>
+<div class="candidate-row grid grid-cols-12 px-lg py-md bg-surface-container-lowest border border-outline-variant items-center hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="col-span-3 flex items-center gap-md">
+<img class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A professional circular avatar of a man with a beard, wearing a tactical NGO vest over a khaki shirt. He looks experienced and ready for field work. Background shows a bright, out-of-focus outdoor humanitarian field setting. Professional, high-quality lighting that projects institutional capability and field experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvUr5EolQqr715Pawo9DK_Q7x7JF5pTcHVN0zBSJn2tNd0dFeVU-dg-w3_Um07_VQH79KR1VYZtFhNFhnfpr-SYN_EQPKJL4fAueviNY1FFA79iHW2ymFNucR6oVIbaHLbFmdh_OsGOrR5N6LtMgVnTP4Aw5yep2nM6ElmKwLflYjf_PI4WyxRSBYHtn-6mjMrvZ8PsVAmv372nHezlOBrqs0FjHCdf0NJve4fweLp_zoJXhMJP8EDDieuXFAMefEQId0AsotHjbLl"/>
+<div>
+<div class="font-title-md text-title-md text-primary">Jean Pierre</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Nairobi, Kenya</div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="flex flex-wrap gap-xs">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-xs py-0.5 rounded text-[10px] font-bold">INFRASTRUCTURE</span>
+</div>
+</div>
+<div class="col-span-4 text-on-surface-variant font-body-md text-body-md line-clamp-2">
+                            Civil engineer with 15 years in post-disaster reconstruction. Specialized in sustainable water filtration and bridge modularity.
+                        </div>
+<div class="col-span-2 flex justify-center">
+<div class="flex items-center gap-xs px-sm py-1 bg-surface-container border border-outline-variant rounded text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Tier 2</span>
+</div>
+</div>
+<div class="col-span-1 text-right">
+<button class="text-primary font-label-md text-label-md font-bold group-hover:underline">View</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xl flex items-center justify-between">
+<div class="text-on-surface-variant font-label-md text-label-md">Showing 1 to 10 of 85 candidates</div>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary rounded font-label-md text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded font-label-md text-label-md hover:bg-surface-container transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded font-label-md text-label-md hover:bg-surface-container transition-colors">3</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Micro-Interaction Scripts -->
+<script>
+        document.querySelectorAll('.candidate-row').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateX(4px)';
+                row.style.transition = 'all 0.2s ease-out';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Simple search feedback
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            if (e.target.value.length > 2) {
+                searchInput.classList.add('border-primary');
+            } else {
+                searchInput.classList.remove('border-primary');
+            }
+        });
+    </script>
+</body></html>

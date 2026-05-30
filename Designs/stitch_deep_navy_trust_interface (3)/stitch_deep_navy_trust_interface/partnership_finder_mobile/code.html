@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NGO Discovery | ElevestOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#75859d",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-tint": "#515f78",
+                        "primary-container": "#0d1c32",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#76849f",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#0b1c30",
+                        "on-surface-variant": "#44474d",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed": "#0d1c32",
+                        "secondary-container": "#6cf8bb",
+                        "outline": "#75777e",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container": "#eceef0",
+                        "on-primary-fixed-variant": "#39475f",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary": "#006c49",
+                        "inverse-primary": "#b9c7e4",
+                        "surface-bright": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#002113",
+                        "outline-variant": "#c5c6cd",
+                        "tertiary": "#000000",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary": "#000000",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "margin-desktop": "40px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f7f9fb;
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-outline-variant transition-colors duration-200 ease-in-out">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="Organization Logo" class="w-full h-full object-cover" data-alt="A clean, minimalist logo for a global NGO featuring an abstract icon composed of geometric white lines against a deep navy background. The design is institutional and professional, reflecting authority and global connectivity. The lighting is crisp and clear, emphasizing a modern corporate light-mode aesthetic that fits perfectly into a sophisticated UI framework." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt-1EsBjEwh6vuRiJA9He97bw9Vj291jBaXgfML-OvxDbPOV7KhBs1Go2nmRshtd-3l_vj48N1frwkLIxvmnldldjVq6p2SvascZiPbC1IKi61xtjK_6aPPrwGpnsuT2zx8zIigLErcmM4sJvK7KxzSkr_y8fwM6Ktz7XnvstfNdZhKRYc03qHqC-8G3eJPnJ8XKBtosKQrbMeTxsl3ge8dk7dRnoGGAIYBHP4mdLUjYWZPstC3i0M81RoGIKsyku41kLGd_Sqmbk9"/>
+</div>
+<h1 class="text-title-md font-headline-md font-bold text-primary">ElevestOS</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-16 pb-24 px-margin-mobile">
+<!-- Search & Discovery Header -->
+<section class="mt-lg mb-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Partner Discovery</h2>
+<p class="font-body-md text-on-surface-variant">Find verified NGOs for institutional consortiums and strategic partnerships.</p>
+</section>
+<!-- Search Bar -->
+<div class="relative mb-lg">
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant px-md py-sm rounded-lg focus-within:border-primary transition-all">
+<span class="material-symbols-outlined text-outline mr-sm">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-on-surface w-full" placeholder="Search by name, mission, or ID..." type="text"/>
+<button class="flex items-center justify-center ml-sm" onclick="toggleFilters()">
+<span class="material-symbols-outlined text-primary">tune</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Quick Filters -->
+<div class="flex gap-sm overflow-x-auto hide-scrollbar mb-lg -mx-margin-mobile px-margin-mobile">
+<button class="flex-none px-md py-xs bg-primary text-on-primary rounded-full font-label-md text-label-md">All Partners</button>
+<button class="flex-none px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-surface-variant">Emergency Relief</button>
+<button class="flex-none px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-surface-variant">Infrastructure</button>
+<button class="flex-none px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-surface-variant">Education</button>
+<button class="flex-none px-md py-xs bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-surface-variant">Sustainability</button>
+</div>
+<!-- NGO Profile List -->
+<div class="space-y-md">
+<!-- Partner Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md transition-all hover:border-primary cursor-pointer">
+<div class="flex items-start justify-between mb-sm">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img alt="Global Habitat Logo" class="w-full h-full object-cover" data-alt="A professional aerial view of a clean, well-managed community infrastructure project in a rural setting, featuring solar panels and modern irrigation systems. The lighting is golden hour, warm and hopeful, yet maintaining a sharp, high-definition professional look that suggests efficiency and institutional success. The color palette is natural with deep greens and clear sky blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoNzUzFzYcWEeerW2pDxOwD_wZRE9h6sHI0PKkDj5G6vAeyzY5tBGvNn65agOJ-yis345gQuDLUap9qbgGsoUudswQWc7Lm7XuO6JIFoE3M-X76PW0LvStOa1Du_yt124_VhsWFG9KQfyZzmTtn1B3Xxr8x47Mj1-XtVmYcErDkjigvOjXXC1HK2pH0sulwaSRMAUF6G1MJUjXPsfsHWASRrb85apkszTafvb3YZpGILz8ZvCL6cvfTA4VKuiUUN2P9V3Lsyi4rXGI"/>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Global Habitat Trust</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">ID: NGO-77291-GHT</p>
+</div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md line-clamp-2">
+                    Specializing in large-scale urban sanitation and renewable energy infrastructure across sub-Saharan Africa. 12+ years experience.
+                </p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">WATER TECH</span>
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">RENEWABLES</span>
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">CIVIL ENG</span>
+</div>
+<div class="flex items-center justify-between pt-sm border-t border-outline-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">location_on</span>
+<span class="text-caption font-caption">Nairobi, Kenya</span>
+</div>
+<button class="px-md py-xs bg-secondary-container text-on-secondary-container rounded font-label-md text-label-md transition-transform active:scale-95">View Profile</button>
+</div>
+</div>
+<!-- Partner Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md transition-all hover:border-primary cursor-pointer">
+<div class="flex items-start justify-between mb-sm">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img alt="MedLink Initiative Logo" class="w-full h-full object-cover" data-alt="A high-tech medical research environment with clean lines, stainless steel equipment, and professional staff in lab attire working with precision. The lighting is cool, clinical white, creating a sense of advanced science and sterile reliability. The aesthetic is modern and high-contrast, emphasizing institutional professionalism and expertise in healthcare logistics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvi_giAiCfSibavL93hiFzpTwIEhVc_bZmoxNQmdBoulJubdhz-T3EBb7PgL7_C5JtxRM28hdJLgAW8kgP5MGNWRSRGJ5RCz3ujGSmNQmm5QC8Gilj9DHk_fmYrINqu6Z5zgeAK0Gc6W8Spd3S6s_E3l0zBJ8sg6n_gt4cX3yNgb3O-NpbIvVELnNO0AtdNSVG8_9GEcHQ9reNn2IfoAJTkbLbLtwFos_3NXBYSq7f0SxnVegfumpm0DlnNPEenHn_i_uUR7nKFZBC"/>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<h3 class="font-title-md text-title-md text-on-surface">MedLink Initiative</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">ID: NGO-44102-MLI</p>
+</div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md line-clamp-2">
+                    Primary focus on vaccine distribution logistics and rural health clinic modernization. Experts in cold-chain management.
+                </p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">HEALTH LOGISTICS</span>
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">COLD CHAIN</span>
+</div>
+<div class="flex items-center justify-between pt-sm border-t border-outline-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">location_on</span>
+<span class="text-caption font-caption">Geneva, Switzerland</span>
+</div>
+<button class="px-md py-xs bg-secondary-container text-on-secondary-container rounded font-label-md text-label-md transition-transform active:scale-95">View Profile</button>
+</div>
+</div>
+<!-- Partner Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md transition-all hover:border-primary cursor-pointer">
+<div class="flex items-start justify-between mb-sm">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container overflow-hidden">
+<img alt="Urban Resiliency Network Logo" class="w-full h-full object-cover" data-alt="A modern, open-plan office space featuring collaborative work areas, sleek furniture, and large windows with a view of a city skyline. The lighting is natural and bright, conveying a sense of transparency, transparency, and innovation. The visual style is rooted in modern corporate design, prioritizing productivity and sophisticated institutional collaboration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT2WuoHC5Rqx8R3YYUDMcboAJirooGpfP-godOpIJpqOjAeIf8s6m4VoV6Kc8OhdEXiFyUb_aB3TB5_Hhhu18IaKgx92PEG0YpwrzS1GeQMI9d4wnha7ouB2R2LmPDfCuXTw8FMJRVAqmUOcM2x7yK2QemyvTVHSs0UzdlbtFD9pdkp03c16vnJ4bbvnqLt33bcr04TEufcoYP_EJQ6tHZoKjLUhE5WjOCNX-HjgSbM_IaEeS8KmAC1QEYiDdoHmvZVdY5ZZp8Fpg_"/>
+</div>
+<div>
+<div class="flex items-center gap-xs">
+<h3 class="font-title-md text-title-md text-on-surface">Urban Resiliency Net</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant">ID: NGO-11055-URN</p>
+</div>
+</div>
+</div>
+<p class="font-body-md text-on-surface-variant mb-md line-clamp-2">
+                    Policy-driven NGO focusing on smart-city planning and climate disaster mitigation strategies for coastal cities.
+                </p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">POLICY</span>
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">CLIMATE</span>
+<span class="px-sm py-1 bg-surface-container-low text-on-surface-variant text-[10px] font-label-md border border-outline-variant rounded">PLANNING</span>
+</div>
+<div class="flex items-center justify-between pt-sm border-t border-outline-variant">
+<div class="flex items-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] mr-1">location_on</span>
+<span class="text-caption font-caption">Jakarta, Indonesia</span>
+</div>
+<button class="px-md py-xs bg-secondary-container text-on-secondary-container rounded font-label-md text-label-md transition-transform active:scale-95">View Profile</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Filter Sheet (Hidden by default) -->
+<div class="fixed inset-0 z-[60] hidden" id="filterSheet">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleFilters()"></div>
+<div class="absolute bottom-0 left-0 w-full bg-surface rounded-t-xl p-lg transform transition-transform translate-y-full" id="filterSheetContent">
+<div class="w-12 h-1 bg-outline-variant mx-auto rounded-full mb-lg"></div>
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Filters</h3>
+<button class="text-primary font-label-md text-label-md" onclick="toggleFilters()">Clear All</button>
+</div>
+<div class="space-y-xl max-h-[618px] overflow-y-auto hide-scrollbar">
+<!-- Location Filter -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-md">Operational Region</h4>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-md font-body-md text-on-surface">
+<option>All Regions</option>
+<option>Sub-Saharan Africa</option>
+<option>South-East Asia</option>
+<option>Middle East &amp; North Africa</option>
+<option>Latin America</option>
+</select>
+</div>
+<!-- Sector Filter -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-md">Sector Experience</h4>
+<div class="grid grid-cols-2 gap-sm">
+<button class="px-md py-sm border border-outline-variant rounded-lg text-left font-body-md text-on-surface-variant hover:bg-surface-container-low">Health &amp; Safety</button>
+<button class="px-md py-sm border border-outline-variant rounded-lg text-left font-body-md text-on-surface-variant hover:bg-surface-container-low">Infrastructure</button>
+<button class="px-md py-sm border border-primary bg-primary/5 rounded-lg text-left font-body-md text-primary">Water &amp; Energy</button>
+<button class="px-md py-sm border border-outline-variant rounded-lg text-left font-body-md text-on-surface-variant hover:bg-surface-container-low">Human Rights</button>
+</div>
+</div>
+<!-- Skills Filter -->
+<div>
+<h4 class="font-title-md text-title-md text-on-surface mb-md">Technical Capabilities</h4>
+<div class="flex flex-wrap gap-sm">
+<span class="px-md py-xs bg-surface-container-low text-on-surface-variant rounded-full text-caption border border-outline-variant">Blockchain Ledgers</span>
+<span class="px-md py-xs bg-surface-container-low text-on-surface-variant rounded-full text-caption border border-outline-variant">Cold Chain Logistics</span>
+<span class="px-md py-xs bg-surface-container-low text-on-surface-variant rounded-full text-caption border border-outline-variant">Geospatial Mapping</span>
+<span class="px-md py-xs bg-secondary-container text-on-secondary-container rounded-full text-caption border border-outline-variant">Civil Engineering</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-xl py-md bg-primary text-on-primary font-title-md text-title-md rounded-lg" onclick="toggleFilters()">Apply Filters</button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-xs py-sm pb-safe bg-surface-container-lowest border-t border-outline-variant shadow-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-label-md text-label-md">Grants</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+<span class="font-label-md text-label-md">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant py-1 scale-95 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-md text-label-md">Vault</span>
+</a>
+</nav>
+<script>
+        function toggleFilters() {
+            const sheet = document.getElementById('filterSheet');
+            const content = document.getElementById('filterSheetContent');
+            if (sheet.classList.contains('hidden')) {
+                sheet.classList.remove('hidden');
+                setTimeout(() => {
+                    content.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                content.style.transform = 'translateY(100%)';
+                setTimeout(() => {
+                    sheet.classList.add('hidden');
+                }, 300);
+            }
+        }
+    </script>
+</body></html>

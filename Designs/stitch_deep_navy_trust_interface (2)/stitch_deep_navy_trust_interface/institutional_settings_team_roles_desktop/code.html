@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Institutional Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e0e3e5",
+                    "surface-dim": "#d8dadc",
+                    "surface-container": "#eceef0",
+                    "on-surface-variant": "#44474d",
+                    "on-primary-container": "#76849f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#0b1c30",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b9c7e4",
+                    "on-secondary-fixed": "#002113",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary": "#000000",
+                    "primary-container": "#0d1c32",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#006c49",
+                    "inverse-primary": "#b9c7e4",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-background": "#191c1e",
+                    "background": "#f7f9fb",
+                    "outline": "#75777e",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-bright": "#f7f9fb",
+                    "surface-tint": "#515f78",
+                    "outline-variant": "#c5c6cd",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#6cf8bb",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#39475f",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "surface-container-low": "#f2f4f6",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#0d1c32",
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-secondary-container": "#00714d",
+                    "on-tertiary-container": "#75859d",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "primary-fixed": "#d6e3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "gutter": "24px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "title-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "caption": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed-dim h-screen overflow-hidden">
+<!-- SideNavBar (Institutional Blueprint) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-lg pb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">ElevestOS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Infrastructure Grade</p>
+</div>
+<nav class="flex-1 px-sm space-y-base overflow-y-auto custom-scrollbar">
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="payments">payments</span>
+                Grants
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="account_tree">account_tree</span>
+                Projects
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="assessment">assessment</span>
+                Reports
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="inventory_2">inventory_2</span>
+                Vault
+            </a>
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md group-hover:text-primary" data-icon="science">science</span>
+                Labs
+            </a>
+</nav>
+<div class="px-sm mt-auto border-t border-outline-variant pt-md space-y-base">
+<a class="flex items-center px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md group" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="help">help</span>
+                Support
+            </a>
+<!-- Active Settings Tab -->
+<a class="flex items-center px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container transition-all duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Settings
+            </a>
+<div class="mt-md px-md">
+<button class="w-full bg-primary text-on-primary py-sm rounded font-title-md text-body-md hover:opacity-90 transition-opacity">
+                    New Initiative
+                </button>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 font-body-md text-body-md focus:ring-2 focus:ring-primary" placeholder="Search institutional data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="g_shield">gshield</span>
+<span class="font-label-md text-label-md">Compliance Check</span>
+</button>
+<div class="flex items-center space-x-md border-l border-outline-variant pl-lg">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary" data-icon="history">history</span>
+<div class="flex items-center gap-sm cursor-pointer">
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional portrait of a senior institutional administrator with a neutral expression, wearing a tailored navy suit. The lighting is crisp and corporate, set against a blurred modern architectural background with cool blue tones, suggesting high-level authority and professional stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkLAnsNAR79FC_llbzSmBbbNsEu1O4tBzahi_nfFb2teb0Lwfj1lqqRM0R3CPTLDeK3shiOsCI0Tm3z6JKP4t9yAEO6nwzDwHOmD-jjT3g2kk1w-WOLT4r-zBF_iHbJ_-9V1Rf5Y7FUtk3LhZxLuLGjp8gEAt2l60jy2_DK_alw49x-7ErxGlz4FpTpUA9l5NFITdc-6PCmrTDJuzB-1zRrg0F0v1O7sZBU9iOshteoaWGf0fo0T_huEyh-oknU-SSVR3EHcOs4kXh"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 h-full overflow-y-auto custom-scrollbar bg-surface">
+<div class="p-margin-desktop space-y-xl">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<nav aria-label="Breadcrumb" class="flex mb-sm">
+<ol class="flex items-center space-x-2">
+<li><a class="font-label-md text-label-md text-on-primary-container" href="#">Settings</a></li>
+<li><span class="material-symbols-outlined text-caption" data-icon="chevron_right">chevron_right</span></li>
+<li><span class="font-label-md text-label-md text-primary font-bold">Team Management</span></li>
+</ol>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-tertiary-container">Team Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Define institutional access hierarchies and manage active operational staff.</p>
+</div>
+<button class="bg-primary text-on-primary px-lg py-md flex items-center gap-sm hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="font-title-md text-body-md">Invite Member</span>
+</button>
+</div>
+<!-- Dashboard Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Main Table Section -->
+<div class="col-span-12 lg:col-span-8 space-y-lg">
+<div class="bg-surface-container-lowest border border-outline-variant overflow-hidden">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<span class="font-label-md text-label-md text-tertiary-container uppercase tracking-widest">Active Members (14)</span>
+<div class="flex gap-sm">
+<button class="p-xs hover:bg-surface-container-high"><span class="material-symbols-outlined text-body-lg" data-icon="filter_list">filter_list</span></button>
+<button class="p-xs hover:bg-surface-container-high"><span class="material-symbols-outlined text-body-lg" data-icon="download">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Member</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Role</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Clearance</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded border border-outline-variant" data-alt="Close-up portrait of a mid-career male professional with short hair and glasses, looking directly into the camera with a confident, slight smile. The background is an out-of-focus high-end office environment with natural daylight and professional-grade color grading in warm and cool contrasts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMKYmPDaEayZsAZKIAGYokdpPiB4krZJ4DCf13MqUjNCx92GizzKUb0Kd-4LrmlOGeMuDDVQVfmzp_ezvBZmgUFghi1WaiindoEZ8bUreB38y0fZm4W-Bb6s6HEW6XJaXkm5XZOzVZmFmVpItByoIDqE48XIjngCHvXKRTnRIQjtZwGZ9UEs05XI__h5OxNiAy-0R7NnQoHRUAUBhHKewDYpK878ZqFYmJIGna3aXmuB5QhhHezIwxWgZwuxujCq0KB9DRO2q2Ov_r"/>
+<div>
+<p class="font-title-md text-body-md text-primary">Marcus Thorne</p>
+<p class="font-caption text-caption text-on-surface-variant">m.thorne@elevest.org</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md text-label-md text-primary-container bg-primary-fixed-dim px-sm py-1">Admin</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-body-md text-secondary" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-md text-label-md">L5 Sovereign</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md">Active</span>
+</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded border border-outline-variant" data-alt="A portrait of a focused female executive with sleek dark hair pulled back, wearing a professional gray blazer. The lighting is diffused and professional, creating soft shadows. The setting is a minimalist boardroom with glass walls and a deep navy and white color palette, reflecting a serious corporate atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvyejMtBK0UB-cHO6BE6DT8tCJXVluLbHIFY9_EVjev8PwY_bzna1uynexd7Dj6ZumhxeNI3-07U3Ywyhci5lVVs23y6wLRKoQqsU5Z3OtGOQsa0xOth_30ra50qhLc3b0yevLgnAGyTMQsTv82fMWWCTl2EOn6v2IfmF0ILoUzJ6hwMucdiLlLKiICCQUGkefGlkHe95xl0tgUFJBRUNEanDvC62WGJ9PwlPH8HGMDkUVXA1q36QqAlNlpTzq48_GbQO6HaFRziNQ"/>
+<div>
+<p class="font-title-md text-body-md text-primary">Elena Rodriguez</p>
+<p class="font-caption text-caption text-on-surface-variant">e.rod@elevest.org</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md text-label-md text-on-tertiary-container bg-tertiary-fixed-dim px-sm py-1">Program Manager</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-body-md text-on-surface-variant" data-icon="shield">shield</span>
+<span class="font-label-md text-label-md">L3 Operational</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md">Active</span>
+</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded border border-outline-variant" data-alt="A portrait of a middle-aged male administrator with silver-touched hair, wearing a white shirt and dark tie. His expression is professional and calm. The lighting is focused and direct, highlighting clean lines. The background features a subtle grid-like glass structure, fitting an institutional high-security office aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa_xbniJwd0Nw7fQuKsBWsPnhlzGEoRO2QoLMZfR2VKSEhcQz6rNbq697NqNenBtKOA91FwUFRr5d_kkSHvrBeMuZY-QKKEqSwZOO0nWYMfCJkiEwRiQChOqM_4Ytyl--BFFWZtVhxvWWLKAf9T5X79tswstAtHVwuy02AD_fI8pGZL-PgqkJUxGkEyJ9U1I7ok2ZTMmuTkh6kK4-gIls_o8J6MUytoUCaLu7dXoRrat0H1F14kR1CXrlAYLzEIP_8-GBSoF_ZbosS"/>
+<div>
+<p class="font-title-md text-body-md text-primary">Samuel Okoro</p>
+<p class="font-caption text-caption text-on-surface-variant">s.okoro@elevest.org</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="font-label-md text-label-md text-on-secondary-container bg-secondary-container px-sm py-1">Field Coordinator</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-body-md text-on-surface-variant" data-icon="shield">shield</span>
+<span class="font-label-md text-label-md">L2 Restricted</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center gap-xs text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="font-label-md text-label-md">Offline</span>
+</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container-low flex justify-between items-center">
+<p class="font-label-md text-label-md text-on-surface-variant">Showing 1-3 of 14 institutional agents</p>
+<div class="flex gap-sm">
+<button class="px-sm py-1 border border-outline-variant bg-surface rounded hover:bg-surface-container-high transition-colors font-label-md text-label-md">Prev</button>
+<button class="px-sm py-1 border border-outline-variant bg-surface rounded hover:bg-surface-container-high transition-colors font-label-md text-label-md">Next</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Role Definitions Sidebar -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<div class="bg-tertiary-container text-on-tertiary p-xl border border-tertiary shadow-lg">
+<div class="flex items-center gap-md mb-lg">
+<span class="material-symbols-outlined text-3xl" data-icon="policy">policy</span>
+<h3 class="font-headline-md text-headline-md">Role Definitions</h3>
+</div>
+<div class="space-y-xl">
+<div class="space-y-sm">
+<h4 class="font-title-md text-body-md font-bold text-primary-fixed">Admin</h4>
+<p class="font-body-md text-body-md text-on-tertiary-container leading-relaxed">Full system sovereignty. Can manage fiscal buckets, authorize new nodes, and override audit protocols. Multi-factor authentication mandatory.</p>
+</div>
+<div class="space-y-sm">
+<h4 class="font-title-md text-body-md font-bold text-primary-fixed">Program Manager</h4>
+<p class="font-body-md text-body-md text-on-tertiary-container leading-relaxed">Strategic oversight. Permission to approve project budgets up to $1M and generate comprehensive compliance reports.</p>
+</div>
+<div class="space-y-sm">
+<h4 class="font-title-md text-body-md font-bold text-primary-fixed">Field Coordinator</h4>
+<p class="font-body-md text-body-md text-on-tertiary-container leading-relaxed">Tactical execution. Access to localized project vaults and real-time field data entry. No fiscal authorization permissions.</p>
+</div>
+</div>
+<button class="w-full mt-xl py-md border border-on-tertiary-container text-on-tertiary-container font-label-md text-label-md hover:bg-on-tertiary-container hover:text-tertiary-container transition-all">
+                            View Full Permission Matrix
+                        </button>
+</div>
+</div>
+<!-- Audit Trail Footer Section -->
+<div class="col-span-12">
+<div class="bg-surface-container border border-outline-variant">
+<div class="p-md bg-surface-container-high border-b border-outline-variant flex items-center gap-md">
+<span class="material-symbols-outlined text-on-primary-fixed-variant" data-icon="history_edu">history_edu</span>
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-widest">Security Change Audit Trail</span>
+</div>
+<div class="p-0">
+<div class="divide-y divide-outline-variant">
+<div class="px-lg py-md flex items-center justify-between font-label-md text-label-md">
+<div class="flex gap-xl">
+<span class="text-on-surface-variant font-label-md">2023-10-24 14:22:01</span>
+<span class="text-primary font-bold">Role Escalation</span>
+<span class="text-on-surface-variant">Marcus Thorne escalated Clearance Level for Samuel Okoro from L1 to L2.</span>
+</div>
+<span class="text-secondary font-bold">VERIFIED</span>
+</div>
+<div class="px-lg py-md flex items-center justify-between font-label-md text-label-md">
+<div class="flex gap-xl">
+<span class="text-on-surface-variant font-label-md">2023-10-24 09:15:44</span>
+<span class="text-primary font-bold">System Login</span>
+<span class="text-on-surface-variant">External node login detected from unauthorized IP (blocked). IP: 192.168.1.104</span>
+</div>
+<span class="text-error font-bold">FLAGGED</span>
+</div>
+<div class="px-lg py-md flex items-center justify-between font-label-md text-label-md">
+<div class="flex gap-xl">
+<span class="text-on-surface-variant font-label-md">2023-10-23 18:02:12</span>
+<span class="text-primary font-bold">New Invite</span>
+<span class="text-on-surface-variant">Administrator created pending invitation for Sarah J. (Program Manager).</span>
+</div>
+<span class="text-secondary font-bold">VERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Security Status (Infrastructure Aesthetic) -->
+<div class="fixed bottom-lg right-lg glass-panel border border-outline-variant px-lg py-md flex items-center gap-lg shadow-xl z-50">
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-label-md text-label-md text-secondary">OS Integrity: 100%</span>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-body-md text-on-surface-variant" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-md text-label-md text-on-surface-variant">TLS 1.3 Active</span>
+</div>
+</div>
+<script>
+        // Micro-interaction for hover states and institutional "feel"
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transition = 'background-color 0.1s ease';
+            });
+        });
+
+        // Search Bar Focus Effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Global Relief Initiative - Hiring Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#75859d",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-tint": "#515f78",
+                        "primary-container": "#0d1c32",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#76849f",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#0b1c30",
+                        "on-surface-variant": "#44474d",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed": "#0d1c32",
+                        "secondary-container": "#6cf8bb",
+                        "outline": "#75777e",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container": "#eceef0",
+                        "on-primary-fixed-variant": "#39475f",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "surface": "#f7f9fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-background": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "secondary": "#006c49",
+                        "inverse-primary": "#b9c7e4",
+                        "surface-bright": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#002113",
+                        "outline-variant": "#c5c6cd",
+                        "tertiary": "#000000",
+                        "on-secondary-fixed-variant": "#005236",
+                        "primary": "#000000",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "margin-desktop": "40px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c5c6cd; border-radius: 10px; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<img alt="ElevestOS" class="w-5 h-5 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0yKQMwKSnLvgkPwHXe-5__jrJNp5Gr9k7cCWHYVXqmUfU3SBfSB0YGfX1tF2UK7Oc_rs4-jhgOhtLiBrVG9juAoQqzjbatPqBsye2l7kZoXHBD5RAKSD3LF8QD_oRREMmd-ZKdKRKJ1zHdabl3lXqbIbGGmTwAs4CAvJuKcmD7FtS_2HRt5NU_mCAt8D5QoNO0JG3fY9p5pn_7npEzMd7tCmc3Pv8MG2snJlbsCngmwRLr7QcGM-jYG0riituTYVsZoGFqDC4X-CT"/>
+</div>
+<h1 class="text-title-md font-headline-md font-bold text-primary dark:text-on-surface">ElevestOS</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors duration-200 ease-in-out">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="A professional portrait of an Institutional Admin for a global NGO, wearing professional attire, set against a clean, minimalist architectural background. The lighting is bright and high-key, emphasizing a modern light-mode aesthetic. The color palette is composed of soft whites and neutral tones, conveying trust, authority, and administrative calm in a corporate environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshcPfgW2T3k4jJYtbJop9Utj0wuoIahaFOKIirm5PryEFGifJCGMh_RCLtLU4aBw_J_FbXTWbL6wQZysSR_1SkgyrYPnJQ2r7UTRP2eJ2kj0LTgIsFy6s18RaUctoPkh2XrZnaL-xndFtefya__gNvVAIykX5GCpzu3G0RiBUOALLPgHUgofWVVTbwt-z2yhqTsSlHFtnlZx5W1mafEGWTpD4dT-5znnEg2c-9z85ouG_CltDVkrmjYJTy2VxEfjZA1XK1uXamL08"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="mt-16 px-margin-mobile pt-md">
+<!-- Header & Stats -->
+<section class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Verified Talent</h2>
+<p class="text-on-surface-variant font-body-md">Browse professionals with proven NGO &amp; Donor-funded experience.</p>
+</section>
+<!-- Search & Quick Filters -->
+<section class="mb-lg">
+<div class="flex items-center gap-sm mb-md bg-surface-container-lowest border border-outline-variant p-sm rounded-lg">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-body-md" placeholder="Search by name, expertise, or project..." type="text"/>
+<button class="bg-primary text-on-primary px-sm py-1 rounded font-label-md text-label-md">SEARCH</button>
+</div>
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="flex items-center gap-xs px-md py-2 bg-secondary-container text-on-secondary-container rounded-full border border-secondary whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]" data-icon="health_and_safety">health_and_safety</span>
+<span class="font-label-md text-label-md">Health Sector</span>
+</button>
+<button class="flex items-center gap-xs px-md py-2 bg-surface-container-lowest border border-outline-variant text-on-surface-variant rounded-full whitespace-nowrap hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="eco">eco</span>
+<span class="font-label-md text-label-md">Climate</span>
+</button>
+<button class="flex items-center gap-xs px-md py-2 bg-surface-container-lowest border border-outline-variant text-on-surface-variant rounded-full whitespace-nowrap hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="public">public</span>
+<span class="font-label-md text-label-md">Sub-Saharan Africa</span>
+</button>
+<button class="flex items-center gap-xs px-md py-2 bg-surface-container-lowest border border-outline-variant text-on-surface-variant rounded-full whitespace-nowrap hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+<span class="font-label-md text-label-md">More Filters</span>
+</button>
+</div>
+</section>
+<!-- Talent Grid -->
+<section class="grid grid-cols-1 gap-md">
+<!-- Talent Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-md flex gap-md">
+<div class="relative flex-shrink-0">
+<img alt="Talent Profile" class="w-20 h-24 object-cover rounded" data-alt="A focused headshot of a female professional expert in the NGO climate sector, looking confidently at the camera. She is in a bright, modern office with soft daylight. The image has a professional, institutional aesthetic with clean lines and high-contrast clarity, reflecting a high-stakes corporate environment with trust and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYL3yUHR-vJm-KGTOU_CAw4qKLJsY1G9fkwxbLSEE4mxIXSDiXZxCyYchSzpynufTzFh3ejRdCaF1NqHHw8JyT7WBLYkTS7J7UbxJqjLMCUBw_t7qiGgv6u11zUsF1lYDk0uXip810Wd2ApRpxEre5VVp78ImICPPFureW7bPFvYTJfOlZ_O7JxLXurmfKeTTEixiOpzNTrb-bRIus5G5VKUtybhoSgWI-nXbSSGQ4F3iBZYieqlZ-m0c3egJjQwK-11tGRfAYPFG5"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary p-1 rounded-full border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Dr. Amara Okafor</h3>
+<span class="font-label-md text-label-md text-secondary bg-secondary-container px-2 py-0.5 rounded">HIRED 4x</span>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1 italic">Public Health Lead • USAID / WHO</p>
+<div class="mt-md flex flex-wrap gap-xs">
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">EPIDEMIOLOGY</span>
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">WEST AFRICA</span>
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">GRANT MGMT</span>
+</div>
+</div>
+</div>
+<div class="px-md pb-md">
+<div class="bg-surface-container-low p-sm rounded border-l-4 border-secondary">
+<p class="text-[11px] font-label-md text-outline uppercase tracking-wider mb-1">Key Experience</p>
+<p class="text-body-md text-on-surface leading-tight">Led $24M Malaria prevention initiative in Nigeria. Managed multi-lateral stakeholders for WHO.</p>
+</div>
+<div class="mt-md flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded font-label-md text-label-md transition-opacity active:opacity-80">VIEW PROFILE</button>
+<button class="px-md border border-outline-variant py-2 rounded text-on-surface-variant transition-colors hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Talent Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-md flex gap-md">
+<div class="relative flex-shrink-0">
+<img alt="Talent Profile" class="w-20 h-24 object-cover rounded" data-alt="A professional male specialist in humanitarian logistics, standing in a bright, modern facility. The lighting is crisp and corporate, reinforcing an institutional feel. The palette is dominated by soft whites and cool greys, highlighting a reliable and serious persona suited for international treaty organizations and global relief initiatives." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzn_M4qahZbhJEJeD22FxNSCtY-yL_dpL7GPZKaDlGmZAfbVO_s27UlkQiC_OUD97_bbzzuiyzviU4DWak3VkQH0wMFQUD4iXg8_Yotbry0jGGY2KIU3reyh3riVaP6VdnHTODrAHv1VyktX_8YjIN8ujl6MgogjTtHSeyWMb6hip7YLnslu3p_sR05B12NjJswd-tuyS5gFDdVXgXgx5DbIN5lIkFIye_kzgBZuxsAeXWlnN1MK7oSvdU1XScnKV54SjDHuivHEwL"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary p-1 rounded-full border-2 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md text-primary">Marcus Thorne</h3>
+<span class="font-label-md text-label-md text-on-tertiary-container bg-surface-container-high px-2 py-0.5 rounded">AVAILABLE</span>
+</div>
+<p class="text-on-surface-variant font-body-md mt-1 italic">Logistics Expert • EU Civil Protection</p>
+<div class="mt-md flex flex-wrap gap-xs">
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">SUPPLY CHAIN</span>
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">LATAM</span>
+<span class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded bg-surface-container-low">CRISIS OPS</span>
+</div>
+</div>
+</div>
+<div class="px-md pb-md">
+<div class="bg-surface-container-low p-sm rounded border-l-4 border-outline">
+<p class="text-[11px] font-label-md text-outline uppercase tracking-wider mb-1">Key Experience</p>
+<p class="text-body-md text-on-surface leading-tight">Coordinated air-drops for regional disaster relief in Peru. 12+ years field experience.</p>
+</div>
+<div class="mt-md flex gap-sm">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded font-label-md text-label-md transition-opacity active:opacity-80">VIEW PROFILE</button>
+<button class="px-md border border-outline-variant py-2 rounded text-on-surface-variant transition-colors hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Featured -->
+<div class="bg-primary-container text-on-primary-container p-lg rounded-xl flex flex-col justify-between min-h-[160px] relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Priority Pool</h3>
+<p class="font-body-md text-on-primary-container opacity-80">Pre-vetted Climate Adaption experts ready for immediate deployment.</p>
+</div>
+<div class="relative z-10 mt-md">
+<button class="bg-secondary-container text-on-secondary-container px-lg py-2 rounded font-bold font-label-md text-label-md flex items-center gap-xs">
+                        EXPLORE POOL <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+<!-- Abstract background pattern -->
+<div class="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="account_tree">account_tree</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-xs py-sm pb-safe bg-surface-container-lowest dark:bg-surface-dim border-t border-outline-variant dark:border-outline shadow-sm">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:text-secondary transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:text-secondary transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+<span class="font-label-md text-label-md">Grants</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed rounded-full px-4 py-1 transition-transform duration-150 scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-label-md text-label-md">Projects</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:text-secondary transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant py-1 hover:text-secondary transition-transform duration-150 active:scale-90">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-label-md text-label-md">Vault</span>
+</button>
+</nav>
+<!-- Floating Action Button - Supressed on this detail-oriented view as per instruction, but technically Dashboard level. Keeping supressed to prioritize talent search canvas. -->
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.classList.add('opacity-70');
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.classList.remove('opacity-70');
+            });
+        });
+
+        // Search highlight mock
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('border-primary');
+            searchInput.parentElement.classList.remove('border-outline-variant');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('border-primary');
+            searchInput.parentElement.classList.add('border-outline-variant');
+        });
+    </script>
+</body></html>

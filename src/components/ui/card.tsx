@@ -1,21 +1,35 @@
+"use client";
+
 import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
 import { cn } from "@/lib/utils";
 
-const Card = React.forwardRef<
+const cardVariants = cva("overflow-hidden", {
+  variants: {
+    variant: {
+      default: "bg-card border border-border rounded-md",
+      elevated: "bg-card rounded-md shadow-elevated",
+      glass:
+        "bg-white/70 backdrop-blur-xl border border-white/20 rounded-md shadow-subtle",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+const CardRoot = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof cardVariants>
+>(({ className, variant, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "bg-surface-container-lowest border border-border rounded-md shadow-card " +
-      "hover:shadow-card-hover transition-all duration-200",
-      className
-    )}
+    className={cn(cardVariants({ variant }), className)}
     {...props}
   />
 ));
-Card.displayName = "Card";
+CardRoot.displayName = "Card";
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -23,23 +37,26 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("px-6 py-4 border-b border-border", className)}
+    className={cn("flex flex-col gap-1 px-6 pt-6 pb-0", className)}
     {...props}
   />
 ));
-CardHeader.displayName = "CardHeader";
+CardHeader.displayName = "Card.Header";
 
 const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn("text-h3 font-heading font-semibold text-primary", className)}
+    className={cn(
+      "font-heading text-heading-md font-semibold text-foreground tracking-tight",
+      className
+    )}
     {...props}
   />
 ));
-CardTitle.displayName = "CardTitle";
+CardTitle.displayName = "Card.Title";
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -47,19 +64,19 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-body-sm text-gray-600 mt-1", className)}
+    className={cn("text-body-sm text-foreground-secondary", className)}
     {...props}
   />
 ));
-CardDescription.displayName = "CardDescription";
+CardDescription.displayName = "Card.Description";
 
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("px-6 py-4", className)} {...props} />
+  <div ref={ref} className={cn("p-6", className)} {...props} />
 ));
-CardContent.displayName = "CardContent";
+CardContent.displayName = "Card.Content";
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
@@ -68,12 +85,20 @@ const CardFooter = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "px-6 py-4 border-t border-border bg-surface-container-low",
+      "flex items-center gap-3 px-6 py-4 border-t border-border bg-gray-50/50",
       className
     )}
     {...props}
   />
 ));
-CardFooter.displayName = "CardFooter";
+CardFooter.displayName = "Card.Footer";
 
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };
+const Card = Object.assign(CardRoot, {
+  Header: CardHeader,
+  Title: CardTitle,
+  Description: CardDescription,
+  Content: CardContent,
+  Footer: CardFooter,
+});
+
+export { Card };

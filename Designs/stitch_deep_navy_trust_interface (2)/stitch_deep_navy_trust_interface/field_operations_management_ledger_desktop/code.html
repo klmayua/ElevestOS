@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "on-background": "#191c1e",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#75859d",
+                    "inverse-primary": "#b9c7e4",
+                    "on-secondary-fixed": "#002113",
+                    "secondary-fixed-dim": "#4edea3",
+                    "tertiary": "#000000",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-tint": "#515f78",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0d1c32",
+                    "on-primary-fixed": "#0d1c32",
+                    "on-primary-fixed-variant": "#39475f",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "surface-variant": "#e0e3e5",
+                    "surface-container": "#eceef0",
+                    "error": "#ba1a1a",
+                    "outline": "#75777e",
+                    "background": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#0b1c30",
+                    "on-secondary-fixed-variant": "#005236",
+                    "surface": "#f7f9fb",
+                    "secondary": "#006c49",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "outline-variant": "#c5c6cd",
+                    "secondary-container": "#6cf8bb",
+                    "on-surface": "#191c1e",
+                    "primary-fixed-dim": "#b9c7e4",
+                    "tertiary-fixed": "#d3e4fe",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-container": "#00714d",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary": "#000000",
+                    "on-surface-variant": "#44474d",
+                    "on-primary-container": "#76849f",
+                    "inverse-surface": "#2d3133"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "2xl": "48px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "3xl": "64px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "title-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["JetBrains Mono"],
+                    "caption": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .dual-pane {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 24px;
+        }
+        /* Custom scrollbar for institutional feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">ElevestOS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Infrastructure Grade</p>
+</div>
+<nav class="flex-1 space-y-1 px-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-colors hover:bg-surface-container-high text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-colors hover:bg-surface-container-high text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md">Grants</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-surface-container" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="font-body-md">Projects</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-colors hover:bg-surface-container-high text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-colors hover:bg-surface-container-high text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Vault</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-colors hover:bg-surface-container-high text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="font-body-md">Labs</span>
+</a>
+</nav>
+<div class="mt-auto px-sm pt-md border-t border-outline-variant">
+<button class="w-full bg-primary text-white py-sm rounded flex items-center justify-center gap-sm mb-md font-bold active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>New Initiative</span>
+</button>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop sticky top-0 z-40">
+<div class="flex items-center gap-xl w-1/3">
+<div class="relative w-full max-w-sm">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded py-base pl-10 pr-md font-body-md focus:ring-2 focus:ring-primary" placeholder="Search operational data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="px-md py-base border border-primary text-primary font-label-md rounded hover:bg-primary hover:text-white transition-colors uppercase">
+                    Compliance Check
+                </button>
+<div class="flex items-center gap-md text-on-surface-variant">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="notifications">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined" data-icon="history">history</span></button>
+<div class="flex items-center gap-sm ml-sm">
+<img alt="Administrator" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a corporate administrator in a modern office environment. The lighting is crisp and even, creating a formal and institutional mood. The background shows a blurry, high-end architectural workspace with glass and steel elements. The subject wears a sharp dark suit, conveying authority and reliability within a global organization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh9Z7EsHTij93h0FfbjlrMGzcuktEj5LV4XKLR3bmNiAMQMyiWjEQf4RDOiYXx85xLTMcbhEkVkFDHCI2WGNh3ZJXMPJ3Woh_Vw9HV7fojVByAsiN4JsJsoPCwILR8I_zWUU2xVAgXmLtG6HDohYXPm83nf9y3eYKIbOfh8dkRILul6QrZA1toT9NdQL_Ydoqz54pxU_4ey0miTN55SuhQAXsY4_ShKH55EJmMWTcniEkV_CmBCBexVxEFdFj2lK6qM5jTfQNrkASl"/>
+<span class="font-label-md">HQ Admin</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-margin-desktop space-y-lg overflow-y-auto max-h-[calc(100vh-64px)]">
+<!-- Header Section -->
+<section class="flex justify-between items-end pb-md border-b border-outline-variant">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="font-label-md">PROJECTS</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="font-label-md">FIELD OPERATIONS</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-primary">Data Log: Real-time Entry</h2>
+</div>
+<div class="flex gap-xl text-right">
+<div class="space-y-1">
+<p class="font-label-md text-on-surface-variant">CURRENT PROJECT</p>
+<p class="font-title-md text-title-md text-primary">Northeast Water Infrastructure Phase II</p>
+</div>
+<div class="space-y-1 border-l border-outline-variant pl-xl">
+<p class="font-label-md text-on-surface-variant">LOCATION</p>
+<p class="font-title-md text-title-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                            Garissa County, Kenya
+                        </p>
+</div>
+</div>
+</section>
+<!-- Dual Pane Layout -->
+<section class="dual-pane">
+<!-- Left: Form -->
+<div class="space-y-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded shadow-sm">
+<div class="flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary" data-icon="edit_note">edit_note</span>
+<h3 class="font-title-md text-title-md uppercase tracking-tight">Log New Activity</h3>
+</div>
+<form class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant">ACTIVITY TYPE</label>
+<select class="w-full border border-outline-variant rounded p-sm bg-white font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>Infrastructure Inspection</option>
+<option>Beneficiary Distribution</option>
+<option>Stakeholder Consultation</option>
+<option>Technical Maintenance</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant">BENEFICIARIES REACHED</label>
+<div class="relative">
+<input class="w-full border border-outline-variant rounded p-sm bg-white font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="0" type="number"/>
+<span class="absolute right-sm top-1/2 -translate-y-1/2 text-outline font-label-md">PERSONS</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface-variant">FIELD NOTES</label>
+<textarea class="w-full border border-outline-variant rounded p-sm bg-white font-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none resize-none" placeholder="Describe the current status and any immediate blockers..." rows="4"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="border-2 border-dashed border-outline-variant rounded p-md flex flex-col items-center justify-center text-on-surface-variant hover:border-primary hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined text-xl mb-xs" data-icon="photo_camera">photo_camera</span>
+<span class="font-label-md">UPLOAD PHOTO</span>
+</div>
+<div class="border-2 border-dashed border-outline-variant rounded p-md flex flex-col items-center justify-center text-on-surface-variant hover:border-primary hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined text-xl mb-xs" data-icon="my_location">my_location</span>
+<span class="font-label-md">FETCH GPS</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-md font-bold rounded flex items-center justify-center gap-md hover:opacity-90 transition-opacity mt-xl" type="submit">
+                                SYNC TO CENTRAL COMMAND
+                                <span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+</button>
+</form>
+</div>
+<div class="bg-primary-container p-lg rounded border border-primary text-on-primary-container">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<div class="space-y-sm">
+<h4 class="font-title-md">Sync Status</h4>
+<p class="text-on-primary-container opacity-80 font-body-md">You are currently connected to the primary data node. Logs will be processed and visible to HQ in under 3 seconds.</p>
+<div class="flex items-center gap-sm pt-sm">
+<div class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></div>
+<span class="font-label-md uppercase tracking-widest">Live: encrypted channel</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Recent Logs Feed -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-white sticky top-0 z-10">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<h3 class="font-title-md text-title-md uppercase tracking-tight">Recent Synchronized Logs</h3>
+</div>
+<div class="flex gap-md">
+<span class="px-md py-1 bg-surface-container rounded-full font-label-md text-on-surface-variant">Last 24 Hours</span>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="filter_list">filter_list</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="p-md font-label-md uppercase tracking-wider text-on-surface-variant">Timestamp</th>
+<th class="p-md font-label-md uppercase tracking-wider text-on-surface-variant">Unit / Agent</th>
+<th class="p-md font-label-md uppercase tracking-wider text-on-surface-variant">Activity</th>
+<th class="p-md font-label-md uppercase tracking-wider text-on-surface-variant">Impact</th>
+<th class="p-md font-label-md uppercase tracking-wider text-on-surface-variant">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md align-top">
+<div class="font-label-md text-primary">14:22:15</div>
+<div class="text-on-surface-variant text-xs">UTC +3</div>
+</td>
+<td class="p-md align-top">
+<div class="font-body-md font-bold">Field-Alpha-7</div>
+<div class="text-on-surface-variant text-xs">A. Abdi (Lead Engineer)</div>
+</td>
+<td class="p-md align-top max-w-xs">
+<div class="font-body-md text-primary">Wellbore Integrity Test</div>
+<p class="text-on-surface-variant text-xs mt-1">Pressure check successful. All valves operating within standard institutional safety thresholds.</p>
+</td>
+<td class="p-md align-top">
+<div class="font-label-md text-secondary">N/A</div>
+</td>
+<td class="p-md align-top">
+<span class="inline-block px-md py-1 rounded bg-secondary-container text-on-secondary-container font-label-md uppercase tracking-tight">Verified</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md align-top">
+<div class="font-label-md text-primary">13:05:44</div>
+<div class="text-on-surface-variant text-xs">UTC +3</div>
+</td>
+<td class="p-md align-top">
+<div class="font-body-md font-bold">Logistics-Bravo</div>
+<div class="text-on-surface-variant text-xs">E. Mwamidi</div>
+</td>
+<td class="p-md align-top max-w-xs">
+<div class="font-body-md text-primary">Beneficiary Distribution</div>
+<div class="flex gap-2 mt-2">
+<img class="w-12 h-12 rounded border border-outline-variant object-cover" data-alt="A detailed wide shot of a sustainable development project in an arid Kenyan landscape. Solar-powered water pumps are visible in the foreground, with local community members gathering in an organized, respectful manner. The lighting is bright afternoon sun, creating high-contrast shadows. The style is professional documentary photography, emphasizing impact and transparency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpJM1kfpGNl2zPRP09Ab39X16Xe5wKXVmzoSLK_e8XlhERylYLVFzRrzv0OMoeJbZ4QsdK_JrRa4AeEYWI0NG8Ml0NI855hOCOQ_auo3ZAJFU7ofY9TAPYg1ovF65ifn3TeDlS-UQWaUY_lrXHtJj9tr4tQVCr-Pn5q6t6Rs_wmVBqJrw7JHA4IetQKxWeGHWfJOO4i0cjRhhOYr8XgdwHhTHzrpy4u7VqJl6QKeeTcQ1DYHBqr66lgR0VXU6e6hcWCVPXBjgkbCWM"/>
+<div class="text-xs text-on-surface-variant italic py-1">Photo synced with GPS meta...</div>
+</div>
+</td>
+<td class="p-md align-top">
+<div class="font-label-md text-secondary font-bold">245 REACHED</div>
+</td>
+<td class="p-md align-top">
+<span class="inline-block px-md py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-md uppercase tracking-tight">Pending HQ</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md align-top">
+<div class="font-label-md text-primary">11:40:02</div>
+<div class="text-on-surface-variant text-xs">UTC +3</div>
+</td>
+<td class="p-md align-top">
+<div class="font-body-md font-bold">Field-Alpha-7</div>
+<div class="text-on-surface-variant text-xs">A. Abdi (Lead Engineer)</div>
+</td>
+<td class="p-md align-top max-w-xs">
+<div class="font-body-md text-primary">Supply Chain Update</div>
+<p class="text-on-surface-variant text-xs mt-1">Receipt of 500m PVC piping confirmed. Inventory updated in local vault.</p>
+</td>
+<td class="p-md align-top">
+<div class="font-label-md text-secondary">N/A</div>
+</td>
+<td class="p-md align-top">
+<span class="inline-block px-md py-1 rounded bg-secondary-container text-on-secondary-container font-label-md uppercase tracking-tight">Verified</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md align-top">
+<div class="font-label-md text-primary">09:12:18</div>
+<div class="text-on-surface-variant text-xs">UTC +3</div>
+</td>
+<td class="p-md align-top">
+<div class="font-body-md font-bold">Monitor-3</div>
+<div class="text-on-surface-variant text-xs">S. Patel</div>
+</td>
+<td class="p-md align-top max-w-xs">
+<div class="font-body-md text-primary">Stakeholder Meeting</div>
+<p class="text-on-surface-variant text-xs mt-1">Meeting with County Commissioner regarding land access rights. Minutes attached to Secure Vault.</p>
+</td>
+<td class="p-md align-top">
+<div class="font-label-md text-secondary">REGULATORY</div>
+</td>
+<td class="p-md align-top">
+<span class="inline-block px-md py-1 rounded bg-secondary-container text-on-secondary-container font-label-md uppercase tracking-tight">Verified</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container-low flex justify-center">
+<button class="font-label-md text-primary hover:underline flex items-center gap-xs">
+                            LOAD ARCHIVED LOGS
+                            <span class="material-symbols-outlined" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Micro-interaction for form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin" data-icon="sync">sync</span> SYNCING...`;
+            btn.classList.add('opacity-50');
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span> DATA COMMITTED`;
+                btn.classList.remove('bg-primary');
+                btn.classList.add('bg-secondary');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalContent;
+                    btn.classList.remove('bg-secondary', 'opacity-50');
+                    btn.classList.add('bg-primary');
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Simulating live data ping
+        setInterval(() => {
+            const liveIndicator = document.querySelector('.animate-pulse');
+            if (liveIndicator) {
+                liveIndicator.style.opacity = '0.5';
+                setTimeout(() => liveIndicator.style.opacity = '1', 100);
+            }
+        }, 5000);
+    </script>
+</body></html>

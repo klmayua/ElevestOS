@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ElevestOS | Grant Matching &amp; Discovery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e0e3e5",
+                        "surface-dim": "#d8dadc",
+                        "surface-container": "#eceef0",
+                        "on-surface-variant": "#44474d",
+                        "on-primary-container": "#76849f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#0b1c30",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#b9c7e4",
+                        "on-secondary-fixed": "#002113",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#000000",
+                        "primary-container": "#0d1c32",
+                        "surface": "#f7f9fb",
+                        "tertiary-fixed": "#d3e4fe",
+                        "surface-container-highest": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-primary": "#b9c7e4",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-background": "#191c1e",
+                        "background": "#f7f9fb",
+                        "outline": "#75777e",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-bright": "#f7f9fb",
+                        "surface-tint": "#515f78",
+                        "outline-variant": "#c5c6cd",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#6cf8bb",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#39475f",
+                        "on-tertiary-fixed": "#0b1c30",
+                        "surface-container-low": "#f2f4f6",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#0d1c32",
+                        "primary": "#000000",
+                        "on-tertiary-fixed-variant": "#38485d",
+                        "on-secondary-container": "#00714d",
+                        "on-tertiary-container": "#75859d",
+                        "tertiary-fixed-dim": "#b7c8e1",
+                        "primary-fixed": "#d6e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "40px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "3xl": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "title-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "title-md": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #f7f9fb;
+            color: #191c1e;
+            -webkit-font-smoothing: antialiased;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c5c6cd;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- SIDE NAV BAR (The Anchor) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline-md text-[18px] font-bold text-primary leading-tight">ElevestOS</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-primary-container font-bold">Infrastructure Grade</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center px-md py-sm text-primary font-bold border-r-4 border-primary bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="payments">payments</span>
+<span class="font-body-md">Grants</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="account_tree">account_tree</span>
+<span class="font-body-md">Projects</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="assessment">assessment</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md">Vault</span>
+</a>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="science">science</span>
+<span class="font-body-md">Labs</span>
+</a>
+</nav>
+<div class="mt-auto px-md py-md border-t border-outline-variant">
+<button class="w-full bg-primary text-on-primary py-sm rounded font-bold text-[14px] mb-lg hover:opacity-90 active:scale-95 transition-all">
+                New Initiative
+            </button>
+<div class="space-y-1">
+<a class="flex items-center py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="help">help</span>
+<span class="font-body-md">Support</span>
+</a>
+<a class="flex items-center py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="settings">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TOP NAV BAR -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-desktop z-40">
+<div class="flex items-center gap-xl flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none" placeholder="Search institutional grants..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded font-label-md text-label-md hover:opacity-80 transition-opacity">
+                Compliance Check
+            </button>
+<div class="flex items-center gap-md border-l border-outline-variant pl-lg">
+<button class="text-on-surface-variant hover:text-primary relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<div class="flex items-center gap-sm cursor-pointer group">
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a middle-aged male administrator in a crisp white shirt against a neutral grey background. The lighting is soft and corporate, emphasizing institutional reliability and a serious, focused expression. The overall aesthetic is clean and modern, fitting for a high-level grant management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeM6YJ-Etah0rQGeNgbu04-f3RxY4tHhaDPJQJ9yCib8rR6jXd7ul041Es_4j7DsK0WUA8vdT-IQcUfw4TI9Z65ulwZiAvwCc2qjJth47ZgsBpffmxAW_CeAExM86i-VXP1uu_pzPp-1dSEhcJNUq79YoHaGKOfCWlppPGFKGiB9v7M7DntrEKroAUsfSIuLRc7Q2aUuZGdIOgQBjXHRA92RGMdAiDvGG15usYpQMNJ2f-Br4pDJYRbAdTyKLZwCuMQnqnuDzOzhcf"/>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT AREA -->
+<main class="ml-64 mt-16 flex h-[calc(100vh-64px)] overflow-hidden">
+<!-- Center Grid (Discovery) -->
+<section class="flex-1 overflow-y-auto custom-scrollbar p-margin-desktop">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Grant Opportunities</h2>
+<p class="text-on-surface-variant font-body-lg">Curated matches for institutional infrastructure &amp; NGO programs.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-sm px-md py-sm border border-outline-variant rounded font-label-md text-label-md hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                        All Filters
+                    </button>
+<button class="flex items-center gap-sm px-md py-sm bg-primary text-on-primary rounded font-label-md text-label-md hover:opacity-90">
+<span class="material-symbols-outlined text-[18px]" data-icon="sort">sort</span>
+                        Recommended
+                    </button>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="grid grid-cols-3 gap-lg mb-2xl">
+<div class="bg-surface-container-low p-md rounded border border-outline-variant">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Sector Focus</label>
+<select class="w-full bg-transparent border-none font-title-md text-primary focus:ring-0 cursor-pointer">
+<option>Global Health &amp; Sanitation</option>
+<option>Clean Water Infrastructure</option>
+<option>Education Technology</option>
+<option>Climate Resilience</option>
+</select>
+</div>
+<div class="bg-surface-container-low p-md rounded border border-outline-variant">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Delivery History</label>
+<select class="w-full bg-transparent border-none font-title-md text-primary focus:ring-0 cursor-pointer">
+<option>High Output (5+ years)</option>
+<option>Emerging (1-3 years)</option>
+<option>Any History</option>
+</select>
+</div>
+<div class="bg-surface-container-low p-md rounded border border-outline-variant">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Capacity Level</label>
+<select class="w-full bg-transparent border-none font-title-md text-primary focus:ring-0 cursor-pointer">
+<option>L3 Institutional (&gt;$10M Assets)</option>
+<option>L2 Advanced (&gt;$2M Assets)</option>
+<option>L1 Standard</option>
+</select>
+</div>
+</div>
+<!-- Grant Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center p-sm overflow-hidden">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A minimalist logo for a global foundation, featuring clean blue geometric lines forming a stylized circular emblem. The background is a crisp white. The style is professional and institutional, reminiscent of high-end philanthropic branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyZXJI-saSFD2H4Sf9GefXB877bHmGwQJFdH8rydQvisSyoCKEMguufdUT32L10f97fEybKsjx0iED4cx0QClf8rSvwE0HZVy0Le9AwkrCrJr8AuBUTsbFZmIIq9wbL_Qb0oj9MBApcx8t6rWmV6MhIMzbK-FyyMFyLIcArc9xHzFg6qBEpnUXowVF2S11f8NOBwIDRj8n82XtKazG-ZJ0zIqMKYuwX4lWiOIRyYfTJFowv0Cn2U1mpUZUBFLxYHnOcHgC6RP-VFv3"/>
+</div>
+<div class="bg-secondary-container px-sm py-1 rounded text-on-secondary-container font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            98% Match
+                        </div>
+</div>
+<h3 class="font-title-md text-primary mb-xs">Global Water Equity Fund</h3>
+<p class="text-on-surface-variant text-body-md mb-md">Bill &amp; Melinda Gates Foundation</p>
+<div class="mb-lg py-sm border-y border-outline-variant flex justify-between items-center">
+<div>
+<p class="text-caption text-on-surface-variant">AWARD RANGE</p>
+<p class="font-title-md text-primary">$500k - $2.5M</p>
+</div>
+<div class="text-right">
+<p class="text-caption text-on-surface-variant">DEADLINE</p>
+<p class="font-label-md text-primary">OCT 24, 2024</p>
+</div>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Eligibility Gaps</p>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md">Geographic Alignment (Sub-Saharan Africa)</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md">Fiscal Audit Compliance (2021-2023)</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="text-body-md text-on-surface-variant italic">Direct Community Engagement Proof (Pending)</span>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full py-md border border-primary text-primary font-bold rounded hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center p-sm overflow-hidden">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="A professional logo featuring a stylized green leaf integrated with a modern grey sans-serif wordmark. The image is set against a clean, bright white background, creating an institutional and environmental-focused visual identity for an NGO funder." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3DqyIgU-1_svyl7qKxwVaUe_SEwREmjxla_RMh6petyIUyVoeVJ_ok3BH4s0D4VjQO3kmXQV0fDYcQMirHr1XHYAWCyl7ZCW2V9eVJVAN0SSAxrf2KHqeR7XRtKGHG7JpIf6RrxTGBr3QCMO1D-BMkQfyIEn33iMpN09Po7LbfHBSLQDn_g0Q-m4nmzE4bzxf_Dn6eEWqE_3bzXbtb_MTiQbXowt90Y4JfpbJ7i9w9369AWwDlnqM0WrMfTLj1EqZ5zWazUqON2dV"/>
+</div>
+<div class="bg-secondary-container px-sm py-1 rounded text-on-secondary-container font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            92% Match
+                        </div>
+</div>
+<h3 class="font-title-md text-primary mb-xs">Climate Resilience Grant</h3>
+<p class="text-on-surface-variant text-body-md mb-md">Green Climate Fund (GCF)</p>
+<div class="mb-lg py-sm border-y border-outline-variant flex justify-between items-center">
+<div>
+<p class="text-caption text-on-surface-variant">AWARD RANGE</p>
+<p class="font-title-md text-primary">$1.2M - $5.0M</p>
+</div>
+<div class="text-right">
+<p class="text-caption text-on-surface-variant">DEADLINE</p>
+<p class="font-label-md text-primary">NOV 12, 2024</p>
+</div>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Eligibility Gaps</p>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md">Environmental Impact Score &gt; 8.5</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-tertiary-container text-[18px]" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="text-body-md text-on-surface-variant italic">Multi-year reporting capacity verification</span>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full py-md border border-primary text-primary font-bold rounded hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col hover:shadow-lg transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="w-12 h-12 bg-surface-container-high rounded flex items-center justify-center p-sm overflow-hidden">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="An abstract logo using primary colors of navy and gold, depicting a stylized eagle or wings. The background is pristine white. The design is bold, corporate, and represents high-level financial or humanitarian trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV1gKqWFPBRW91qeMeybW-zzpnpMZbNvAVqvxzlu8ls8jAMvjNrayns7xQpMwpY-51sL9elKxMa7OOpm0iMlYpLzGAhPIDhx4Elux4YpmxanfCRvyUAOvF53iQUTQEbG1GF4sZZ95w5lIuRGs2J9UttcLlHxDKvGtil9Kd64SveaZoyog-gIHAcMH3twa_kNqXdUjIbtK6gOnCdyUR6YBX1GWCM0G5q-eQZXYTrdfQ40ziynjYFsdusqaANZiN7StFrhq94s1LoZlJ"/>
+</div>
+<div class="bg-surface-container-highest px-sm py-1 rounded text-on-surface-variant font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]" data-icon="analytics">analytics</span>
+                            85% Match
+                        </div>
+</div>
+<h3 class="font-title-md text-primary mb-xs">Education Infrastructure 2025</h3>
+<p class="text-on-surface-variant text-body-md mb-md">Global Partnership for Education</p>
+<div class="mb-lg py-sm border-y border-outline-variant flex justify-between items-center">
+<div>
+<p class="text-caption text-on-surface-variant">AWARD RANGE</p>
+<p class="font-title-md text-primary">$250k - $750k</p>
+</div>
+<div class="text-right">
+<p class="text-caption text-on-surface-variant">DEADLINE</p>
+<p class="font-label-md text-primary">DEC 01, 2024</p>
+</div>
+</div>
+<div class="mb-lg">
+<p class="font-label-md text-label-md text-on-surface-variant mb-sm uppercase">Eligibility Gaps</p>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-body-md">Governance Structure Verified</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-error text-[18px]" data-icon="cancel" style="font-variation-settings: 'FILL' 1;">cancel</span>
+<span class="text-body-md text-error">Missing Tertiary Reference (Ministry level)</span>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full py-md border border-primary text-primary font-bold rounded hover:bg-primary hover:text-on-primary transition-all">View Details</button>
+</div>
+</div>
+</section>
+<!-- Right Sidebar (Saved/Shortlisted) -->
+<aside class="w-80 bg-surface border-l border-outline-variant overflow-y-auto custom-scrollbar p-lg">
+<div class="mb-xl">
+<h3 class="font-title-md text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="bookmarks" style="font-variation-settings: 'FILL' 1;">bookmarks</span>
+                    Saved Calls
+                </h3>
+<div class="mt-md space-y-md">
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded hover:border-primary cursor-pointer transition-all">
+<p class="text-caption text-on-surface-variant uppercase font-bold">Health &amp; Hygiene</p>
+<h4 class="font-body-md font-bold text-primary mt-1">Pandemic Preparedness Lab</h4>
+<div class="flex justify-between mt-sm text-caption">
+<span>$2.0M Remaining</span>
+<span class="text-secondary font-bold">94% Fit</span>
+</div>
+</div>
+<div class="p-md bg-surface-container-lowest border border-outline-variant rounded hover:border-primary cursor-pointer transition-all">
+<p class="text-caption text-on-surface-variant uppercase font-bold">Agritech</p>
+<h4 class="font-body-md font-bold text-primary mt-1">Arid Land Irrigation Fund</h4>
+<div class="flex justify-between mt-sm text-caption">
+<span>$500k Remaining</span>
+<span class="text-on-surface-variant">Pending</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-xl">
+<h3 class="font-title-md text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+                    Shortlisted Partners
+                </h3>
+<div class="mt-md space-y-sm">
+<div class="flex items-center gap-md p-sm hover:bg-surface-container transition-colors rounded">
+<div class="w-10 h-10 rounded bg-primary-fixed flex items-center justify-center font-bold text-primary">HA</div>
+<div>
+<p class="font-body-md font-bold">Habitat Alliance</p>
+<p class="text-caption text-on-surface-variant">L3 Implementation</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-sm hover:bg-surface-container transition-colors rounded">
+<div class="w-10 h-10 rounded bg-secondary-fixed flex items-center justify-center font-bold text-secondary">SC</div>
+<div>
+<p class="font-body-md font-bold">Sustain Corps</p>
+<p class="text-caption text-on-surface-variant">L2 Reporting</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-sm hover:bg-surface-container transition-colors rounded">
+<div class="w-10 h-10 rounded bg-tertiary-fixed flex items-center justify-center font-bold text-tertiary">WF</div>
+<div>
+<p class="font-body-md font-bold">WaterFirst NGO</p>
+<p class="text-caption text-on-surface-variant">Local Specialist</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-md text-label-md font-label-md text-primary hover:underline flex items-center justify-center gap-xs">
+                    Find New Partners
+                    <span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container p-md rounded-xl">
+<p class="font-title-md text-primary mb-sm">AI Recommendation</p>
+<p class="text-body-md text-on-surface-variant leading-relaxed mb-md">
+                    Based on your "Project Cleanwater" history, you have a high probability of success for the <strong>Global Water Equity Fund</strong>.
+                </p>
+<div class="w-full bg-surface-container-highest rounded-full h-1 mb-md">
+<div class="bg-secondary h-1 rounded-full" style="width: 98%"></div>
+</div>
+<button class="w-full bg-tertiary-container text-on-tertiary py-sm rounded font-bold text-[14px] hover:opacity-90">Auto-Fill Application</button>
+</div>
+</aside>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple hover effect for grant cards
+        const cards = document.querySelectorAll('.bg-surface-container-lowest');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary');
+        });
+    </script>
+</body></html>
