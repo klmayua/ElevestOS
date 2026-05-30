@@ -24,8 +24,8 @@ const navLinks: NavLink[] = [
   {
     label: "Solutions",
     children: [
-      { label: "For NGOs", href: "/for-ngos", description: "Grants, projects & compliance" },
-      { label: "For Funders", href: "/for-funders", description: "Portfolio management & reporting" },
+      { label: "For NGOs", href: "/solutions/ngos", description: "Grants, projects & compliance" },
+      { label: "For Funders", href: "/solutions/funders", description: "Portfolio management & reporting" },
     ],
   },
   { label: "Features", href: "/features" },
@@ -71,25 +71,28 @@ export function PublicNavbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-surface/80 backdrop-blur-md border-outline-variant/30"
-          : "bg-transparent border-transparent"
+          ? "bg-white/80 backdrop-blur-xl border-b border-gray-200"
+          : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto px-margin-desktop">
+      <div className="max-w-7xl mx-auto px-6">
         <nav className="flex items-center justify-between h-16">
           <Link
             href="/"
-            className="flex items-center gap-md shrink-0"
+            className="flex items-center gap-2.5 shrink-0"
             aria-label="ElevestOS home"
           >
-            <span className="font-headline-md text-headline-md font-bold text-primary tracking-tight">
+            <div className="w-8 h-8 rounded-[6px] bg-brand-trust flex items-center justify-center">
+              <span className="text-[11px] font-bold text-white font-heading">E</span>
+            </div>
+            <span className="text-lg font-heading font-bold text-gray-900 tracking-tight">
               ElevestOS
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-xl">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) =>
               link.children ? (
                 <div
@@ -101,8 +104,8 @@ export function PublicNavbar() {
                   <button
                     onClick={() => setSolutionsOpen((prev) => !prev)}
                     className={cn(
-                      "flex items-center gap-sm px-sm py-sm font-label-md text-label-md transition-colors",
-                      "text-on-surface-variant hover:text-primary"
+                      "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors",
+                      "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     )}
                     aria-expanded={solutionsOpen}
                   >
@@ -122,17 +125,17 @@ export function PublicNavbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 4 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute top-full left-0 mt-1 w-64 bg-surface-container-lowest border border-outline-variant shadow-[0px_4px_12px_rgba(10,25,47,0.08)] py-sm"
+                        className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg border border-gray-200 shadow-elevated py-2"
                       >
                         {link.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
-                            className="block px-lg py-md hover:bg-surface-container-low transition-colors"
+                            className="block px-4 py-3 hover:bg-gray-50 transition-colors"
                           >
-                            <p className="font-body-md text-body-md text-primary">{child.label}</p>
+                            <p className="text-sm font-medium text-gray-900">{child.label}</p>
                             {child.description && (
-                              <p className="font-caption text-caption text-on-surface-variant mt-xs">{child.description}</p>
+                              <p className="text-xs text-gray-500 mt-0.5">{child.description}</p>
                             )}
                           </Link>
                         ))}
@@ -145,10 +148,10 @@ export function PublicNavbar() {
                   key={link.label}
                   href={link.href!}
                   className={cn(
-                    "font-label-md text-label-md transition-colors",
+                    "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                     pathname === link.href
-                      ? "text-primary font-bold"
-                      : "text-on-surface-variant hover:text-primary"
+                      ? "text-brand-trust"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   )}
                 >
                   {link.label}
@@ -157,18 +160,19 @@ export function PublicNavbar() {
             )}
           </div>
 
-          <div className="hidden lg:flex items-center gap-md">
+          <div className="hidden lg:flex items-center gap-3">
             <Link
               href="/auth/login"
-              className="font-label-md text-label-md px-lg py-sm border border-outline hover:bg-surface-container-low transition-colors text-primary"
+              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors px-3 py-2"
             >
-              Institutional Login
+              Sign In
             </Link>
             <Link
-              href="/contact"
-              className="inline-flex items-center gap-sm px-lg py-sm font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 transition-opacity"
+              href="/demo"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-brand-trust text-white rounded-md hover:bg-brand-trust/90 transition-colors"
             >
-              Get Started
+              Request Demo
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
@@ -190,7 +194,7 @@ export function PublicNavbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-on-surface/20 backdrop-blur-sm z-50 lg:hidden"
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 lg:hidden"
               onClick={closeAll}
             />
 
@@ -199,42 +203,45 @@ export function PublicNavbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-surface-container-lowest z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-50 lg:hidden overflow-y-auto"
             >
-              <div className="flex items-center justify-between h-16 px-margin-mobile border-b border-outline-variant">
+              <div className="flex items-center justify-between h-16 px-6 border-b border-gray-100">
                 <Link
                   href="/"
-                  className="flex items-center gap-md"
+                  className="flex items-center gap-2.5"
                   onClick={closeAll}
                 >
-                  <span className="font-headline-md text-headline-md font-bold text-primary tracking-tight">
+                  <div className="w-7 h-7 rounded-[5px] bg-brand-trust flex items-center justify-center">
+                    <span className="text-[10px] font-bold text-white font-heading">E</span>
+                  </div>
+                  <span className="text-base font-heading font-bold text-gray-900 tracking-tight">
                     ElevestOS
                   </span>
                 </Link>
                 <button
                   onClick={closeAll}
-                  className="p-sm text-outline hover:text-on-surface transition-colors"
+                  className="p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-md"
                   aria-label="Close menu"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="px-margin-mobile py-lg space-y-1">
+              <div className="px-6 py-6 space-y-1">
                 {navLinks.map((link) =>
                   link.children ? (
                     <details key={link.label} className="group">
-                      <summary className="flex items-center justify-between py-md font-label-md text-label-md text-on-surface-variant hover:text-primary cursor-pointer list-none">
+                      <summary className="flex items-center justify-between py-3 text-sm font-medium text-gray-600 hover:text-gray-900 cursor-pointer list-none">
                         {link.label}
                         <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
                       </summary>
-                      <div className="ml-lg mt-xs space-y-1 border-l border-outline-variant pl-lg">
+                      <div className="ml-4 mt-1 space-y-1 border-l border-gray-100 pl-4">
                         {link.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
                             onClick={closeAll}
-                            className="block py-md font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+                            className="block py-2.5 text-sm text-gray-600 hover:text-gray-900 transition-colors"
                           >
                             {child.label}
                           </Link>
@@ -247,10 +254,10 @@ export function PublicNavbar() {
                       href={link.href!}
                       onClick={closeAll}
                       className={cn(
-                        "block py-md font-label-md text-label-md transition-colors",
+                        "block py-3 text-sm font-medium transition-colors",
                         pathname === link.href
-                          ? "text-primary font-bold"
-                          : "text-on-surface-variant hover:text-primary"
+                          ? "text-brand-trust"
+                          : "text-gray-600 hover:text-gray-900"
                       )}
                     >
                       {link.label}
@@ -259,20 +266,21 @@ export function PublicNavbar() {
                 )}
               </div>
 
-              <div className="px-margin-mobile pt-lg border-t border-outline-variant space-y-sm">
+              <div className="px-6 pt-4 border-t border-gray-100 space-y-3">
                 <Link
                   href="/auth/login"
                   onClick={closeAll}
-                  className="block w-full text-center py-md font-label-md text-label-md text-primary border border-outline hover:bg-surface-container-low transition-colors"
+                  className="block w-full text-center py-2.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors"
                 >
-                  Institutional Login
+                  Sign In
                 </Link>
                 <Link
-                  href="/contact"
+                  href="/demo"
                   onClick={closeAll}
-                  className="flex items-center justify-center gap-sm w-full py-md font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 transition-opacity"
+                  className="flex items-center justify-center gap-1.5 w-full py-2.5 text-sm font-medium bg-brand-trust text-white rounded-md hover:bg-brand-trust/90 transition-colors"
                 >
-                  Get Started
+                  Request Demo
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </motion.div>

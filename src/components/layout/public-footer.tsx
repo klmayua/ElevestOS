@@ -4,14 +4,25 @@ const footerLinks = {
   platform: {
     label: "Platform",
     links: [
-      { label: "Overview", href: "/platform" },
-      { label: "Features", href: "/features" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Resources", href: "/resources" },
+      { label: "Grant Discovery", href: "/platform#discovery" },
+      { label: "Application Workspace", href: "/platform#workspace" },
+      { label: "Project Execution", href: "/platform#execution" },
+      { label: "Reporting", href: "/platform#reporting" },
+      { label: "Compliance", href: "/platform#compliance" },
+      { label: "Training", href: "/platform#training" },
     ],
   },
-  governance: {
-    label: "Governance",
+  resources: {
+    label: "Resources",
+    links: [
+      { label: "Knowledge Hub", href: "/resources" },
+      { label: "Guides", href: "/resources/guides" },
+      { label: "FAQ", href: "/resources/faq" },
+      { label: "Blog", href: "/resources/blog" },
+    ],
+  },
+  company: {
+    label: "Company",
     links: [
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
@@ -23,29 +34,20 @@ const footerLinks = {
 
 export function PublicFooter() {
   return (
-    <footer className="bg-primary-container border-t border-outline-variant/20">
-      <div className="max-w-7xl mx-auto px-margin-desktop py-3xl">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-xl">
-          <div className="col-span-2 md:col-span-1">
-            <span className="font-headline-md text-headline-md font-bold text-on-primary mb-md block">
-              ElevestOS
-            </span>
-            <p className="font-body-md text-body-md text-on-primary-container max-w-sm">
-              Infrastructure-grade technology for global NGOs and development funders. Institutional stability by design.
-            </p>
-          </div>
-
+    <footer className="bg-gray-900 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-6 py-16 lg:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16">
           {Object.values(footerLinks).map((section) => (
             <div key={section.label}>
-              <h4 className="font-label-md text-label-md text-on-primary mb-xl uppercase tracking-widest">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-5">
                 {section.label}
               </h4>
-              <ul className="space-y-sm">
+              <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="font-body-md text-body-md text-on-primary-container hover:text-on-primary transition-colors"
+                      className="text-sm text-gray-500 hover:text-gray-100 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -54,11 +56,32 @@ export function PublicFooter() {
               </ul>
             </div>
           ))}
+
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-5">
+              Contact
+            </h4>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-7 h-7 rounded-[5px] bg-brand-trust flex items-center justify-center shrink-0">
+                <span className="text-[10px] font-bold text-white font-heading">E</span>
+              </div>
+              <span className="text-sm font-heading font-bold text-gray-100 tracking-tight">
+                ElevestOS
+              </span>
+            </div>
+            <p className="text-sm text-gray-500 mb-1">by Elevest Labs</p>
+            <a
+              href="mailto:hello@elevestos.com"
+              className="text-sm text-gray-500 hover:text-gray-100 transition-colors"
+            >
+              hello@elevestos.com
+            </a>
+          </div>
         </div>
 
-        <div className="mt-3xl pt-xl border-t border-outline-variant/20">
-          <p className="font-label-md text-label-md text-on-primary-container">
-            &copy; {new Date().getFullYear()} ElevestOS Institutional Solutions. All Rights Reserved.
+        <div className="mt-16 pt-8 border-t border-gray-800">
+          <p className="text-sm text-gray-600">
+            &copy; {new Date().getFullYear()} Elevest Labs. All rights reserved.
           </p>
         </div>
       </div>

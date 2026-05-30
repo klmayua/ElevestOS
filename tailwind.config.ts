@@ -12,7 +12,6 @@ const config: Config = {
       colors: {
         "surface-variant": "#e0e3e5",
         "surface-dim": "#d8dadc",
-        "surface-bright": "#f7f9fb",
         "surface-container": "#eceef0",
         "on-surface-variant": "#44474d",
         "on-primary-container": "#76849f",
@@ -38,6 +37,7 @@ const config: Config = {
         background: "#f7f9fb",
         outline: "#75777e",
         "surface-container-high": "#e6e8ea",
+        "surface-bright": "#f7f9fb",
         "surface-tint": "#515f78",
         "outline-variant": "#c5c6cd",
         "on-primary": "#ffffff",
@@ -59,12 +59,10 @@ const config: Config = {
         "primary-fixed": "#d6e3ff",
       },
       borderRadius: {
-        sm: "0.125rem",
-        DEFAULT: "0.25rem",
-        md: "0.375rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        full: "9999px",
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem",
       },
       spacing: {
         sm: "8px",
@@ -80,8 +78,6 @@ const config: Config = {
         "2xl": "48px",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
         "title-md": ["Inter"],
         "body-lg": ["Inter"],
         caption: ["Inter"],

@@ -98,17 +98,17 @@ export default function ForNGOsPage() {
     <>
       <PublicNavbar />
 
-      <main className="bg-white text-on-surface">
+      <main className="bg-white text-gray-900">
         {/* Hero */}
-        <section className="border-b border-[#E2E8F0] px-6 py-28 lg:px-24 lg:py-40">
+        <section className="border-b border-gray-100 px-6 py-28 lg:px-24 lg:py-40">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-6 inline-block rounded border border-primary-container/30 bg-primary-container/10 px-4 py-1.5 text-body-md font-medium text-primary-container">
+            <div className="mb-6 inline-block rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-body-md font-medium text-blue-600">
               For Non-Governmental Organisations
             </div>
-            <h1 className="text-display-lg leading-tight tracking-tight text-on-surface">
+            <h1 className="text-display-lg leading-tight tracking-tight text-gray-900">
               Run Your NGO with Operational Clarity
             </h1>
-            <p className="mt-8 max-w-2xl text-body-lg leading-relaxed text-on-surface-variant">
+            <p className="mt-8 max-w-2xl text-body-lg leading-relaxed text-gray-600">
               Replace the chaos of scattered spreadsheets, forgotten email
               threads, and last-minute report scrambles with a single operating
               system designed for how NGOs actually work. From grant discovery
@@ -119,15 +119,15 @@ export default function ForNGOsPage() {
         </section>
 
         {/* Key Benefits */}
-        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
+        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
+            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
               Key Benefits
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
               Seven Capabilities. One System.
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
               Each capability in ElevestOS addresses a specific operational
               pain point. Together, they form a complete infrastructure for
               running a modern, accountable, and effective NGO.
@@ -139,21 +139,21 @@ export default function ForNGOsPage() {
                 return (
                   <div
                     key={card.title}
-                    className="flex gap-5 rounded-lg border border-[#E2E8F0] bg-white p-7"
+                    className="flex gap-5 rounded-xl border border-gray-200 bg-white p-7"
                   >
-                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-primary-container/10 text-primary-container">
+                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="flex items-baseline gap-2">
-                        <span className="text-body-md font-medium text-on-surface-variant/70">
+                        <span className="text-body-md font-medium text-gray-400">
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        <h3 className="text-heading-lg font-semibold text-on-surface">
+                        <h3 className="text-heading-lg font-semibold text-gray-900">
                           {card.title}
                         </h3>
                       </div>
-                      <p className="mt-2 text-body-md leading-relaxed text-on-surface-variant">
+                      <p className="mt-2 text-body-md leading-relaxed text-gray-500">
                         {card.desc}
                       </p>
                     </div>
@@ -165,15 +165,15 @@ export default function ForNGOsPage() {
         </section>
 
         {/* How It Works */}
-        <section className="border-b border-[#E2E8F0] bg-surface-container-low px-6 py-24 lg:px-24">
+        <section className="border-b border-gray-100 bg-gray-50 px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
+            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
               How It Works
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
               From Search to Scale
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
               ElevestOS follows the natural lifecycle of an NGO&apos;s
               relationship with funding. Each stage builds on the last, and the
               data captured at every step strengthens the ones that follow.
@@ -184,7 +184,7 @@ export default function ForNGOsPage() {
                 <div key={step.step} className="group flex gap-6">
                   {/* Connector line + step circle */}
                   <div className="flex flex-col items-center">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded border-2 border-primary-container bg-primary-container text-body-md font-semibold text-white">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-blue-600 bg-blue-600 text-body-md font-semibold text-white">
                       {step.step}
                     </div>
                     {i < workflowSteps.length - 1 && (
@@ -193,10 +193,10 @@ export default function ForNGOsPage() {
                   </div>
 
                   <div className={i < workflowSteps.length - 1 ? "pb-12" : ""}>
-                    <h3 className="text-headline-lg font-semibold text-on-surface">
+                    <h3 className="text-heading-xl font-semibold text-gray-900">
                       {step.title}
                     </h3>
-                    <p className="mt-2 max-w-lg text-body-md leading-relaxed text-on-surface-variant">
+                    <p className="mt-2 max-w-lg text-body-md leading-relaxed text-gray-500">
                       {step.desc}
                     </p>
                   </div>
@@ -207,15 +207,15 @@ export default function ForNGOsPage() {
         </section>
 
         {/* Who It's For */}
-        <section className="border-b border-[#E2E8F0] px-6 py-24 lg:px-24">
+        <section className="border-b border-gray-100 px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-4xl">
-            <p className="text-body-md font-medium uppercase tracking-widest text-primary-container">
+            <p className="text-body-md font-medium uppercase tracking-widest text-blue-600">
               Who It&apos;s For
             </p>
-            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-on-surface">
+            <h2 className="mt-4 text-display-md leading-tight tracking-tight text-gray-900">
               NGOs at Every Stage of Maturity
             </h2>
-            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-on-surface-variant">
+            <p className="mt-6 max-w-2xl text-body-md leading-relaxed text-gray-600">
               ElevestOS is not reserved for large, well-resourced organisations.
               It is designed to be valuable from the moment an NGO writes its
               first proposal and continues to deliver compounding value as the
@@ -226,15 +226,15 @@ export default function ForNGOsPage() {
               {ngoTiers.map((tier) => (
                 <div
                   key={tier.label}
-                  className="flex flex-col rounded-lg border border-[#E2E8F0] bg-white p-7"
+                  className="flex flex-col rounded-xl border border-gray-200 bg-white p-7"
                 >
-                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-container/10">
-                    <Check className="h-5 w-5 text-primary-container" />
+                  <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
+                    <Check className="h-5 w-5 text-blue-600" />
                   </div>
-                  <h3 className="text-heading-lg font-semibold text-on-surface">
+                  <h3 className="text-heading-lg font-semibold text-gray-900">
                     {tier.label}
                   </h3>
-                  <p className="mt-3 flex-1 text-body-md leading-relaxed text-on-surface-variant">
+                  <p className="mt-3 flex-1 text-body-md leading-relaxed text-gray-500">
                     {tier.desc}
                   </p>
                 </div>
@@ -244,12 +244,12 @@ export default function ForNGOsPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-b border-[#E2E8F0] bg-surface-container-low px-6 py-24 lg:px-24">
+        <section className="border-b border-gray-100 bg-gray-50 px-6 py-24 lg:px-24">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-display-md leading-tight tracking-tight text-on-surface">
+            <h2 className="text-display-md leading-tight tracking-tight text-gray-900">
               Ready to bring clarity to your operations?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-body-lg leading-relaxed text-on-surface-variant">
+            <p className="mx-auto mt-6 max-w-xl text-body-lg leading-relaxed text-gray-600">
               Schedule a demonstration tailored to your organisation&apos;s
               size, sector, and operational complexity. See how ElevestOS can
               coordinate your grants, projects, reporting, and compliance in a
@@ -258,15 +258,15 @@ export default function ForNGOsPage() {
 
             <div className="mt-10 flex items-center justify-center gap-4">
               <a
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-container px-8 py-4 text-body-md font-semibold text-white transition-colors hover:bg-primary-container/90"
+                href="/demo"
+                className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-body-md font-semibold text-white transition-colors hover:bg-blue-700"
               >
                 Request a Demo
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="/platform"
-                className="inline-flex items-center gap-2 rounded-lg border border-outline-variant bg-white px-8 py-4 text-body-md font-semibold text-on-surface transition-colors hover:bg-surface-container"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-4 text-body-md font-semibold text-gray-900 transition-colors hover:bg-gray-50"
               >
                 Explore the Platform
               </a>
