@@ -258,7 +258,7 @@ export default function ForNGOsPage() {
 
             <div className="mt-10 flex items-center justify-center gap-4">
               <a
-                href="/demo"
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-8 py-4 text-body-md font-semibold text-white transition-colors hover:bg-blue-700"
               >
                 Request a Demo

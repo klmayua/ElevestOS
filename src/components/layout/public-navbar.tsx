@@ -168,7 +168,7 @@ export function PublicNavbar() {
               Sign In
             </Link>
             <Link
-              href="/demo"
+              href="/contact"
               className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium bg-brand-trust text-white rounded-md hover:bg-brand-trust/90 transition-colors"
             >
               Request Demo
@@ -275,7 +275,7 @@ export function PublicNavbar() {
                   Sign In
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/contact"
                   onClick={closeAll}
                   className="flex items-center justify-center gap-1.5 w-full py-2.5 text-sm font-medium bg-brand-trust text-white rounded-md hover:bg-brand-trust/90 transition-colors"
                 >

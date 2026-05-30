@@ -197,7 +197,7 @@ export default function FeaturesPage() {
               organisation&apos;s stage and sector in under 30 minutes.
             </p>
             <a
-              href="/demo"
+              href="/contact"
               className="inline-flex items-center gap-2 px-6 py-3 bg-brand-trust text-white font-medium rounded-md hover:bg-brand-trust/90 transition-colors"
             >
               Request a Demo

@@ -208,7 +208,7 @@ export default function AboutPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/demo"
+                  href="/contact"
                   className="inline-flex items-center gap-2 px-6 py-3 border border-gray-600 text-gray-300 font-medium rounded-md hover:bg-gray-800 hover:border-gray-500 transition-colors"
                 >
                   Request Demo
