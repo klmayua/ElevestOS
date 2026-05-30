@@ -1,175 +1,306 @@
-import { getCurrentUser } from "@/features/auth/auth.actions";
-import { getProjects, getProjectStats } from "@/features/projects/project.service";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+"use client";
 
-const PROJECT_STATUS_CONFIG: any = {
-  PLANNING: { label: "Planning", color: "gray" },
-  ACTIVE: { label: "Active", color: "success" },
-  ON_HOLD: { label: "On Hold", color: "warning" },
-  COMPLETED: { label: "Completed", color: "primary" },
-  CANCELLED: { label: "Cancelled", color: "error" },
-};
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-export default async function ProjectsPage() {
-  const user = await getCurrentUser();
-  if (!user || !user.organisationId) redirect("/auth/login");
+export default function ProjectWorkspace() {
+  const [progressWidth, setProgressWidth] = useState('0%');
 
-  const [projects, stats] = await Promise.all([
-    getProjects(user.organisationId),
-    getProjectStats(user.organisationId),
-  ]);
+  useEffect(() => {
+    setTimeout(() => setProgressWidth('68%'), 300);
+  }, []);
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-display-sm font-heading font-bold text-primary">
-            Projects
-          </h1>
-          <p className="text-body-lg text-gray-600 mt-2">
-            Manage and track your NGO's projects
-          </p>
+    <div className="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed overflow-hidden min-h-screen">
+      {/* Sidebar Navigation */}
+      <aside className="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full py-md z-50">
+        <div className="px-md mb-xl">
+          <h1 className="font-headline-md text-headline-md font-bold text-primary">ElevestOS</h1>
+          <p className="font-label-md text-label-md text-on-primary-container tracking-wider uppercase">Infrastructure Grade</p>
         </div>
-        <Link href="/dashboard/projects/new" className="btn-primary">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          New Project
-        </Link>
-      </div>
+        <nav className="flex-1 px-sm space-y-base">
+          <Link href="/dashboard" className="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">dashboard</span>
+            <span className="font-body-md text-body-md">Dashboard</span>
+          </Link>
+          <Link href="/for-ngos/grants" className="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">payments</span>
+            <span className="font-body-md text-body-md">Grants</span>
+          </Link>
+          <Link href="/dashboard/projects" className="flex items-center gap-md px-md py-sm rounded text-primary font-bold border-r-4 border-primary bg-surface-container">
+            <span className="material-symbols-outlined">account_tree</span>
+            <span className="font-body-md text-body-md">Projects</span>
+          </Link>
+          <Link href="/dashboard/reports" className="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">assessment</span>
+            <span className="font-body-md text-body-md">Reports</span>
+          </Link>
+          <Link href="/dashboard/compliance" className="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">inventory_2</span>
+            <span className="font-body-md text-body-md">Vault</span>
+          </Link>
+          <Link href="/platform/labs" className="flex items-center gap-md px-md py-sm rounded transition-colors text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">science</span>
+            <span className="font-body-md text-body-md">Labs</span>
+          </Link>
+        </nav>
+        <div className="px-sm pt-md border-t border-outline-variant space-y-base">
+          <button className="w-full mb-md bg-primary text-on-primary font-title-md text-title-md py-sm px-md rounded active:scale-95 transition-transform flex items-center justify-center gap-sm">
+            <span className="material-symbols-outlined">add</span>
+            New Initiative
+          </button>
+          <Link href="#" className="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">help</span>
+            <span className="font-body-md text-body-md">Support</span>
+          </Link>
+          <Link href="/settings" className="flex items-center gap-md px-md py-sm rounded text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            <span className="material-symbols-outlined">settings</span>
+            <span className="font-body-md text-body-md">Settings</span>
+          </Link>
+        </div>
+      </aside>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card p-6">
-          <p className="text-label-md text-gray-600">Total Projects</p>
-          <p className="text-display-md font-bold text-primary mt-1">{stats.total}</p>
-        </div>
-        <div className="card p-6">
-          <p className="text-label-md text-gray-600">Active</p>
-          <p className="text-display-md font-bold text-success mt-1">{stats.byStatus.ACTIVE}</p>
-        </div>
-        <div className="card p-6">
-          <p className="text-label-md text-gray-600">Total Budget</p>
-          <p className="text-display-md font-bold text-primary mt-1">
-            ${stats.totalBudget.toLocaleString()}
-          </p>
-        </div>
-        <div className="card p-6">
-          <p className="text-label-md text-gray-600">Beneficiaries</p>
-          <p className="text-display-md font-bold text-tertiary mt-1">
-            {stats.totalBeneficiaries.toLocaleString()}
-          </p>
-        </div>
-      </div>
+      {/* Main Viewport */}
+      <main className="ml-64 h-screen flex flex-col">
+        {/* Top Nav Bar */}
+        <header className="h-16 flex justify-between items-center px-margin-desktop bg-surface border-b border-outline-variant z-40">
+          <div className="flex items-center gap-xl">
+            <div className="relative">
+              <span className="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+              <input className="pl-xl pr-md py-xs bg-surface-container rounded-lg border-none focus:ring-2 focus:ring-primary w-64 text-body-md" placeholder="Search resources..." type="text"/>
+            </div>
+          </div>
+          <div className="flex items-center gap-lg">
+            <button className="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-md py-xs rounded uppercase font-bold active:scale-95 transition-transform">
+              Compliance Check
+            </button>
+            <div className="flex items-center gap-md border-l border-outline-variant pl-lg">
+              <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+              <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">history</span>
+              <div className="flex items-center gap-sm ml-sm cursor-pointer">
+                <img alt="Administrator Profile" className="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARfyYmlk56EwE5wPuWkcYapfzudO_DRkZX8LLioJSsGQ10vZlGAzQsZSxgRaY3_swU0sMHiIetxc6TYmePdQVB9Pu4SkF_44M9NcoMGAHSNDVkcFMyoxZWqTnkS_L laCbrCrJr8AuBUTsbFZmIIq9wbL_Qb0oj9MBApcx8t6rWmV6MhIMzbK-FyyMFyLIcArc9xHzFg6qBEpnUXowVF2S11f8NOBwIDRj8n82XtKazG-ZJ0zIqMKYuwX4lWiOIRyYfTJFowv0Cn2U1mpUZUBFLxYHnOcHgC6RP-VFv3"/>
+              </div>
+            </div>
+          </div>
+        </header>
 
-      {/* Projects List */}
-      <div className="card">
-        <div className="card-header flex items-center justify-between">
-          <h2 className="text-h4 font-heading font-semibold text-primary">
-            All Projects
-          </h2>
-          <div className="flex gap-2">
-            <select className="px-4 py-2 rounded-md border border-input bg-surface-container-lowest text-foreground text-sm">
-              <option value="">All Statuses</option>
-              <option value="PLANNING">Planning</option>
-              <option value="ACTIVE">Active</option>
-              <option value="ON_HOLD">On Hold</option>
-              <option value="COMPLETED">Completed</option>
-            </select>
+        {/* Dashboard Content */}
+        <div className="flex-1 overflow-y-auto p-margin-desktop">
+          {/* Context Header */}
+          <div className="mb-xl flex justify-between items-end">
+            <div>
+              <nav className="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md uppercase mb-xs">
+                <span>Projects</span>
+                <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+                <span className="text-primary font-bold">Clean Water Initiative</span>
+              </nav>
+              <h2 className="font-headline-lg text-headline-lg text-primary">Clean Water Initiative</h2>
+              <div className="flex items-center gap-md mt-sm">
+                <div className="flex items-center gap-xs bg-secondary/10 px-sm py-xs rounded">
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span className="font-label-md text-label-md text-on-secondary-container font-bold uppercase">Execution Status: ON TRACK</span>
+                </div>
+                <span className="text-on-surface-variant font-body-md">Phase 3 of 5</span>
+              </div>
+            </div>
+            <div className="flex gap-sm">
+              <button className="flex items-center gap-xs border border-outline px-md py-sm rounded hover:bg-surface-container transition-colors">
+                <span className="material-symbols-outlined">download</span>
+                Export Manifest
+              </button>
+              <button className="flex items-center gap-xs bg-primary text-on-primary px-md py-sm rounded active:scale-95 transition-transform">
+                <span className="material-symbols-outlined">edit_document</span>
+                Update Log
+              </button>
+            </div>
+          </div>
+
+          {/* Bento Grid Layout */}
+          <div className="grid grid-cols-12 gap-gutter">
+            {/* Progress & Roadmap Section */}
+            <div className="col-span-8 flex flex-col gap-gutter">
+              {/* Progress Overview */}
+              <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+                <div className="flex justify-between items-center mb-md">
+                  <h3 className="font-title-md text-title-md text-primary">Aggregate Completion</h3>
+                  <span className="font-label-md text-label-md bg-primary-fixed text-on-primary-fixed px-sm py-xs rounded">68% COMPLETE</span>
+                </div>
+                <div className="w-full h-4 bg-surface-container rounded-full overflow-hidden mb-sm">
+                  <div className="h-full bg-secondary transition-all duration-1000 ease-out" style={{ width: progressWidth }}></div>
+                </div>
+                <div className="flex justify-between text-caption text-on-surface-variant">
+                  <span>Started: Jan 2024</span>
+                  <span>Projected Completion: Dec 2024</span>
+                </div>
+              </div>
+
+              {/* Interactive Milestone Roadmap */}
+              <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex-1">
+                <h3 className="font-title-md text-title-md text-primary mb-xl">Milestone Roadmap</h3>
+                <div className="relative flex flex-col gap-xl">
+                  {/* Milestone 1 */}
+                  <div className="flex gap-xl relative">
+                    <div className="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 z-10">
+                      <span className="material-symbols-outlined">check</span>
+                    </div>
+                    <div className="pb-md relative">
+                      <div className="absolute -left-[16px] top-0 w-[1px] h-full bg-outline-variant"></div>
+                      <h4 className="font-title-md text-title-md">Feasibility Study &amp; Site Surveys</h4>
+                      <p className="text-on-surface-variant text-body-md mt-xs">Completed comprehensive geological assessments across 12 target regions.</p>
+                      <span className="text-caption text-on-surface-variant mt-sm block">CLOSED: FEB 12, 2024</span>
+                    </div>
+                  </div>
+                  {/* Milestone 2 */}
+                  <div className="flex gap-xl relative">
+                    <div className="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 z-10">
+                      <span className="material-symbols-outlined">check</span>
+                    </div>
+                    <div className="pb-md relative">
+                      <div className="absolute -left-[16px] top-0 w-[1px] h-full bg-outline-variant"></div>
+                      <h4 className="font-title-md text-title-md">Infrastructure Procurement</h4>
+                      <p className="text-on-surface-variant text-body-md mt-xs">All high-grade filtration systems and piping modules secured and logged in Vault.</p>
+                      <span className="text-caption text-on-surface-variant mt-sm block">CLOSED: APR 05, 2024</span>
+                    </div>
+                  </div>
+                  {/* Milestone 3 Active */}
+                  <div className="flex gap-xl relative">
+                    <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0 z-10 outline outline-4 outline-primary-container/20">
+                      <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>play_arrow</span>
+                    </div>
+                    <div className="pb-md relative">
+                      <div className="absolute -left-[16px] top-0 w-[1px] h-full bg-outline-variant"></div>
+                      <div className="flex items-center gap-md">
+                        <h4 className="font-title-md text-title-md text-primary">System Implementation (Phase 3)</h4>
+                        <span className="bg-secondary/10 text-secondary text-caption px-xs py-[2px] rounded uppercase">Active</span>
+                      </div>
+                      <p className="text-on-surface-variant text-body-md mt-xs">Installation of filtration units in the northern sectors. 42% of hardware deployed.</p>
+                      <div className="mt-md p-sm bg-surface rounded border border-outline-variant flex items-center gap-md">
+                        <div className="w-12 h-12 bg-surface-variant rounded flex items-center justify-center">
+                          <span className="material-symbols-outlined text-outline">engineering</span>
+                        </div>
+                        <div>
+                          <span className="block text-caption font-bold text-on-surface uppercase">On-Site Logistics</span>
+                          <span className="text-body-md text-on-surface-variant">15 field units reporting daily data.</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Milestone 4 */}
+                  <div className="flex gap-xl relative">
+                    <div className="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0 z-10">
+                      <span className="material-symbols-outlined">pending</span>
+                    </div>
+                    <div className="relative">
+                      <h4 className="font-title-md text-title-md text-on-surface-variant">Quality Assurance &amp; Certification</h4>
+                      <p className="text-on-surface-variant text-body-md mt-xs">Pending completion of system installation. Estimated start: Sept 2024.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Widgets & Map Section */}
+            <div className="col-span-4 flex flex-col gap-gutter">
+              {/* Financial Widget */}
+              <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+                <h3 className="font-title-md text-title-md text-primary mb-lg">Spending vs. Budget</h3>
+                <div className="relative flex justify-center items-center py-md">
+                  <svg className="w-40 h-40 transform -rotate-90">
+                    <circle cx="80" cy="80" fill="transparent" r="70" stroke="#eceef0" strokeWidth="12"></circle>
+                    <circle cx="80" cy="80" fill="transparent" r="70" stroke="#000000" strokeDasharray="440" strokeDashoffset="110" strokeWidth="12"></circle>
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="font-headline-md text-headline-md text-primary">$2.4M</span>
+                    <span className="text-caption text-on-surface-variant uppercase tracking-tighter">Expended</span>
+                  </div>
+                </div>
+                <div className="mt-lg pt-lg border-t border-outline-variant">
+                  <div className="flex justify-between items-center">
+                    <span className="text-on-surface-variant">Total Allocation</span>
+                    <span className="font-label-md text-label-md text-primary">$3.2M</span>
+                  </div>
+                  <div className="flex justify-between items-center mt-xs">
+                    <span className="text-on-surface-variant">Remaining Balance</span>
+                    <span className="font-label-md text-label-md text-secondary font-bold">$0.8M</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Implementation Zone Map */}
+              <div className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden h-[300px] flex flex-col">
+                <div className="p-md border-b border-outline-variant flex justify-between items-center">
+                  <h3 className="font-title-md text-title-md text-primary">Implementation Zone</h3>
+                  <span className="material-symbols-outlined text-outline cursor-pointer">open_in_full</span>
+                </div>
+                <div className="flex-1 relative group">
+                  <div className="absolute inset-0 bg-surface-dim flex items-center justify-center overflow-hidden">
+                    <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_IIwQfxp0G-0v2amLL7LdoTYuTJdpgWWVGzAnkGz2Xv6JfDc--XwyhkOosiTschDIDQ9TFf5VOaO8bd6pB93XYFHcdmas5DyUGOxzS7xcGeEvU5NMWDjE-sS-Dm7zJO55AAojuve9rrGTMVwmyt8rawRq3gxMTfAuVYh6sBTXKaqUkOYj37BAp_hGRGAsSyaYMbSRh93sTFJvuFky_bc-e_k5KbDY9o4PISphE0G--MWKZk-OnLiW4s_YGthWQRcDAG3YbcSlfXlH"/>
+                    <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
+                    <div className="absolute top-1/4 left-1/3 w-4 h-4 bg-secondary border-2 border-white rounded-full shadow-lg"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-secondary border-2 border-white rounded-full shadow-lg"></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-primary border-2 border-white rounded-full shadow-lg animate-pulse"></div>
+                  </div>
+                  <div className="absolute bottom-md left-md bg-surface-container-lowest/90 backdrop-blur-sm p-sm rounded border border-outline-variant">
+                    <span className="text-caption font-bold text-primary">LAT: 0.023 | LON: 37.906</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Active Collaborators */}
+              <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl flex-1 min-h-[400px] flex flex-col">
+                <h3 className="font-title-md text-title-md text-primary mb-lg">Active Collaborators</h3>
+                <div className="space-y-lg flex-1 overflow-y-auto pr-xs">
+                  <div className="flex items-start gap-md">
+                    <img alt="Sarah Chen" className="w-10 h-10 rounded-full border border-outline-variant shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSjV4pp3IiwJntg70D4WFU_HgzbtuIf41rqTayGkANumaOiLSHibbaskhXHa9WMxyYhSW_AayIF89Pe9lz1KStCxxxZmM2aYkl66_TkNRF0Ave9AkGiZ-CkblmCfvlR72KHf1dhCGucPki_v16JJRdAgEKm93Bw09yeYE-KP4KG06qX0NZyYwZ3ld-uDCkkhfn4hGTxXRxR7LrWO4BGuC4pxFIkBamc7CE1_1S96cExaj4aiPPODxdOeMU5r43aW9IRagC08_jWiv6"/>
+                    <div>
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-body-md text-body-md font-bold text-primary">Sarah Chen</h4>
+                        <span className="text-caption text-secondary">ACTIVE</span>
+                      </div>
+                      <p className="text-caption text-on-surface-variant">Lead Hydrologist</p>
+                      <div className="mt-xs text-body-md bg-surface p-xs rounded border-l-2 border-outline-variant">
+                        "Updated site-B filtration parameters."
+                        <span className="block text-[10px] text-outline mt-[2px]">12 MINUTES AGO</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-md">
+                    <img alt="Marcus Thorne" className="w-10 h-10 rounded-full border border-outline-variant shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8qCHtxVITkM7fm2dBjD9691RL-Dg-i42mQYwiNI3JKkHRfX9U5fO9WQ9tC6yzKdJ9GdMMesLk48-JgbJjHu6Z1jvbj_HteqMPwgx4FZN7LQdrGrbquLnSeCaNcd69HOpuoel6CJXtYcba2596N-DJthcQcI68LPb87jQE3kOE2fh5e1cZkPlX_bUDeuxUmTEB6FaqdQ09e8c2jfLEu39zODWFIAjxbo66KCeG6OyfpPh95z4sGjNL4B4k3P7vBlsbSoOxxVzuahdT"/>
+                    <div>
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-body-md text-body-md font-bold text-primary">Marcus Thorne</h4>
+                        <span className="text-caption text-on-surface-variant">OFFLINE</span>
+                      </div>
+                      <p className="text-caption text-on-surface-variant">Ops Logistics</p>
+                      <div className="mt-xs text-body-md text-on-surface-variant italic">
+                        "Logistics manifests uploaded for Q3."
+                        <span className="block text-[10px] text-outline mt-[2px]">2 HOURS AGO</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-md">
+                    <img alt="Elena Rodriguez" className="w-10 h-10 rounded-full border border-outline-variant shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRzxOo5EPzNWXpT9RNJ4G3eWJkJeKZec4vwGuJBp9wi4Hy0_-WqV3Jdd8nf3QPTIbiJH laS_O_B8 laCbrCrJr8AuBUTsbFZmIIq9wbL_Qb0oj9MBApcx8t6rWmV6MhIMzbK-FyyMFyLIcArc9xHzFg6qBEpnUXowVF2S11f8NOBwIDRj8n82XtKazG-ZJ0zIqMKYuwX4lWiOIRyYfTJFowv0Cn2U1mpUZUBFLxYHnOcHgC6RP-VFv3"/>
+                    <div>
+                      <div className="flex justify-between items-center">
+                        <h4 className="font-body-md text-body-md font-bold text-primary">Elena Rodriguez</h4>
+                        <span className="text-caption text-secondary">ACTIVE</span>
+                      </div>
+                      <p className="text-caption text-on-surface-variant">Finance Lead</p>
+                      <div className="mt-xs text-body-md bg-surface p-xs rounded border-l-2 border-outline-variant">
+                        "Disbursement for Sector 4 approved."
+                        <span className="block text-[10px] text-outline mt-[2px]">JUST NOW</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button className="w-full mt-lg py-sm text-label-md font-label-md text-primary border border-outline-variant rounded hover:bg-surface-container transition-all">
+                  VIEW FULL TEAM LOGS
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="card-body">
-          {projects.length === 0 ? (
-            <div className="text-center py-12">
-              <svg className="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-              </svg>
-              <h3 className="text-body-lg font-semibold text-gray-700">No projects yet</h3>
-              <p className="text-body-md text-gray-500 mt-1 mb-4">
-                Create your first project to start tracking progress
-              </p>
-              <Link href="/dashboard/projects/new" className="btn-primary">
-                Create Project
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project) => (
-                <Link
-                  key={project.id}
-                  href={`/dashboard/projects/${project.id}`}
-                  className="card p-6 hover:shadow-card-hover transition-all"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <Badge variant={PROJECT_STATUS_CONFIG[project.status]?.color || "default"}>
-                      {PROJECT_STATUS_CONFIG[project.status]?.label}
-                    </Badge>
-                    {project.grantApplication && (
-                      <svg className="w-5 h-5 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    )}
-                  </div>
-                  <h3 className="text-body-lg font-semibold text-primary line-clamp-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-body-sm text-gray-600 mt-2 line-clamp-2">
-                    {project.summary}
-                  </p>
-                  <div className="mt-4 space-y-2">
-                    <div className="flex items-center justify-between text-body-sm">
-                      <span className="text-gray-600">Budget</span>
-                      <span className="font-medium text-primary">
-                        {project.currency} {project.budgetTotal.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-body-sm">
-                      <span className="text-gray-600">Spent</span>
-                      <span className="font-medium">
-                        {project.currency} {project.budgetSpent.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className="bg-secondary h-2 rounded-full transition-all"
-                        style={{
-                          width: `${Math.min((project.budgetSpent / project.budgetTotal) * 100, 100)}%`,
-                        }}
-                      />
-                    </div>
-                    {project.beneficiaries && (
-                      <div className="flex items-center gap-2 text-body-sm text-gray-600 pt-2 border-t border-border">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        {project.beneficiaries.toLocaleString()} beneficiaries
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-primary font-semibold text-xs">
-                          {project.lead?.firstName?.charAt(0) || "?"}
-                        </span>
-                      </div>
-                      <span className="text-body-sm text-gray-600">
-                        {project.lead ? `${project.lead.firstName} ${project.lead.lastName}` : "Unassigned"}
-                      </span>
-                    </div>
-                    <span className="text-body-xs text-gray-500">
-                      {new Date(project.startDate).toLocaleDateString()}
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      </main>
     </div>
   );
 }
